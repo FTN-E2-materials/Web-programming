@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Racuni</title>
+</head>
+<body>
+	<h2>Računi</h2>
+	<table>
+		<tr>
+			<td>Broj računa</td>
+			<td><input type="text" name="txt_broj"></td>
+		</tr>
+		<tr>
+			<td>Tip racuna</td>
+			<td>
+				<select>
+					<option>Dinarski</option>
+					<option>Devizni</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Raspolozivo stanje</td>
+			<td><input type="text" name="txt_raspolozivo"></td>
+		</tr>
+		<tr>
+			<td>Rezervisano stanje</td>
+			<td><input type="text" name="txt_rezervisano"></td>
+		</tr>
+		<tr>
+			<td>Online</td>
+			<td><input type="checkbox" name="cb_online"></td>
+		</tr>
+		<tr>
+			<td>Aktivan</td>
+			<td><input type="checkbox" name="cb_aktivan"></td>
+		</tr>
+	</table>
+	<br><br>
+	<table border="1">
+		<thead>
+			<tr><th>Broj računa</th><th>Tip računa</th><th>Rezervisano</th><th>Raspoloživo</th><th>Ukupno</th><th>Online</th><th>Aktivan</th></tr>
+			<tr>
+				<td>13512-18484-13218</td>
+				<td>Dinarski</td>
+				<td>2000</td>
+				<td>1600</td>
+				<td>3600</td>
+				<td>Da</td>
+				<td>Da</td>
+				<td><a href="#">Obriši</a></td>
+				<td><a href="#">Deaktiviraj</a></td>
+			</tr>
+			<tr>
+				<td>85435-18354-84121</td>
+				<td>Devizni</td>
+				<td>12</td>
+				<td>4</td>
+				<td>16</td>
+				<td>Da</td>
+				<td>Da</td>
+				<td><a href="#">Obriši</a></td>
+				<td><a href="#">Deaktiviraj</a></td>
+			</tr>
+			<tr>
+				<td>84351-87453-81321</td>
+				<td>Devizni</td>
+				<td>150</td>
+				<td>400</td>
+				<td>550</td>
+				<td>Da</td>
+				<td>Ne</td>
+				<td><a href="#">Obriši</a></td>
+				<td><a href="#">Aktiviraj</a></td>
+			</tr>
+			<tr>
+				<td>83513-44513-12314</td>
+				<td>Dinarski</td>
+				<td>50000</td>
+				<td>20000</td>
+				<td>70000</td>
+				<td>Da</td>
+				<td>Ne</td>
+				<td><a href="#">Obriši</a></td>
+				<td><a href="#">Aktiviraj</a></td>
+			</tr>
+		</thead>
+	</table>
+	<h2>Uplata</h2>
+	<form>
+		<table>
+			<tr>
+				<td>Račun</td>
+				<td>
+					<select>
+						<option>13512-18484-13218</option>
+						<option>85435-18354-84121</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Iznos</td>
+				<td><input type="text" name="txt_iznos"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" name="btn_uplati" value="Uplati"></td>
+			</tr>
+		</table>
+	</form>
+	<hr>
+	<a href="">Odjava</a>
+</body>
+</html>
