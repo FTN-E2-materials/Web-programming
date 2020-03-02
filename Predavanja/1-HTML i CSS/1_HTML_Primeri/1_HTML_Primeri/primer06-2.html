@@ -1,0 +1,37 @@
+<html>
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Windows-1250">
+    <title>Forme</title>
+  </head>
+
+  <body>
+    <h3>Forme (2)</h3>
+
+    <p>
+      Poslali ste podatke iz forme na prethodno posećenoj stranici. Gde su
+      podaci?
+    </p>
+    <script type="text/javascript">
+    
+     a = window.location.search;
+     a = a.substring(1);
+     niz = a.split("&");
+     document.write('<table border="1">');
+     for (i = 0; i < niz.length; i++) {
+       document.write('<tr>');
+       niz2 = niz[i].split("=");
+       document.write('<td>');       
+       document.write(niz2[0]);
+       document.write('</td>');
+       document.write('<td>');
+       document.write(unescape(niz2[1]));
+       document.write('</td>');
+       document.write('</tr>');
+     }
+     document.write('</table>');
+    </script>
+
+  </body>
+
+</html>

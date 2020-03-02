@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html> 
+<html> 
+  <head> 
+    <meta charset="utf-8" /> 
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" /> 
+    <title>HTML5 Presentation</title> 
+    <style>
+      body {
+        background-color : lightgray;
+      }
+    </style>
+  </head>
+<body>
+<div class="media-buttons"> 
+  <input type=button id="audio-play-button" onclick="PlayAudio()" value="Play" /> 
+  <input type=button id="audio-pause-button" onclick="PauseAudio()" value="Pause" disabled /> 
+  <input type=button id="audio-mute" onclick="MuteUnMuteAudio()" value="Mute" /> 
+</div> 
+<audio id="audio-clip" width="670" controls> 
+  <source src="rushus-modal_blues.mp3" type="audio/mpeg" /> 
+  <source src="rushus-modal_blues.ogg" type="audio/ogg" /> 
+  Your browser does not support the audio tag
+</audio>
+<hr />
+<div> 
+  <input type="button" id="play-button" onclick="PlayVideo()"; value="Play" /> 
+  <input type="button" id="pause-button" onclick="PauseVideo()"; value="Pause" disabled /> 
+  <input type="button" id="mute" onclick="MuteUnMute()" value="Mute" /> 
+  <input type="button" id="reflection-button" onclick="addReflection()" value="Add CSS reflection to video" /> 
+</div> 
+<video width="390" id="clip" controls> 
+  <source src="chrome_japan.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' /> 
+  <source src="chrome_japan.webm" type='video/webm; codecs="vp8, vorbis"' /> 
+  Your browser does not support the video tag
+</video> 
+
+
+<script> 
+            var videoClip = document.getElementById('clip');
+            var playButton = document.getElementById('play-button');
+            var pauseButton = document.getElementById('pause-button');
+ 
+            function PlayVideo() {
+              videoClip.play();
+              playButton.disabled = true;
+              pauseButton.disabled = false;
+            }
+ 
+            function PauseVideo() {
+              videoClip.pause();
+              playButton.disabled = false;
+              pauseButton.disabled = true;
+            }
+ 
+            function MuteUnMute() {
+              document.getElementById('mute').value = videoClip.muted ? 'Mute' : 'Unmute';
+              videoClip.muted = videoClip.muted ? false : true;
+            }
+ 
+            function OnFinished() {
+              playButton.disabled = false;
+              pauseButton.disabled = true;
+            }
+ 
+            function addReflection() {
+              videoClip.style.webkitBoxReflect = videoClip.style.webkitBoxReflect !== '' ? '' : "below 0px -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), color-stop(0.55, transparent), to(white))";
+            }
+</script>
+
+
+<script> 
+            var audioClip = document.getElementById('audio-clip');
+            var audioPlayButton = document.getElementById('audio-play-button');
+            var audioPauseButton = document.getElementById('audio-pause-button');
+            audioClip.addEventListener('ended', OnAudioFinished, false);
+ 
+            function PlayAudio() {
+              audioClip.play();
+              audioPlayButton.disabled = true;
+              audioPauseButton.disabled = false;
+            }
+ 
+            function PauseAudio() {
+              audioClip.pause();
+              audioPlayButton.disabled = false;
+              audioPauseButton.disabled = true;
+            }
+ 
+            function MuteUnMuteAudio() {
+              document.getElementById('audio-mute').value = audioClip.muted ? 'Mute' : 'Unmute';
+              audioClip.muted = audioClip.muted ? false : true;
+            }
+ 
+            function OnAudioFinished() {
+              audioPlayButton.disabled = false;
+              audioPauseButton.disabled = true;
+            }
+          </script> 
+
+</body>
+<html>

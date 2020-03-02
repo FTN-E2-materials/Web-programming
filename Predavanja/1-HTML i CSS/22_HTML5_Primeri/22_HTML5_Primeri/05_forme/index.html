@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html> 
+<html> 
+  <head> 
+    <meta charset="utf-8" /> 
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" /> 
+    <title>HTML5 Presentation</title> 
+<style>
+  [required] { background-color: lightyellow; }
+  :invalid { background-color: red; }
+</style>
+    
+  </head>
+<body>
+<input type="text" required />
+<input type="email" value="some@email.com" /> 
+<input type="date" min="2010-08-14" max="2011-08-14" value="2010-08-14"/> 
+<input type="range" min="0" max="50" value="10" /> 
+<input type="search" results="10" placeholder="Search..." /> 
+<input type="tel" placeholder="(555) 555-5555" pattern="^\(?\d{3}\)?[-\s]\d{3}[-\s]\d{4}.*?$" />
+
+<input type="number" step="1" min="-5" max="10" value="0" /> 
+
+<br />
+<meter min="0" max="100" low="40" high="90" optimum="100" value="91">A+</meter>
+Your score is: A+
+<br />
+<progress>working...</progress>
+Download is: working...
+<br />
+<progress value="75" max="100">3/4 complete</progress>
+Goal is: 3/4 complete
+
+
+</body>
+<html>

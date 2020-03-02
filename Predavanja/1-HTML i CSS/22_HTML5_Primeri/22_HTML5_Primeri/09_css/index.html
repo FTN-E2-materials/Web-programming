@@ -1,0 +1,432 @@
+﻿<!DOCTYPE html> 
+<html> 
+  <head> 
+    <meta charset="utf-8" /> 
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" /> 
+    <title>HTML5 Presentation</title> 
+  </head>
+  <style>
+  .row:nth-child(even) {
+  background: #dde;
+  }
+  .row:nth-child(odd) {
+  background: white;
+  }
+  </style>
+<body>
+  <!-- *********************************************************************************************** -->
+  <hr />
+  <h1>Parne i neparne vrste tabele</h1>
+  <table>
+    <tr class="row">
+      <td>ABC</td>
+      <td>ABC</td>
+      <td>ABC</td>
+      <td>ABC</td>
+    </tr>
+    <tr class="row">
+      <td>ABC</td>
+      <td>ABC</td>
+      <td>ABC</td>
+      <td>ABC</td>
+    </tr>
+    <tr class="row">
+      <td>ABC</td>
+      <td>ABC</td>
+      <td>ABC</td>
+      <td>ABC</td>
+    </tr>
+    <tr class="row">
+      <td>ABC</td>
+      <td>ABC</td>
+      <td>ABC</td>
+      <td>ABC</td>
+    </tr>
+  </table>
+
+  <!-- *********************************************************************************************** -->
+  <hr />
+  <h1>Šta sa viškom?</h1>
+  <style>
+  .textOverflow1 {
+    width: 300px;
+    height: 1.5em; 
+    border:solid 1px;
+    overflow: hidden; 
+  }
+  .textOverflow2 {
+    width: 300px;
+    height: 1.5em; 
+    border:solid 1px;
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+  }
+  .textOverflow3 {
+    width: 300px;
+    height: 1.5em; 
+    border:solid 1px;
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: clip;
+  }
+  </style>
+  <div id="to1" class="textOverflow1">NO TEXT-OVERFLOW: Sometimes text will have to be clipped. For instance when it overflows the element’s box. When this happens, you want to leave a visual “hint” to the user that text has been clipped. This is were the text-overflow-props come in. The most common way to use it is the ellipsis character: “…” although, as the spec says, “the actual character representation may vary”. Opera supports this as well using it’s vendor prefix: -o-text-overflow.</div>
+  <br/>
+  <div id="to2" class="textOverflow2">TEXT-OVERFLOW: ELLIPSIS; : Sometimes text will have to be clipped. For instance when it overflows the element’s box. When this happens, you want to leave a visual “hint” to the user that text has been clipped. This is were the text-overflow-props come in. The most common way to use it is the ellipsis character: “…” although, as the spec says, “the actual character representation may vary”. Opera supports this as well using it’s vendor prefix: -o-text-overflow.</div>
+  <br/>
+  <div id="to3" class="textOverflow3">TEXT-OVERFLOW: CLIP; : Sometimes text will have to be clipped. For instance when it overflows the element’s box. When this happens, you want to leave a visual “hint” to the user that text has been clipped. This is were the text-overflow-props come in. The most common way to use it is the ellipsis character: “…” although, as the spec says, “the actual character representation may vary”. Opera supports this as well using it’s vendor prefix: -o-text-overflow.</div>
+  <br/>
+  <input type="range" min="50" max="600" value="300" onchange="changeWrapping(event)"> 
+  <script> 
+    function changeWrapping(event) {
+      document.getElementById('to1').style.width = event.target.value + 'px';
+      document.getElementById('to2').style.width = event.target.value + 'px';
+      document.getElementById('to3').style.width = event.target.value + 'px';
+    }
+  </script>  
+  
+  <!-- *********************************************************************************************** -->
+  <hr />
+  <h1>Broj kolona nekog teksta</h1>
+  <style> 
+    #kolone {
+      -webkit-column-count: 2;
+      -webkit-column-rule: 1px solid #bbb;
+      -webkit-column-gap: 2em;
+      -moz-column-count: 2;
+      -moz-column-rule: 1px solid #bbb;
+      -moz-column-gap: 2em;
+      column-count: 2;
+      column-rule: 1px solid #bbb;
+      column-gap: 2em;
+    }
+    #columns-no-example p {
+      font-size: 15px;
+    }
+  </style>
+          
+  <div id="kolone">Sometimes text will have to be clipped. For instance when it overflows the element’s box. When this happens, you want to leave a visual “hint” to the user that text has been clipped. This is were the text-overflow-props come in. The most common way to use it is the ellipsis character: “…” although, as the spec says, “the actual character representation may vary”. Opera supports this as well using it’s vendor prefix: -o-text-overflow.</div>
+  <div id="brKolona">Br kolona: 2</div>
+  <input type="range" min="1" max="6" value="2" onchange="changeColumnNoSlider(event)">
+  <script> 
+    function changeColumnNoSlider(event) {
+      var val = event.target.value;
+      document.getElementById('brKolona').innerHTML = 'Br. kolona: ' + val;
+      document.getElementById('kolone').style.webkitColumnCount = val;
+      document.getElementById('kolone').style.MozColumnCount = val;
+    }
+  </script>     
+
+  <!-- *********************************************************************************************** -->
+  <hr />
+  <h1>Četkica za pisanje teksta (text-stroke)</h1>
+  <style> 
+    #text-stroke-example {
+      font-size: 60px;
+      -webkit-text-fill-color: black;
+      -webkit-text-stroke-color: red;
+      -webkit-text-stroke-width: 0.00px; 
+    }
+  </style> 
+  <div id="text-stroke-example">Ovo je tekst koji će biti napisan debelom četkicom.</div>
+  <input id="text-stroke" type="range" min="0" max="15" value="0" onchange="changeTextStroke(event)"> 
+  <script> 
+    function changeTextStroke() {
+      //var width = (document.getElementById('text-stroke').value * 0.25).toFixed(2);
+      var width = event.target.value * 0.25;
+      document.getElementById('text-stroke-example').style.webkitTextStrokeWidth = width + 'px';
+      document.getElementById('text-stroke-value').innerHTML = width;
+    }
+  </script>   
+  
+  <!-- *********************************************************************************************** -->
+  <hr />
+  <h1>Providnost</h1>
+  <style> 
+    #opacity-body {
+      background: url(opacity_bg.jpg) top center no-repeat;
+      margin: 0 auto;
+      padding: 20px;
+      -webkit-border-radius: 8px;
+      -khtml-border-radius: 8px;
+      -moz-border-radius: 8px;
+      border-radius: 8px;
+    }
+    #opacity-example {
+      font-size: 85px;
+      margin: 100px auto;
+      text-align: center;
+      -webkit-border-radius: 5px;
+      -khtml-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      text-shadow: none;
+      color: rgba(255, 0, 0, 0.746094);
+      background-image: initial;
+      background-attachment: initial;
+      background-origin: initial;
+      background-clip: initial;
+      background-color: rgba(0, 0, 255, 0.746094);
+      background-position: initial initial;
+      background-repeat: initial initial;
+    }
+  </style> 
+  <div id="opacity-body"> 
+    <div id="opacity-example"> 
+      Independent opacity
+    </div> 
+  </div>            
+  <pre>
+  color: <b>rgba</b>(255, 0, 0, <span id="opacity-color-value">0.75</span>); <input id="opacity-color" type="range" min="0" max="100" value="75" onchange="changeOpacity()"> 
+  background: <b>rgba</b>(0, 0, 255, <span id="opacity-background-value">0.75</span>); <input id="opacity-background" type="range" min="0" max="100" value="75" onchange="changeOpacity()"> 
+  </pre> 
+  <script> 
+    function changeOpacity() {
+      var textOpacity = (document.getElementById('opacity-color').value / 100).toFixed(2);
+      var backgroundOpacity = (document.getElementById('opacity-background').value / 100).toFixed(2);
+  
+      var el = document.getElementById('opacity-example');
+  
+      el.style.color = 'rgba(255, 0, 0, ' + textOpacity + ')';
+      el.style.background = 'rgba(0, 0, 255, ' + backgroundOpacity + ')';
+  
+      document.getElementById('opacity-color-value').innerHTML = textOpacity;
+      document.getElementById('opacity-background-value').innerHTML = backgroundOpacity;
+    }
+  
+  </script>   
+
+  <!-- *********************************************************************************************** -->
+  <hr />
+  <h1>Hue/saturation/luminance definicija boje</h1>
+  <style> 
+  #hsl-example {
+    width: 400px;
+    font-size: 75px;
+    padding-top: 20px;
+    padding-right: 0px;
+    padding-bottom: 20px;
+    padding-left: 0px;
+    color: hsla(128, 74%, 33%, 1.0);
+    /* color: rgb(21, 147, 38); */
+  }
+  </style>  
+  <div id="hsl-example" class="example"> 
+    HSL example
+  </div> 
+  <pre>color: <b>hsla</b>(
+    <span class="hsl-value" id="hsl-h-value">128</span> <input id="hsl-h" type="range" min="0" max="360" value="128" onchange="changeHSL()"> 
+    <span class="hsl-value" id="hsl-s-value">74%</span> <input id="hsl-s" type="range" min="0" max="100" value="75" onchange="changeHSL()"> 
+    <span class="hsl-value" id="hsl-l-value">33%</span> <input id="hsl-l" type="range" min="0" max="100" value="33" onchange="changeHSL()"> 
+    <span class="hsl-value" id="hsl-a-value">1.00</span> <input id="hsl-a" type="range" min="0" max="100" value="100" onchange="changeHSL()"> 
+  </pre> 
+  <script> 
+    function changeHSL() {
+      var h = document.getElementById('hsl-h').value * 1.0;
+      var s = document.getElementById('hsl-s').value * 1.0;
+      var l = document.getElementById('hsl-l').value * 1.0;
+      var a = (document.getElementById('hsl-a').value / 100).toFixed(2);
+      var el = document.getElementById('hsl-example');
+  
+      el.style.color = 'hsla(' + h + ', ' + s + '%, ' + l + '%, ' + a + ')';
+  
+      document.getElementById('hsl-h-value').innerHTML = h;
+      document.getElementById('hsl-s-value').innerHTML = s + '%,';
+      document.getElementById('hsl-l-value').innerHTML = l + '%,';
+      document.getElementById('hsl-a-value').innerHTML = a + ');';
+    }
+  </script>
+  
+  <!-- *********************************************************************************************** -->
+  <hr />
+  <h1>Rounded corners</h1>
+  <style> 
+    #rounded-example {
+      width: 300px;
+      border: 1px solid #bbb;
+      border-radius: 0px;
+    }
+    #rounded-example div {
+      font-size: 75px;
+      padding: 20px 0;
+      text-align: center;
+    }
+  </style> 
+  <div id="rounded-example" class="example"> 
+    <div> 
+      Example
+    </div> 
+  </div> 
+  <pre>  <b>border-radius</b>: <span id="rounded-border-value">0</span>px; <input id="rounded-border" type="range" min="0" max="50" value="0" onchange="changeRounded(event)"> 
+  </pre> 
+
+  <script> 
+    function changeRounded() {
+      var el = document.getElementById('rounded-example');
+
+      var borderVal = document.getElementById('rounded-border').value;
+      document.getElementById('rounded-border-value').innerHTML = borderVal;
+
+      el.style.borderRadius = borderVal + 'px';
+    }
+  </script>     
+  
+  <!-- *********************************************************************************************** -->
+  <hr />
+  <h1>Gradients</h1>
+  <style> 
+    #gradients-linear-example {
+      border: 0;
+      width: 800px;
+      height: 100px;
+      background: -moz-linear-gradient(90deg, #00abeb, #fff, #66cc00, #fff);
+      background: -webkit-gradient(linear, left top, left bottom, from(#00abeb), to(#fff), color-stop(0.5, #66cc00), color-stop(1, #fff));
+    }
+    #gradients-radial-example {
+      border: 0;
+      width: 800px;
+      height: 100px;
+      background: -moz-radial-gradient(400px 50px, circle cover, red 0, #000 200px);
+      background: -webkit-gradient(radial, 400 50, 0, 400 50, 200, from(red), to(#000));
+    }
+  </style> 
+  <div id="gradients-linear-example" class="example"></div>   
+  <div id="gradients-radial-example" class="example"></div> 
+  <input id="gradients-radial" type="range" min="1" max="800" value="200" onchange="changeGradients(event)"> 
+  <script> 
+    function changeGradients() {
+      var size = document.getElementById('gradients-radial').value;
+  
+      document.getElementById('gradients-radial-example').style.background = 
+          '-webkit-gradient(radial, 430 50, 0, 430 50, ' + size + ', from(red), to(#000))';
+  
+      document.getElementById('gradients-radial-value').innerHTML = size;
+    }
+  </script>
+
+  <!-- *********************************************************************************************** -->
+  <hr />
+  <h1>Shadows</h1>
+  <style> 
+    #shadow-example {
+      font-size: 75px;
+      margin: 10px 10px 30px 10px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #bbb;
+      border-radius: 10px;
+    }
+  </style>   
+  <div id="shadow-example" class="example"> 
+    Shadows example
+  </div>   
+  <pre >
+  <b>text-shadow</b>: 
+    rgba(64, 64, 64, 0.5) 
+    <span id="shadows-text-x-value">0</span>px <input id="shadows-text-x" type="range" min="-9" max="9" value="0" onchange="changeShadow(event)"> 
+    <span id="shadows-text-y-value">0</span>px <input id="shadows-text-y" type="range" min="-9" max="9" value="0" onchange="changeShadow(event)"> 
+    <span id="shadows-text-size-value">0</span>px; <input id="shadows-text-size" type="range" min="0" max="9" value="0" onchange="changeShadow(event)"> 
+  <b>box-shadow</b>: 
+    rgba(0, 0, 128, 0.25) 
+    <span id="shadows-box-x-value">0</span>px <input id="shadows-box-x" type="range" min="-9" max="9" value="0" onchange="changeShadow(event)"> 
+    <span id="shadows-box-y-value">0</span>px <input id="shadows-box-y" type="range" min="-9" max="9" value="0" onchange="changeShadow(event)"> 
+    <span id="shadows-box-size-value">0</span>px; <input id="shadows-box-size" type="range" min="0" max="9" value="0" onchange="changeShadow(event)"> 
+  </pre>
+  <script> 
+    function changeShadow() {
+      var el = document.getElementById('shadow-example');
+  
+      var textXVal = document.getElementById('shadows-text-x').value;
+      var textYVal = document.getElementById('shadows-text-y').value;
+      var textSizeVal = document.getElementById('shadows-text-size').value;
+  
+      document.getElementById('shadows-text-x-value').innerHTML = textXVal;
+      document.getElementById('shadows-text-y-value').innerHTML = textYVal;
+      document.getElementById('shadows-text-size-value').innerHTML = textSizeVal;
+  
+      var boxXVal = document.getElementById('shadows-box-x').value;
+      var boxYVal = document.getElementById('shadows-box-y').value;
+      var boxSizeVal = document.getElementById('shadows-box-size').value;
+  
+      document.getElementById('shadows-box-x-value').innerHTML = boxXVal;
+      document.getElementById('shadows-box-y-value').innerHTML = boxYVal;
+      document.getElementById('shadows-box-size-value').innerHTML = boxSizeVal;
+  
+      el.style.textShadow = 'rgba(64, 64, 64, 0.5) ' + textXVal + 'px ' + textYVal + 'px ' + textSizeVal + 'px';
+      el.style.webkitBoxShadow = 'rgba(0, 0, 128, 0.25) ' + boxXVal + 'px ' + boxYVal + 'px ' + boxSizeVal + 'px';
+    }
+  </script>               
+  
+  <!-- *********************************************************************************************** -->
+  <hr />
+  <h1>Transitions</h1>
+  <style> 
+    #transitions-box-2 {
+      -webkit-transition: margin-left 1s ease-in-out;
+      -moz-transition: margin-left 1s ease-in-out;
+      -o-transition: margin-left 1s ease-in-out;
+      transition: margin-left 1s ease-in-out;
+    }
+    .transitions .left {
+      margin-left: 0;
+    }
+    .transitions .right {
+      margin-left: 780px;
+    }
+    .transitions div {
+      width: 20px;
+      height: 20px;
+      background: red;
+    }
+  </style>   
+  
+  <div class="transitions"> 
+    <div id="transitions-box-2"></div> 
+  </div>
+  <button onclick="transitionLeft()">Left</button> 
+  <button onclick="transitionRight()">Right</button> 
+  <script> 
+    function transitionLeft() {
+      document.getElementById('transitions-box-2').className = 'left';
+    }
+    function transitionRight() {
+      document.getElementById('transitions-box-2').className = 'right';
+    }
+  </script>
+
+  <!-- *********************************************************************************************** -->
+  <hr />
+  <h1>Animations</h1>
+
+  <style> 
+    #threed-example {
+      margin: 50px 20px;
+      -webkit-transform: rotate(5deg); 
+      -moz-transform: rotate(5deg);
+      -o-transform: rotate(5deg);
+      transform: rotateZ(5deg);
+      -webkit-transition: -webkit-transform 3s ease-in-out;
+      -moz-transition: -moz-transform 2s ease-in-out;
+      -o-transition: -o-transform 2s ease-in-out;
+      transition: transform 2s ease-in-out;
+    }
+    #threed-example:hover {
+      -webkit-transition: -webkit-transform 1s ease-in-out;
+      -webkit-transform: rotate(-5deg);
+      -moz-transform: rotate(-5deg);
+      -o-transform: rotate(-5deg);
+      transform: rotate(-5deg);
+    }
+  </style>
+  <pre id="threed-example">
+
+  Pređite mišem iznad ovog teksta:
+  -webkit-transform: <b>rotate</b>(45deg);
+  -webkit-transform: <b>scale</b>(1.25);
+  -webkit-transform: <b>translate3d</b>(0, 0, 90deg);
+  -webkit-transform: <b>perspective</b>(500px)
+  </pre>
+    
+</body>
+<html>

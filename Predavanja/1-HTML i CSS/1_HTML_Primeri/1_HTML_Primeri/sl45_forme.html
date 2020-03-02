@@ -1,0 +1,76 @@
+<html>
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Windows-1250">
+    <title>Forme</title>
+  </head>
+
+  <body >
+    <h1>Forme</h1>
+
+    <p>
+      Forma predstavlja deo dokumenta koji sadrži polja za unos podataka.
+      Postoji više tipova ovakvih polja.
+    </p>
+
+    <form action="primer06-2.html" method="get">
+
+    <p>
+      <fieldset>
+      <legend>Jednoslinijska tekstualna polja</legend>
+      Jednolinijsko tekstualno polje:
+      <input type="text" name="polje1"> <br><br>
+      
+      Polje za unos lozinki:
+      <input type="password" name="polje2"> <br><br>
+      </fieldset>
+
+      Checkbox:
+      <input type="checkbox" name="polje3"> remind me <br><br>
+
+      Radio:
+      <input type="radio" name="polje4" checked> Male &nbsp;&nbsp; <input type="radio" name="polje4"> Female <br><br>
+
+      Višelinijsko polje: <br>
+      <textarea name="polje5" rows="5" cols="30">Sadržaj polja</textarea> <br><br>
+
+      Combo box:
+      <select name="polje6">
+        <option value="1">Prva stavka</option>
+        <option value="2">Druga stavka</option>
+        <option value="3">Treća stavka</option>
+      </select> <br><br>
+
+      List box: <br>
+      <select name="polje7" size="3">
+        <option value="1">Prva stavka</option>
+        <option value="2" selected>Druga stavka</option>
+        <option value="3">Treća stavka</option>
+      </select> <br><br>
+
+      Skriveno polje:
+      <input type="hidden" name="polje8" value="vrednost"> <br><br>
+
+      Polje za upload fajla: <br>
+      <input type="file" name="polje9"> <br><br>
+
+      Dugme:
+      <input type="button" name="polje10" value=" Dugme "> <br><br>
+
+      Reset dugme:
+      <input type="reset" name="polje11" value=" Reset "> <br><br>
+
+      Submit dugme:
+      <input type="submit" name="polje12" value=" Submit "> <br><br>
+
+      Slika-dugme:
+      <input type="image" name="polje13" src="submit.gif"> <br><br>
+
+    </p>
+
+    </form>
+
+
+  </body>
+
+</html>
