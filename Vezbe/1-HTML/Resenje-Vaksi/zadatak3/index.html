@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="refresh" content="121">
+	<title>Registracija</title>
+</head>
+<body>
+	
+	<h2> Produzenje registracije </h2>
+	<p>
+		Na ovoj stranici mozete obaviti produzenje registracije Vaseg automobila. Molim vas da popunite sledeci formular.
+	</p>
+	
+	<form action="akcijaForma.html" method="get">
+		<p>
+			
+		
+		<table bgcolor="#B3A394" border = "1" width = "50%">
+	         <thead>
+	            <tr>
+	               <td align = "center " colspan = "4">Produzenje registracije</td>
+	            </tr>
+	         </thead>
+	         
+	         <tfoot>
+	            <tr>
+	               <td align = "center " colspan = "4">
+	               		<input type="submit" value=" Posalji "> 
+	               </td>
+	            </tr>
+	         </tfoot>
+	         
+	         <tbody>
+	            <tr>
+	               <td>Ime: </td>
+	               <td>
+	               		<input type="text" name="Ime">
+	               </td>
+	               
+	            </tr>
+	            <tr>
+	               <td>Prezime: </td>
+	               <td>
+	               		<input type="text" name="Prezime" autofocus>
+	               </td>
+	               
+	            </tr>
+	            <tr>
+	               <td>JMBG: </td>
+	               <td>
+	               		<input type="text" name="JMBG" required>
+	               </td>
+	               
+	            </tr>
+	            <tr>
+	               <td>Marka vozila: </td>
+	               <td><!-- datalist polje koje daje preporuku za izbor elemenata -->
+	               		<input list="marke-vozila" id="marke-vozila-izbor" name="marke-vozila-izbor">
+						<datalist id ="marke-vozila">
+							<option value="Mercedes">
+						    <option value="Peugeot">
+						    <option value="Renault">
+						    
+						</datalist>
+	               </td>
+	               
+	            </tr>
+	            <tr>
+	               <td>Tip vozila: </td>
+	               <td>
+	               		<input type="text" name="TipVozila">
+	               </td>
+	               
+	            </tr>
+	            <tr>
+	               <td>Boja vozila: </td>
+	               <td>
+	               		<input type="color" name="BojaVozila">
+	               </td>
+	               
+	            </tr>
+	            <tr>
+	               <td>Registarska oznaka: </td>
+	               <td>
+	               		<input type="text" name="RegistarksaOznaka" required>
+	               </td>
+	               
+	            </tr>
+	            <tr>
+	               <td>Datum registracije: </td>
+	               <td>
+	               		<input type="date" id="start" name="trip-start" value="2019-07-22" min="2010-01-01" max="2020-12-31">
+	               </td>
+	               
+	            </tr>
+	         </tbody>
+	      </table>
+		</p>
+      </form> <!-- END FORM -->
+
+      <p>
+      	U gornjem combo box-u kao stavke nalaze se sledece vrednosti: Mercedes, Pezo, Reno.
+      </p>
+   
+	
+
+</body>
+</html>
