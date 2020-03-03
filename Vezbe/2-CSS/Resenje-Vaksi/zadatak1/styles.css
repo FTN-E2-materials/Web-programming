@@ -1,0 +1,36 @@
+body {
+  background-color: powderblue;
+  font-size: 10px;
+  font-family: "Tahoma";
+}
+h1,h2,h3,h4,h5,h6{
+  color: blue;
+  font-size: 16px;
+}
+table thead tr td{
+	color: blue;
+	font-size: 14px;
+}
+
+table{
+	background-color: #c2c8d1;
+}
+
+table tbody tr td input{
+	font-family: "Arial";
+}
+
+table tbody tr td{
+	font-size: 12px;
+}
+
+table tbody tr:nth-child(odd){
+	background: #656669;
+}
+
+table tbody tr:nth-child(even){
+	background: #e1e2e8;
+}
+
+
+
