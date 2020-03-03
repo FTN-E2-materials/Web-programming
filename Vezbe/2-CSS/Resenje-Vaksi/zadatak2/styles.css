@@ -1,0 +1,39 @@
+body{
+	background-color: #e0e0e0;
+	font-family: Georgia,Times,Times New Roman,serif; 
+	color:#f03030;
+}
+
+em{
+	font-size: 140%;
+    
+}
+
+p img{
+	border: 1px solid #f03030;
+	outline: #f03030 thick;
+	padding: 10px;
+}
+
+div.slike{
+
+	float: left;
+	border: 1px solid #f03030;
+	outline: #f03030 thick;
+	width: 180px;
+	height: 230px;
+	padding: 5px;
+	margin: 2px;
+}
+div.slike img{
+	float: top;
+	height: 45%;
+	width: 100%;
+}
+div.slike img:hover{
+	border: 1px solid #f03030;
+	outline: #f03030 thick;
+}
+div.slike p{
+	font-size: 90%;
+}
