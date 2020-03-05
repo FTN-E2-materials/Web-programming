@@ -1,0 +1,55 @@
+<html>
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Windows-1250">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Forme</title>
+  </head>
+
+  <body>
+    <h1><font color="blue">Registrovani korisnici</font></h1>
+
+    <p>
+      Na ovoj stranici prikazani su korisnici koji su registrivali svoja vozila.
+    </p>
+    <script type="text/javascript">
+    
+
+      document.write('<table width = "250px" border="1">');
+
+       document.write('<tr>');
+        document.write('<td>');       
+          document.write('<font class ="zaglavljeTabele"><center>Ime</center></font>');
+        document.write('</td>');
+        document.write('<td>');
+          document.write('<font class ="zaglavljeTabele"><center>Prezime</center></font>');
+        document.write('</td>');
+        document.write('<td>');
+          document.write('<font class ="zaglavljeTabele"><center>JMBG</center></font>');
+        document.write('</td>');
+
+        a = window.location.search;
+        a = a.substring(1); //radimo substring da bi odsekli ? sa pocetka iz stringa 
+        niz = a.split("&");
+        ime = niz[0].split("=");
+        prezime = niz[1].split("=");
+        jmbg = niz[2].split("=");
+
+        document.write('<tr>');
+          document.write('<td>');       
+            document.write(ime[1]); //ime[1] zato sto je ime niz koji izgleda "ime,Nemanja"
+          document.write('</td>');
+          document.write('<td>');
+            document.write(prezime[1]);
+          document.write('</td>');
+          document.write('<td>');
+            document.write(jmbg[1]);
+          document.write('</td>');
+        document.write('</tr>');
+     
+      document.write('</table>');
+    </script>
+
+  </body>
+
+</html>
