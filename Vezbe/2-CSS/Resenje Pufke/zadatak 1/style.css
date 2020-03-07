@@ -1,5 +1,29 @@
+*{
+	font-family: Tahoma;
+	font-size: 10px;
+}
 .zaglavljeTabele, h1{
 	color: blue;
+	font-size: 14px;
+}
+
+table {
+	background: #cfcccc;
+}
+
+table td{
+	font-size: 12px;
+}
+.neparanRed{
+	background-color: #a8a8a8;
+}
+
+.paranRed{
+	background-color: #d9d9d9;
+}
+
+.textPolje{
+	font-family: Arial;
 }
 
 h1 {

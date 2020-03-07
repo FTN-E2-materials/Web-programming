@@ -14,27 +14,27 @@
 	   Molimo Vas da popunite sledeci formular.
 	</p>
 	<form action="HTMLzadatak2-2.html" method="get">
-		<table width="320" bgcolor="#B0B0B0" border="2" cellspacing="3">
+		<table width="320" border="2" cellspacing="3">
 	  		<tr>
 	    		<td class ="zaglavljeTabele" colspan = "2"><center>Produzenje registracije</center></td>
 	  		</tr>
-	  		<tr>
+	  		<tr class = "neparanRed">
 	    		<td>Ime:</td>
-	    		<td><input type="text" name="ime"></td>
+	    		<td><input class = "textPolje" type="text" name="ime"></td>
 	  		</tr>
-	  		<tr>
+	  		<tr class = "paranRed">
 	    		<td>Prezime:</td>
-	    		<td><input type="text" name="prezime"></td>
+	    		<td><input class = "textPolje" type="text" name="prezime"></td>
 	  		</tr>
-	  		<tr>
+	  		<tr class = "neparanRed" >
 	    		<td>JMBG:</td>
-	    		<td><input type="text" name="jmbg"></td>
+	    		<td><input class = "textPolje" type="text" name="jmbg"></td>
 	  		</tr>
-	  		<tr>
+	  		<tr class = "paranRed">
 	  			<td>Marke vozila:</td>
 	  			<td>
 	  			
-	     		<select name="markeVozila">
+	     		<select class = "textPolje" name="markeVozila">
 	        		<option value="1">Mercedes</option>
 	        		<option value="2">Peugeot</option>
 	        		<option value="3">Renault</option>
@@ -42,15 +42,15 @@
 	      	
 	      		</td>
 	      	</tr>
-	  		<tr>
+	  		<tr class = "neparanRed">
 	    		<td>Tip vozila:</td>
-	    		<td><input type="text" name="tipVozila"></td>
+	    		<td><input class = "textPolje" type="text" name="tipVozila"></td>
 	  		</tr>
-	  		<tr>
+	  		<tr  class = "paranRed">
 	    		<td>Registarska oznaka:</td>
-	    		<td><input type="text" name="registarskaOznaka"></td>
+	    		<td><input class = "textPolje" type="text" name="registarskaOznaka"></td>
 	  		</tr>
-	  		<tr>
+	  		<tr class = "neparanRed">
 	    		<td  colspan = "2"><center> <input type="submit" name="dugmePosalji" value=" Posalji "></center></td>
 	  		</tr>
 		</table>
