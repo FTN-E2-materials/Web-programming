@@ -1,0 +1,22 @@
+*{
+	background-color: #e0e0e0;
+}
+.glavniText{
+	color: #f03030;
+	font-size: 20px;
+	font-family: Georgia;
+}
+em{
+	font-size: 26px;
+}
+
+.fotografijaSlikara{
+	border: 2px solid #f03030;
+	outline: #f03030 thick;
+	padding: 10px;
+}
+
+.slike{
+	width: 200px;
+	height: 200px;
+}
