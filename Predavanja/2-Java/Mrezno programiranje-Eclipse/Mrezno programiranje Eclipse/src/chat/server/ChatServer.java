@@ -20,10 +20,9 @@ public class ChatServer {
 			ServerSocket ss = new ServerSocket(TCP_PORT);
 			while (true) {
 				Socket sock = ss.accept();
-				BufferedReader in = new BufferedReader(new InputStreamReader(
-						sock.getInputStream()));
-				PrintWriter out = new PrintWriter(new BufferedWriter(
-						new OutputStreamWriter(sock.getOutputStream())), true);
+				BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+				PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(sock.getOutputStream())),
+						true);
 
 				String username = in.readLine();
 				String address = sock.getInetAddress().getHostAddress();

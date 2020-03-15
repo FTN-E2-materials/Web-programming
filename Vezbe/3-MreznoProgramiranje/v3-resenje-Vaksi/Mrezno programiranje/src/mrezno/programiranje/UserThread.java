@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class UserThread extends Thread {
 
@@ -14,19 +15,16 @@ public class UserThread extends Thread {
 	private BufferedReader in;
 	private PrintWriter out;
 	private int value;
+	ArrayList<String> korisnici = new ArrayList<String>();
 
 	/**
 	 * Konstruktor klase UserThread.
 	 */
-	public UserThread(Socket sock, int value) {
+	public UserThread(Socket sock, int value, ArrayList<String> users) {
 		this.sock = sock;
 		this.value = value;
+		this.korisnici = users;
 		try {
-//			// inicijalizuj ulazni stream
-//			in = new DataInputStream(new BufferedInputStream(sock.getInputStream()));
-//			// inicijalizuj izlazni stream
-//			out = new DataOutputStream(new BufferedOutputStream(sock.getOutputStream()));
-//		
 			// inicijalizuj ulazni stream
 			in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
 
@@ -46,8 +44,23 @@ public class UserThread extends Thread {
 
 			// procitaj zahtev
 			String request = in.readLine();
-			System.out.println(request);
-
+			//System.out.println(request);
+			
+			// razbiti prijemljenu poruku na koristan podatak
+			String[] niz = request.split(" ");
+			
+			// primljenu poruku dodati u listu ako je u pitanju bila komanda dodavanja
+			if(niz[0].toLowerCase().equals("add")) {
+				korisnici.add(niz[1]);
+				out.println("Success");
+			}
+			
+//			System.out.println("----------------- Korisnici -----------------");
+//			for (String e : korisnici) {
+//				System.out.println(e);
+//			}
+			
+			
 			// odgovori na zahtev
 			out.println("(" + value + ")");
 
