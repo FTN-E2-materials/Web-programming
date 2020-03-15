@@ -65,17 +65,30 @@ public class UserThread extends Thread {
 				returnString = returnString.substring(0, returnString.length() - 2);
 				out.println(returnString); // odgovori na zahtev
 			}
-			
-			if(niz[0].toLowerCase().equals("remove")) {
-				if(korisnici.contains(niz[1])){
-					if(korisnici.remove(niz[1])) {
-						out.println("Korisnik "+niz[1]+" je uspesno uklonjen");
+
+			// ako imamo primljenu komandu REMOVE, uklanjamo korisnika ako on postoji
+			if (niz[0].toLowerCase().equals("remove")) {
+				if (korisnici.contains(niz[1])) {
+					String imeKorisnika = niz[1];
+					if (korisnici.remove(niz[1])) {
+						out.println(imeKorisnika);
 					}
-				}else {
-					out.println("Korisnik ne postoji, stoga ga nije moguce obrisati");
+				} else {
+					out.println("User not found");
 				}
 			}
 
+			// ako imamo komandu FIND<usnm>, vracamo prvog nadjenog korisnika sa tim <usnm>
+			// ( ako postoji )
+			if (niz[0].toLowerCase().equals("find")) {
+				if (korisnici.contains(niz[1])) {
+					int indexKorisnika = korisnici.indexOf(niz[1]);
+					String imeKorisnika = korisnici.get(indexKorisnika);
+					out.println(imeKorisnika);
+				} else {
+					out.println("User not found");
+				}
+			}
 
 			// zatvori konekciju
 			in.close();

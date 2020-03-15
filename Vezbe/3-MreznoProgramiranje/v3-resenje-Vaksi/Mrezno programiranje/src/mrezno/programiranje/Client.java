@@ -52,10 +52,9 @@ public class Client {
 				System.out.println("----------------- Korisnici -----------------");
 				System.out.println(response);
 			}
-			if(niz[0].toLowerCase().equals("remove")) {
+			if(niz[0].toLowerCase().equals("remove") || niz[0].toLowerCase().equals("find") ) {
 				System.out.println(response);
 			}
-			
 			
 			// zatvori konekciju
 			in.close();
