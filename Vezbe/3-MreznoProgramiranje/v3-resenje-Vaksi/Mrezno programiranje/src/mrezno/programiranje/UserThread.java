@@ -51,7 +51,13 @@ public class UserThread extends Thread {
 
 			// primljenu poruku dodati u listu ako je u pitanju bila komanda dodavanja
 			if (niz[0].toLowerCase().equals("add")) {
-				korisnici.add(niz[1]);
+				
+				String[] usernames = niz[1].trim().split(",");		// dobijemo niz usernamova
+				for (String username : usernames) {
+					korisnici.add(username);
+				}
+				//korisnici.add(niz[1]);
+				
 				out.println("Success");// odgovori na zahtev
 			}
 
