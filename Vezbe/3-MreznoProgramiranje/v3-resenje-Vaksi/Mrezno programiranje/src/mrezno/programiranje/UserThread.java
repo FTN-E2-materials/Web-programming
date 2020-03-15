@@ -55,6 +55,17 @@ public class UserThread extends Thread {
 				out.println("Success");
 			}
 			
+			// ako je primljena poruka LIST komanda, vratiti sve korisnike
+			if(niz[0].toLowerCase().equals("list")) {
+				String returnString = "";
+				for (String ime : korisnici) {
+					returnString+=ime;
+					returnString+=", ";
+				}
+				returnString = returnString.substring(0, returnString.length() - 2);
+				out.println(returnString);
+			}
+			
 //			System.out.println("----------------- Korisnici -----------------");
 //			for (String e : korisnici) {
 //				System.out.println(e);

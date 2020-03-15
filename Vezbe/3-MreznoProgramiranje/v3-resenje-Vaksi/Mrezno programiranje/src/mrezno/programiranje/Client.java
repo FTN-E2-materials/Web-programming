@@ -45,10 +45,12 @@ public class Client {
 			
 			// procitaj odgovor
 			String response = in.readLine();
-			if (!response.equals("Success")) {
-				System.out.println("Fedback message was not 'Success', there is some error");
-			}else {
-				System.out.println("It is success process");
+			if (response.equals("Success")) {
+				System.out.println("Uspesno dodat korisnik");
+			}
+			if(komanda.toLowerCase().equals("list")) {
+				System.out.println("----------------- Korisnici -----------------");
+				System.out.println(response);
 			}
 			
 			// zatvori konekciju
