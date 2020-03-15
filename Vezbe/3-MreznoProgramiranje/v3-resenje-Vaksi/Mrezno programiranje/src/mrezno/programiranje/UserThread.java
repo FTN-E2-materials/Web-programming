@@ -44,36 +44,38 @@ public class UserThread extends Thread {
 
 			// procitaj zahtev
 			String request = in.readLine();
-			//System.out.println(request);
-			
+			// System.out.println(request);
+
 			// razbiti prijemljenu poruku na koristan podatak
 			String[] niz = request.split(" ");
-			
+
 			// primljenu poruku dodati u listu ako je u pitanju bila komanda dodavanja
-			if(niz[0].toLowerCase().equals("add")) {
+			if (niz[0].toLowerCase().equals("add")) {
 				korisnici.add(niz[1]);
-				out.println("Success");
+				out.println("Success");// odgovori na zahtev
 			}
-			
+
 			// ako je primljena poruka LIST komanda, vratiti sve korisnike
-			if(niz[0].toLowerCase().equals("list")) {
+			if (niz[0].toLowerCase().equals("list")) {
 				String returnString = "";
 				for (String ime : korisnici) {
-					returnString+=ime;
-					returnString+=", ";
+					returnString += ime;
+					returnString += ", ";
 				}
 				returnString = returnString.substring(0, returnString.length() - 2);
-				out.println(returnString);
+				out.println(returnString); // odgovori na zahtev
 			}
 			
-//			System.out.println("----------------- Korisnici -----------------");
-//			for (String e : korisnici) {
-//				System.out.println(e);
-//			}
-			
-			
-			// odgovori na zahtev
-			out.println("(" + value + ")");
+			if(niz[0].toLowerCase().equals("remove")) {
+				if(korisnici.contains(niz[1])){
+					if(korisnici.remove(niz[1])) {
+						out.println("Korisnik "+niz[1]+" je uspesno uklonjen");
+					}
+				}else {
+					out.println("Korisnik ne postoji, stoga ga nije moguce obrisati");
+				}
+			}
+
 
 			// zatvori konekciju
 			in.close();

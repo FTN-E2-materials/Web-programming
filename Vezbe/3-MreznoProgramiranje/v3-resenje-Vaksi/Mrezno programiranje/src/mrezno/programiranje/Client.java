@@ -41,17 +41,21 @@ public class Client {
 			System.out.print("Unesite zeljenu komandu: ");
 			String komanda = kIn.readLine();
 			out.println(komanda);
-			
+			String[] niz = komanda.split(" ");
 			
 			// procitaj odgovor
 			String response = in.readLine();
-			if (response.equals("Success")) {
+			if (niz[0].toLowerCase().equals("add") && response.equals("Success")) {
 				System.out.println("Uspesno dodat korisnik");
 			}
 			if(komanda.toLowerCase().equals("list")) {
 				System.out.println("----------------- Korisnici -----------------");
 				System.out.println(response);
 			}
+			if(niz[0].toLowerCase().equals("remove")) {
+				System.out.println(response);
+			}
+			
 			
 			// zatvori konekciju
 			in.close();
