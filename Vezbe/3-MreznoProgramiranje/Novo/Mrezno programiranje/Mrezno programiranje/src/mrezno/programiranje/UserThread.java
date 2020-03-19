@@ -29,7 +29,7 @@ public class UserThread extends Thread {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		start(); 
+		start(); //startujemo novu nit
 	}
 	
 	@Override
