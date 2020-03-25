@@ -1,0 +1,93 @@
+<html>
+	<body>
+		<script type="text/javascript">
+			document.write("---------------------------------------------------<br/>");
+			document.write("pravimo objekat osoba, uz pomoc objekt literala<br />");
+			document.write("---------------------------------------------------<br/>");
+			var osoba = {ime:"pera", prezime:"peric"};
+			document.write("typeof (osoba): " + typeof (osoba) + "<br />");
+			document.write("typeof (osoba.prototype): " + typeof osoba.prototype + "<br />");
+
+			// ovim se dodaje funkcija 'stampaj' samo objektu 'osoba'
+			osoba.stampaj = function() {
+				document.write("--osoba: " + this.ime + ", " + this.prezime + "<br />");
+			}
+			
+			osoba.stampaj();
+			//delete osoba.stampaj;
+			//osoba.stampaj();  // ako obrisemo metodu stampaj(), onda ce ovde puci program
+			
+			document.write("---------------------------------------------------<br/>");
+			document.write("pravimo objekat Osoba2, uz pomoc konstruktora<br />");
+			document.write("---------------------------------------------------<br/>");
+			function Osoba2(ime, prezime) {
+				// privatno svojstvo
+				var privatna = 3;
+				
+				this.ime = ime;
+				this.prezime = prezime;
+				
+				// privatna funkcija
+				var stampaj2 = function() {
+					document.write("++Osoba2.stampaj2: " + this.ime + ", " + this.prezime + ", privatna: " + privatna + "<br />");
+				};
+				this.stampaj = function() {
+					document.write("++Osoba2.stampaj: " + this.ime + ", " + this.prezime + "<br />");
+					//stampaj2(); // odavde mozemo da pozovemo privatnu funkciju
+				};
+			}
+			
+			var o = new Osoba2("mika", "mikic");
+			document.write("typeof (o): " + typeof (o) + "<br />");
+			document.write("typeof (o.prototype): " + typeof (o.prototype) + "<br />");
+			document.write("typeof (Osoba2.prototype): " + typeof (Osoba2.prototype) + "<br />");
+
+			o.stampaj();
+			//o.stampaj2(); // ova funkcija se ne vidi spolja
+			document.write("o.privatna: " + o.privatna + "<br />"); // undefined, zato sto se ne vidi spolja
+			
+			// dodajemo jos jednu metodu u 'o', a ne u 'Osoba2'
+			o.stampajBold = function() {
+				document.write("**o.stampajBold: " + "<b>" + this.ime + ", " + this.prezime + "</b><br />");
+			}
+			// dodajemo jos jednu funkciju u 'Osoba2', pa ce biti vidljiva i u drugim objektima 
+			Osoba2.prototype.stampajBold2 = function() {
+				document.write("**Osoba2.stampajBold: " + "<b>" + this.ime + ", " + this.prezime + "</b><br />");
+			};
+			
+			o.stampajBold();
+			
+			
+			document.write("---------------------------------------------------<br/>");
+			document.write("pravimo jos jedan objekat Osoba2, uz pomoc konstruktora<br />");
+			document.write("---------------------------------------------------<br/>");
+			var oo = new Osoba2("djura", "djuric");
+			oo.stampaj();
+			//oo.stampajBold(); // 'oo' nema ovu funkciju. Ona je dodata samo u 'o'
+			
+			oo.stampajBold2(); // 'oo' ima ovu funkciju, jer je dodata u prototip, a ne u objekat
+
+			document.write("---------------------------------------------------<br/>");
+			document.write("Listamo svojstva i funkcije objekta o<br />");
+			document.write("---------------------------------------------------<br/>");
+
+			document.write("<u>Spisak svojstava i funkcija</u>: <br />");
+			for (x in o) {
+				document.write(o[x] + "=>> vrsta: " + typeof(o[x]) +  "<br />");
+			}
+			
+			document.write("---------------------------------------------------<br/>");
+			document.write("Listamo svojstva i funkcije, upotrebom Object.keys(o)<br />");
+			document.write("---------------------------------------------------<br/>");
+
+			document.write("<u>Spisak svojstava i funkcija objekta o, upotrebom Object.keys(o)</u>: <br />");
+			//var list = Object.getOwnPropertyNames(o); // samo od ovog objekta, ne i od roditelja, ako ih ima
+			var list = Object.keys(o);
+			for (x in list) {
+				document.write(list[x] + "=>> vrsta: " + typeof(o[list[x]]) +  "<br />");
+			}
+			
+		</script>
+		<a href="index.html">Nazad</a>
+	</body>
+</html>

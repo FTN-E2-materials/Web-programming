@@ -1,0 +1,48 @@
+<html>
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Windows-1250">
+    <title>JavaScript</title>
+
+    <script type="text/javascript">
+      function provera() {
+        vrednost = document.forms['forma'].polje1.value;
+        if (isNaN(vrednost)) {
+          alert("Niste uneli broj");
+          return false;
+        } else if (vrednost >= 1 && vrednost <= 10) {
+          return true;
+        } else {
+          alert("Niste uneli broj u opsegu od 1 do 10");
+          return false;
+        }
+      }
+	  
+	  function setFocus() {
+		document.forms['forma'].polje1.focus();
+	  }
+    </script>
+
+  </head>
+
+  <body onload="setFocus()">
+    <h1>JavaScript i forme</h1>
+
+    <p>
+      JavaScript programima može se pristupati elementima forme. Na taj način
+      može se obaviti provera unetih podataka pre njihovog slanja.
+    </p>
+
+    <form name="forma" action="primer10-2.html" onsubmit="return provera()">
+      <p>
+        Unesite broj između 1 i 10:
+        <input type="text" name="polje1"> <br><br>
+
+        <input type="submit" name="polje2" value=" Posalji ">
+      </p>
+    </form>
+<br />
+<a href="index.html">Nazad</a>
+  </body>
+
+</html>

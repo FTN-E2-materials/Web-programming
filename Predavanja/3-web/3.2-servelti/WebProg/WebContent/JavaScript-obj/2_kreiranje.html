@@ -1,0 +1,43 @@
+<html>
+	<body>
+		<script type="text/javascript">
+			function Osoba(ime, prezime) {
+				this.ime = ime;
+				this.prezime = prezime;
+			};
+			Osoba.prototype.stampaj = function() {
+					document.write(this.ime + ", " + this.prezime + "<br />");
+			};
+
+			document.write("---------------------------------------------------<br/>");
+			document.write("promenljiva o je objekat Osoba<br />");
+			document.write("---------------------------------------------------<br/>");
+			
+			var o = new Osoba("pera", "peric");
+			o.stampaj();
+			
+			document.write("---------------------------------------------------<br/>");
+			document.write("promenljiva o2 ukazuje na isti objekat kao i promenljiva o<br />");
+			document.write("---------------------------------------------------<br/>");
+			// 'o' i 'o2' ukazuju na isti objekat
+			var o2 = o;
+			o2.ime = "mika";
+			
+			o.stampaj();
+			o2.stampaj();			
+			
+			document.write("---------------------------------------------------<br/>");
+			document.write("promenljiva o3 je kopija objekta na koji ukazuje promenljiva o<br />");
+			document.write("---------------------------------------------------<br/>");
+			// napravi kopiju objekta 'o'
+			var o3 = Object.create(o);
+			o3.ime = "djura";
+			
+			o.stampaj();
+			o3.stampaj();
+			
+			
+		</script>
+		<a href="index.html">Nazad</a>
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="jquery-1.11.0.js">
+</script>
+<script>
+$(document).ready(function(){
+  $("button#id_1").click(function(){
+    $("p#testId").hide();
+  });
+  $("button#id_2").click(function(){
+    $("p.testClass").hide();
+  });
+  $("button#id_3").click(function(){
+    $("p").hide();
+  });
+  $("button#id_4").click(function(){
+    $("span p.testClass").hide();
+  });
+  $("button#id_5").click(function(){
+    $("p:first").hide();
+  });
+  $("button#id_6").click(function(){
+    $("p:not(#testId)").hide();
+  });
+
+});
+</script>
+</head>
+
+<body>
+<h2>Selektori</h2>
+<p id="testId">Ovo je paragraf sa id="testId".</p>
+<p class="testClass">Ovo je prvi paragraf sa class="testClass".</p>
+<p class="testClass">Ovo je drugi paragraf sa class="testClass".</p>
+<span><p class="testClass">Ovo je drugi paragraf unutar span taga sa class="testClass".</p></span>
+<p>Ovo je paragraf bez postavljene klase i bez id.</p>
+<button id="id_1" title="Sakrij paragraf sa id">b id_1</button>
+<button id="id_2" title="Sakrij paragrafe sa klasom">b id_2</button>
+<button id="id_3" title="Sakrij sve paragrafe">b id_3</button>
+<button id="id_4" title="Sakrij paragraf klase &quot;testClass&quot; u span elementu">b id_4</button>
+<button id="id_5" title="Sakrij prvi paragraf">b id_5</button>
+<button id="id_6" title="Sakrij se paragrafe osim onog koji ima id=&quot;testId&quot;">b id_6</button>
+<br />
+<a href="index.html">Nazad</a>
+
+</body>
+</html>

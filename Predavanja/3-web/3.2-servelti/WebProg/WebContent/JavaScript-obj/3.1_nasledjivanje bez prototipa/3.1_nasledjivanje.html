@@ -1,0 +1,46 @@
+<html>
+	<body>
+		<script type="text/javascript">
+			function Osoba(ime, prezime) {
+				this.ime = ime;
+				this.prezime = prezime;
+				// ovu funkciju ne dodajemo u prototip, veæ u svaki objekat Osoba
+				// problem je što klasa naslednica ne moze da pozove ovu funkciju u overrajdovanoj funkciji stampaj
+				this.stampaj = function() {
+					document.write("Osoba: " + this.ime + ", " + this.prezime + "<br />");
+				};
+			};
+			
+			var o = new Osoba("pera", "peric");
+			o.stampaj();
+
+			function Radnik(ime, prezime, radnoMesto) {
+				// poziv konstruktora Osoba; Radnik jos ne 'nasledjuje' Osobu
+				Osoba.call(this, ime, prezime); 
+				
+				this.radnoMesto = radnoMesto;
+				
+			};
+			
+			// ovim podesavamo da radnik 'nasledjuje' osobu
+			//Radnik.prototype = Object.create(Osoba.prototype);
+			// bez gornjeg reda, prototype za Radnika je Object, a ne Osoba
+			// obratiti paznju na to sta je konstruktor za Radnika (poslednji ispis)
+			
+			var r = new Radnik("mika", "mikic", "magacioner");
+			// ovo sada radi bez obzira da li smo podesili da radnik 'nasledi',
+			// zato sto je funkcija stampaj sada napravljena pri svakom pozivu konstruktora Osoba  
+			r.stampaj();						
+			
+			document.write("o instanceof Osoba: " + (o instanceof Osoba));
+			document.write("<br />");
+			document.write("r instanceof Osoba: " + (r instanceof Osoba));
+			document.write("<br />");
+			document.write("r instanceof Radnik: " + (r instanceof Radnik));
+			document.write("<br />");
+			document.write("Konstruktor Radnika: " + Radnik.prototype.constructor);
+				
+		</script>
+		<br /><a href="../index.html">Nazad</a>
+	</body>
+</html>

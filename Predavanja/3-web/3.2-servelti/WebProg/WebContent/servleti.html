@@ -1,0 +1,68 @@
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <title>
+  Servleti
+ </title>
+ 
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript">
+    function clickMe() {
+		alert("asdf");
+		$.post('http://localhost:80/WebProg/FormServlet', { "tekst": "Juhu"}, function(data) {
+			var s = '' + data;
+		 	alert(s);
+		});
+	}
+	</script>
+ 
+</head>
+<body>
+  <h3>TestServlet koji demonstrira servletsku tehnologiju</h3>
+  <a href="HelloServlet">HelloServlet</a>
+<hr/>
+  <h3>FormServlet koji demonstrira prenos parametara forme GET metodom</h3>
+  <form action="FormServlet" accept-charset="UTF-8" method="get">
+    <input type="text" name="tekst">
+    <input type="submit" value="Posalji">
+  </form>
+<hr/>
+  <h3>PostFormServlet koji demonstrira prenos parametara forme POST metodom</h3>
+  <form action="FormServlet" accept-charset="UTF-8" method="post">
+    <input type="text" name="tekst">
+    <input type="submit" value="Posalji">
+  	<input type="button" id="testPost" value="TestPostAjax" onclick="clickMe()" />
+  </form>
+<hr/>
+  <h3>RedirectServlet koji demonstrira redirekciju</h3>
+  <a href="RedirectServlet">RedirectServlet</a><br>
+  Ovo je link na isti servlet, ali sa parametrom (da izbegnemo redirekciju): <a href="RedirectServlet?proba=123">RedirectServlet</a>
+<hr/>
+  <h3>UTF8Servlet koji demonstrira upotrebu UTF-8 kodne strane u servletima</h3>
+  <a href="UTF8Servlet">UTF8Servlet</a><br>
+<hr/>
+  <h3>CP1250Servlet koji demonstrira upotrebu CP-1250 kodne strane u servletima</h3>
+  <a href="CP1250Servlet">CP1250Servlet</a><br>
+<hr/>
+  <h3>SessionTestServlet koji demonstrira praćenje sesije u servletima</h3>
+  <a href="SessionTestServlet">SessionTestServlet</a><br>
+<hr/>
+  <h3>WebShopServlet koji demonstrira web shop</h3>
+  <a href="WebShopServlet">WebShopServlet</a><br>
+<hr/>
+  <h3>Trajni kukiji</h3>
+  <a href="login.html">Prijava na sistem (proba/proba)</a><br>
+<hr/>
+  <h3>UTF8UploadServlet koji demonstrira upload datoteka i forme sa UTF-8 kodnom stranom</h3>
+  <a href="uploadUTF8.html">uploadUTF8.html</a><br>
+<hr/>
+  <h3>Autentikacija Basic metodom</h3>
+  <a href="basic.html">basic.html</a>. Šifra je proba/proba<br>
+<hr/>
+  <h3>Autentikacija Digest metodom</h3>
+  <a href="digest.html">digest.html</a>. Šifra je proba/proba<br>
+<hr/>
+
+<a href="index.html">Nazad</a>
+</body>
+</html>

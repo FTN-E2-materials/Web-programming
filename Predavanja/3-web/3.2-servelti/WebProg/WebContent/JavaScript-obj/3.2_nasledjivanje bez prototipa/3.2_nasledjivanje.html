@@ -1,0 +1,53 @@
+<html>
+	<body>
+		<script type="text/javascript">
+			function Osoba(ime, prezime) {
+				this.ime = ime;
+				this.prezime = prezime;
+				this.stampaj = function() {
+					document.write("Osoba: " + this.ime + ", " + this.prezime + "<br />");
+				};
+			};
+			
+			var o = new Osoba("pera", "peric");
+			// ubacimo funkciju stampaj u prototype
+			// Ovo moramo da uradimo, pošto u klasi Radnik, u funkciji stampaj()
+			// pokusavamo da pozovemo ovu funkciju (funkciju iz roditeljske klase)
+			Osoba.prototype.stampaj = o.stampaj;
+			o.stampaj();
+
+			function Radnik(ime, prezime, radnoMesto) {
+				// poziv konstruktora Osoba; Radnik jos ne nasledjuje Osobu
+				Osoba.call(this, ime, prezime); 
+				
+				this.radnoMesto = radnoMesto;
+				
+				this.stampaj = function() {
+					// pozovemo metodu nadklase
+					Osoba.prototype.stampaj.call(this);
+					document.write("Radnik:Radno mesto: " + this.radnoMesto + "<br />");
+				};
+				
+			};
+			
+			// ovim podesavamo da radnik 'nasledjuje' osobu
+			//Radnik.prototype = Object.create(Osoba.prototype);
+			// Ovim podesavamo da je konstruktor za radnika funkcija Radnik 
+			Radnik.prototype.constructor = Radnik;			
+						
+			var r = new Radnik("mika", "mikic", "magacioner");
+			r.stampaj();						
+			
+			document.write("o instanceof Osoba: " + (o instanceof Osoba));
+			document.write("<br />");
+			document.write("r instanceof Osoba: " + (r instanceof Osoba));
+			document.write("<br />");
+			document.write("r instanceof Radnik: " + (r instanceof Radnik));
+			document.write("<br />");
+			document.write("Konstruktor radnika: " + Radnik.prototype.constructor + "<br />");
+			
+			
+		</script>
+		<br /><a href="../index.html">Nazad</a>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="jquery-1.11.0.js">
+</script>
+<script>
+$(document).ready(function(){
+    $("button#b_1").click(function(){
+        $("ul#ul_1").parent().toggleClass("red");
+    });  
+    $("button#b_2").click(function(){
+        $("ul#ul_1").parents("*").toggleClass("red");    
+    });  
+    $("button#b_3").click(function(){
+        $("ul#ul_1").parentsUntil("span#s1").toggleClass("red");
+    });  
+    $("button#b_4").click(function(){
+        $("ul#ul_1").children().toggleClass("red");
+    });  
+    $("button#b_5").click(function(){
+        $("ul#ul_1").find("span").toggleClass("red");
+    });  
+});
+</script>
+<style>
+    .red {color:red !important;}
+    ul#ul_1 {background-color:yellow;}
+</style>
+</head>
+
+<body>
+<h1>Vertikalni prolazak kroz stablo</h1>
+<div>Lorem ipsum dolor sit amet 
+	<span>Donec bibendum laoreet blandit. 
+		<span id="s1">Sed a varius tellus.
+			<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum laoreet blandit. Sed a varius tellus.
+			    <ul id="ul_1">
+			        <li>prva stavka</li>
+			        <li>druga <span>stavka</span></li>
+			        <li>treća stavka</li>
+			    </ul>
+			    <span>Donec bibendum <span>laoreet blandit.</span> Sed a varius tellus.</span>
+			</div>
+		</span>
+	</span>
+</div>
+<button id="b_1" title="parent toggle class red">parent</button>
+<button id="b_2" title="parents toggle class red">parents</button>
+<button id="b_3" title="parents until span toggle class red">parentsUntil</button>
+<button id="b_4" title="children toggle class red">children</button>
+<button id="b_5" title="find span toggle red">find</button>
+<br />
+<a href="index.html">Nazad</a>
+
+</body>
+</html>
