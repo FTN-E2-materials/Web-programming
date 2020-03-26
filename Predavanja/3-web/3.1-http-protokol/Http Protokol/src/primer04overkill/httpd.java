@@ -38,7 +38,6 @@ public class httpd {
 			try {
 				skt = srvr.accept();
 				InetAddress addr = skt.getInetAddress();
-
 				String resource = getResource(skt.getInputStream());
 				if (resource == null)
 					continue;
@@ -90,9 +89,10 @@ public class httpd {
 		String s = in.readLine();
 		if (s == null) {
 			return null;
-		}
+		}	
+		
 		System.out.println(">>" + s);
-
+		
 		String[] tokens = s.split(" ");
 
 		// prva linija HTTP zahteva: METOD /resurs HTTP/verzija
@@ -111,7 +111,9 @@ public class httpd {
 		String s1;
 		while (!(s1 = in.readLine()).equals(""))
 			System.out.println(s1);
-
+		System.out.println("\n\n\n\n\t\t VRACAMO");
+		System.out.println(rsrc);
+		System.out.println("\t\tKRAJ VRACANJA \n\n\n");
 		return rsrc;
 	}
 
