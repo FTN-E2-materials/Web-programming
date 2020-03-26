@@ -10,7 +10,7 @@ public class Server {
 	private int port;
 	private ServerSocket serverSocket;
 	private List<String> users;
-	
+
 	public Server(int port) throws IOException {
 		this.port = port;
 		this.serverSocket = new ServerSocket(this.port);
@@ -46,14 +46,13 @@ public class Server {
 					users.add(ime);
 					PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "utf-8"), true);
 					out.print("HTTP/1.1 200 OK\r\nContent-type: text/html;charset=utf-8\r\n\r\n");
-					out.println("<html><head><meta http-equiv=\"Content-type\" value=\"text/html;charset=utf-8\"/></head><body><h1 align =\"/center\"/> Uspesna registracija </h1>");
+					out.println(
+							"<html><head><meta http-equiv=\"Content-type\" value=\"text/html;charset=utf-8\"/></head><body><h1 align =\"/center\"/> Uspesna registracija </h1>");
 					out.println("</body></html>");
-					out.println("<a href=\"http://localhost/static/index.html\">Nazad na pocetnu</a><br>");
-//					out.println("<html><head><meta http-equiv=\"Content-type\" value=\"text/html;charset=utf-8\"/></head><body><h1>Korisnici:</h1><ol>");
-//					for (String s : users) {
-//						out.println("<li>" + s + "</li>");
-//					}
-//					out.println("</ol></body></html>");
+					out.println("<a href=\"http://localhost/static/index.html\">Pocetna</a><br>");
+					out.println("<a href=\"http://localhost/static/trazi.html\">Pretraga korisnika</a><br>");
+					out.println("<a href=\"http://localhost/static/registracija.html\">Registracija novih korisnika</a><br>");
+					
 					out.close();
 				} else if (resource.startsWith("trazi?ime=")) {
 					String ime = resource.substring(10);
@@ -61,13 +60,27 @@ public class Server {
 					System.out.println(ime);
 					PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "utf-8"), true);
 					out.print("HTTP/1.1 200 OK\r\nContent-type: text/html;charset=utf-8\r\n\r\n");
-					out.println("<html><head><meta http-equiv=\"Content-type\" value=\"text/html;charset=utf-8\"/></head><body><h1>Korisnici:</h1><ol>");
-					for (String s : users) {
-						if (s.contains(ime))
-							out.println("<li>" + s + "</li>");
+					out.println("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<style>\n" + "table, th, td {\n"
+							+ "  border: 1px solid black;\n" + "}\n" + "</style>\n" + "</head>\n" + "<body>\n" + "\n"
+							+ "<h2>Korisnici</h2>\n" + "<p>Korisnici koji odgovaraju vasoj pretrazi su.</p>\n" + "\n"
+							+ "<table style=\"width:100%\">\n" + "  <tr>\n" + "    <th>Username</th>\n"
+							+ "    <th>Password</th> \n" + "    <th>Ime</th>\n" + "  </tr>");
+					/*
+					 * Dinamicko popunjavanje tabele 
+					 */
+					for (String user : users) {
+						if(user.contains(ime)) {
+							out.println("<tr>\n" + 
+									"    <td>"+user+"</td>\n" + 
+									"    <td>"+"********"+"</td>\n" + 
+									"    <td>"+"zasticena info"+"</td>\n" + 
+									"  </tr>");
+						}
 					}
-					out.println("</ol></body></html>");
-					out.println("<a href=\"http://localhost/static/index.html\">Nazad na pocetnu</a><br>");
+
+					out.println("<a href=\"http://localhost/static/index.html\">Pocetna</a><br>");
+					out.println("<a href=\"http://localhost/static/trazi.html\">Ponovna pretraga</a><br>");
+					out.println("<a href=\"http://localhost/static/registracija.html\">Registracija novih korisnika</a><br>");
 					out.close();
 				} else {
 
@@ -75,7 +88,7 @@ public class Server {
 
 					sendResponse(resource, socket.getOutputStream());
 				}
-				
+
 //				System.out.println("Request from " + addr.getHostName() + ": " + resource);
 //
 //				// posalji odgovor
@@ -88,7 +101,6 @@ public class Server {
 		}
 	}
 
-	
 	/**
 	 * Metoda koja prima zahtev i vraca ciljanu stranicu.
 	 * 
@@ -126,7 +138,6 @@ public class Server {
 		return resource;
 	}
 
-	
 	/**
 	 * Metoda koja salje odgovor klijentu.
 	 * 
