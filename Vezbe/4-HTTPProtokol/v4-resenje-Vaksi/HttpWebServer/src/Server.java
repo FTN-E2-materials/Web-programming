@@ -51,6 +51,7 @@ public class Server {
 					out.println("</body></html>");
 					out.println("<a href=\"http://localhost/static/index.html\">Pocetna</a><br>");
 					out.println("<a href=\"http://localhost/static/trazi.html\">Pretraga korisnika</a><br>");
+					out.println("<a href=\"http://localhost/static/brisanje.html\">Brisanje korisnika</a><br>");
 					out.println("<a href=\"http://localhost/static/registracija.html\">Registracija novih korisnika</a><br>");
 					
 					out.close();
@@ -80,9 +81,35 @@ public class Server {
 
 					out.println("<a href=\"http://localhost/static/index.html\">Pocetna</a><br>");
 					out.println("<a href=\"http://localhost/static/trazi.html\">Ponovna pretraga</a><br>");
+					out.println("<a href=\"http://localhost/static/brisanje.html\">Brisanje korisnika</a><br>");
 					out.println("<a href=\"http://localhost/static/registracija.html\">Registracija novih korisnika</a><br>");
 					out.close();
-				} else {
+				}else if(resource.startsWith("brisanje?ime=")){
+					String ime= resource.substring(13);
+					ime= URLDecoder.decode(ime,"utf-8");
+					System.out.println(ime);
+					PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "utf-8"), true);
+					out.print("HTTP/1.1 200 OK\r\nContent-type: text/html;charset=utf-8\r\n\r\n");
+					
+					if(users.contains(ime)) {
+						users.remove(ime);
+						out.print("<html><head><meta http-equiv=\"Content-type\" value=\"text/html;charset=utf-8\"/></head><body><h1 align =\"/center\"/> Uspesno brisanje </h1>");
+						
+					}else {
+						out.print("<html><head><meta http-equiv=\"Content-type\" value=\"text/html;charset=utf-8\"/></head><body><h1 align =\"/center\"/> Korisnik ne postoji. </h1>");
+					}
+					
+					out.println("<a href=\"http://localhost/static/index.html\">Pocetna</a><br>");
+					out.println("<a href=\"http://localhost/static/trazi.html\">Pretraga korisnika</a><br>");
+					out.println("<a href=\"http://localhost/static/brisanje.html\">Brisanje korisnika</a><br>");
+					out.println("<a href=\"http://localhost/static/registracija.html\">Registracija novih korisnika</a><br>");
+					
+					out.close();
+					
+					
+				}else {
+			
+				
 
 					System.out.println("Request from " + addr.getHostName() + ": " + resource);
 
