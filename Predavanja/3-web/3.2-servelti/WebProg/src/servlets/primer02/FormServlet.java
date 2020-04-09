@@ -30,13 +30,14 @@ public class FormServlet extends javax.servlet.http.HttpServlet implements javax
 		pout.println("<meta httpequiv=\"Content-Type\" value=\"text/html; charset=UTF-8\">");
 		pout.println("</head>");
 		pout.println("<body>");
-		String param = request.getParameter("tekst");
+		String param = request.getParameter("tekst");									// OVO je ta prednost, jednostavnom metodom dobijamo parametar
+		// u html formi, odnosno u tagu input, gledamo vrednost atributa name i pisemo kao parametar metode getParameter() 
 		pout.println("Poslali ste ovo:" + param);
 		pout.println("</body>");
 		pout.println("</html>");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		doGet(request, response);														// ovo je ta lepota koju imamo zbog metode getParameter(vrednost-atributa-name)
 	}
 }
