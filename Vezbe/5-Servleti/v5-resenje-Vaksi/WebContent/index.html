@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Pocetna</title>
+</head>
+<body>
+	<h1>Registracija</h1>
+	<form method="post" action="RegistracijaServlet" accept-charset="utf-8">
+		<table>
+			<tr>
+				<td>Unesite Vase ime:</td>
+				<td><input type="text" name="ime" /></td>
+			</tr>
+			<tr>
+				<td>Unesite Vase preime:</td>
+				<td><input type="text" name="prezime" /></td>
+			</tr>
+			<tr>
+				<td>Unesite zeljeno korisnicko ime:</td>
+				<td><input type="text" name="korisnickoIme" /></td>
+			</tr>
+			<tr>
+				<td>Unesite zeljenu lozinku:</td>
+				<td><input type="password" name="lozinka" /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Registruj se" /></td>
+			</tr>
+		</table>
+	</form>
+	
+	<h1>Spisak registrovanih korisnika</h1>
+	<a href="SpisakServlet">Prikazi sve registrovane korisnike</a>
+	
+	<h1>Pretraga korisnika</h1>
+	<form method="get" action="PretragaServlet" accept-charset="utf-8">
+		<table>
+			<tr>				
+				<td colspan='2'>Unesite korisnicko ime za pretragu:</td>			
+			</tr>			
+			<tr>
+				<td><input type="text" name="korisnickoIme" /></td>				
+				<td><input type="submit" value="Pretrazi" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

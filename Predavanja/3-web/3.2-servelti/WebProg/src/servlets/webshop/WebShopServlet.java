@@ -20,17 +20,18 @@ import beans.webshop.Products;
 public class WebShopServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 6593194247788949676L;
-	
+
 	/*
-	 * Obratiti paznju da se metod init() zove samo jednom, prilikom prvo pokretanja (inicijalziacije)
-	 * servleta.
-	 * => Ukoliko bismo u products.txt dodali novi proizvod, bez restartovanja web servera, a prethodno
-	 * je servlet vec bio pokrenut, novi proizvod se nece biti procitan.
+	 * Obratiti paznju da se metod init() zove samo jednom, prilikom prvog
+	 * pokretanja (inicijalziacije) servleta. => Ukoliko bismo u products.txt dodali
+	 * novi proizvod, bez restartovanja web servera, a prethodno je servlet vec bio
+	 * pokrenut, novi proizvod se nece biti procitan.
 	 */
 	@Override
 	public void init(ServletConfig cfg) {
 		/**
-		 * Atribut se dodaje u application scope, da bi se video iz klase ShoppingCartServlet.
+		 * Atribut se dodaje u application scope, da bi se video iz klase
+		 * ShoppingCartServlet.
 		 */
 		Products products;
 
@@ -46,23 +47,24 @@ public class WebShopServlet extends HttpServlet {
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
+
 		response.setContentType("text/html");
-		
+
 		PrintWriter pout = response.getWriter();
-		
+
 		pout.println("<html>");
 		pout.println("<head>");
 		pout.println("</head>");
 		pout.println("<body>");
 		pout.println("Raspolozivi proizvodi:");
 		/**
-		 * Atribut se dodaje u application scope, da bi se video iz klase ShoppingCartServlet.
+		 * Atribut se dodaje u application scope, da bi se video iz klase
+		 * ShoppingCartServlet.
 		 */
 		Products products = (Products) getServletContext().getAttribute("products");
 
 		pout.println("<table border=\"1\"><tr bgcolor=\"lightgrey\"><th>Naziv</th><th>Cena</th><th>&nbsp;</th></tr>");
-		for ( Product p : products.values() ) {
+		for (Product p : products.values()) {
 			pout.println("<tr>");
 			pout.println("<form method=\"get\" action=\"ShoppingCartServlet\">");
 			pout.println("<td>" + p.getName() + "</td>");

@@ -29,8 +29,8 @@ public class RememberLoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		PrintWriter out = response.getWriter();
 		User u = (User) request.getSession().getAttribute("user");
@@ -62,8 +62,7 @@ public class RememberLoginServlet extends HttpServlet {
 		if (u == null && userIdendificationKey != null) {
 			System.out.println("u je NULL, a userIdKey nije NULL");
 			if (!userIdendificationKey.equals("-1")) {
-				System.out
-						.println("u je NULL, a userIdKey nije NULL i razlicit je od -1");
+				System.out.println("u je NULL, a userIdKey nije NULL i razlicit je od -1");
 				u = new User();
 				// potrazimo u bazi na osnovu ID-a (userIdentificationKey)
 				u.setUsername("proba");
@@ -97,13 +96,12 @@ public class RememberLoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String uname = request.getParameter("uname");
 		String pwd = request.getParameter("pwd");
 		String rememberStr = request.getParameter("remember");
-		boolean remember = (rememberStr != null) ? rememberStr.equals("on")
-				: false;
+		boolean remember = (rememberStr != null) ? rememberStr.equals("on") : false;
 		System.out.println(rememberStr + "," + remember);
 
 		User u = new User();
@@ -113,9 +111,8 @@ public class RememberLoginServlet extends HttpServlet {
 
 		if (success && remember) {
 			// u.getId() - ID korisnika, iz baze podataka
-			String userIdendificationKey = "1"; 
-			Cookie cookie = new Cookie("userIdendificationKey",
-					userIdendificationKey);
+			String userIdendificationKey = "1";
+			Cookie cookie = new Cookie("userIdendificationKey", userIdendificationKey);
 			// podesimo period validnosti
 			cookie.setMaxAge(365 * 24 * 60 * 60);
 			// dodamo cookie
@@ -130,8 +127,7 @@ public class RememberLoginServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
-	private void clearCookie(HttpServletRequest request,
-			HttpServletResponse response) {
+	private void clearCookie(HttpServletRequest request, HttpServletResponse response) {
 		Cookie cookies[] = request.getCookies();
 		if (cookies != null) {
 			for (int i = 0; i < cookies.length; i++) {
@@ -139,8 +135,7 @@ public class RememberLoginServlet extends HttpServlet {
 				if (cookies[i].getName().equals("userIdendificationKey")) {
 					cookies[i].setValue("-1");
 					response.addCookie(cookies[i]);
-					System.out
-							.println("Cleared cookie:" + cookies[i].getName());
+					System.out.println("Cleared cookie:" + cookies[i].getName());
 					break;
 				}
 			}
