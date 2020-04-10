@@ -13,14 +13,17 @@ import java.util.StringTokenizer;
  * id;naziv;jedinicna cena
  */
 public class Products {
-	
+
 	private HashMap<String, Product> products = new HashMap<String, Product>();
-	private static final String WEB_CONTENT_PATH = "..\\WebShop\\WebContent"; //TODO: Zamenite Vasom putanjom
-	
+	private static final String WEB_CONTENT_PATH = "C:\\Users\\Vaxi\\Desktop\\6-semestar\\WebProgramiranje\\Vezbe\\6-JSP-JSTL\\v6-resenje-Vaksi\\WebShop\\WebContent"; // TODO:
+																																										// Zamenite
+																																										// Vasom
+																																										// putanjom
+
 	public Products() {
 		this(WEB_CONTENT_PATH);
 	}
-	
+
 	public Products(String path) {
 		BufferedReader in = null;
 		try {
@@ -30,20 +33,19 @@ public class Products {
 			readProducts(in);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally {
-			if ( in != null ) {
+		} finally {
+			if (in != null) {
 				try {
 					in.close();
+				} catch (Exception e) {
 				}
-				catch (Exception e) { }
 			}
 		}
 	}
 
 	/**
-	 * Cita proizvode iz datoteke i smesta ih u asocijativnu listu proizvoda.
-	 * Kljuc je id proizvoda.
+	 * Cita proizvode iz datoteke i smesta ih u asocijativnu listu proizvoda. Kljuc
+	 * je id proizvoda.
 	 */
 	private void readProducts(BufferedReader in) {
 		String line, id = "", name = "", price = "";
@@ -59,8 +61,7 @@ public class Products {
 					name = st.nextToken().trim();
 					price = st.nextToken().trim();
 				}
-				products.put(id, new Product(id, name, Double
-						.parseDouble(price)));
+				products.put(id, new Product(id, name, Double.parseDouble(price)));
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

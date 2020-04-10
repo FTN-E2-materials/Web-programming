@@ -11,11 +11,11 @@ import java.util.StringTokenizer;
 import beans.User;
 
 /***
- * <p>Klasa namenjena da uèita korisnike iz fajla i pruža operacije nad njima (poput pretrage).
+ * <p>Klasa namenjena da ucita korisnike iz fajla i pruža operacije nad njima (poput pretrage).
  * Korisnici se nalaze u fajlu WebContent/users.txt u obliku: <br>
  * firstName;lastName;email;username;password</p>
- * <p><b>NAPOMENA:</b> Lozinke se u praksi <b>nikada</b> ne snimaju u èistu tekstualnom obliku.</p>
- * @author Lazar
+ * <p><b>NAPOMENA:</b> Lozinke se u praksi <b>nikada</b> ne snimaju u cistu tekstualnom obliku.</p>
+ * @author Vaxi
  *
  */
 public class UserDAO {
@@ -27,14 +27,14 @@ public class UserDAO {
 	}
 	
 	/***
-	 * @param contextPath Putanja do aplikacije u Tomcatu. Može se pristupiti samo iz servleta.
+	 * @param contextPath Putanja do aplikacije u Tomcatu. Moze se pristupiti samo iz servleta.
 	 */
 	public UserDAO(String contextPath) {
 		loadUsers(contextPath);
 	}
 	
 	/**
-	 * Vraæa korisnika za prosleðeno korisnièko ime i šifru. Vraæa null ako korisnik ne postoji
+	 * Vraca korisnika za prosleðeno korisnièko ime i sifru. Vraca null ako korisnik ne postoji
 	 * @param username
 	 * @param password
 	 * @return
@@ -55,8 +55,8 @@ public class UserDAO {
 	}
 	
 	/**
-	 * Uèitava korisnike iz WebContent/users.txt fajla i dodaje ih u mapu {@link #users}.
-	 * Kljuè je korisnièko ime korisnika.
+	 * Ucitava korisnike iz WebContent/users.txt fajla i dodaje ih u mapu {@link #users}.
+	 * Kljuc je korisnicko ime korisnika.
 	 * @param contextPath Putanja do aplikacije u Tomcatu
 	 */
 	private void loadUsers(String contextPath) {

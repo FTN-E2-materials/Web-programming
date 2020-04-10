@@ -2,17 +2,20 @@ package servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import beans.User;
 import dao.ProductDAO;
 
 /***
- * Servlet zadužen za prikazivanje proizvoda.
- * @author Lazar
+ * Servlet zaduzen za prikazivanje proizvoda.
+ * @author Vaxi
  *
  */
 public class ProductServlet extends HttpServlet {
@@ -33,6 +36,17 @@ public class ProductServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO 2: Implementirati listanje svih proizvoda
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		
+		if(user == null) {
+			RequestDispatcher disp = request.getRequestDispatcher("/LoginServlet");
+			disp.forward(request, response);
+			return;
+		}
+		
+		RequestDispatcher disp = request.getRequestDispatcher("/JSP/products.jsp");
+		disp.forward(request, response);
 	}
 
 

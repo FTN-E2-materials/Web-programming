@@ -1,1 +1,8 @@
 /servlets/
+/.classpath
+/.project
+/beans/
+/functions/
+/mvc/
+/tags/
+/websocket/

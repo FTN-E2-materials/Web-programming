@@ -10,10 +10,10 @@ import java.util.StringTokenizer;
 import beans.Product;
 
 /***
- * Klasa namenjena da uèita proizvode iz fajla i pruža operacije nad njima (poput pretrage).
+ * Klasa namenjena da ucita proizvode iz fajla i pruza operacije nad njima (poput pretrage).
  * Proizvodi se nalaze u fajlu WebContent/products.txt u obliku: <br>
  * id;naziv;jedinicna cena
- * @author Lazar
+ * @author Vaxi
  *
  */
 public class ProductDAO {
@@ -25,14 +25,14 @@ public class ProductDAO {
 	}
 	
 	/***
-	 * @param contextPath Putanja do aplikacije u Tomcatu. Može se pristupiti samo iz servleta.
+	 * @param contextPath Putanja do aplikacije u Tomcatu. Moze se pristupiti samo iz servleta.
 	 */
 	public ProductDAO(String contextPath) {
 		loadProducts(contextPath);
 	}
 
 	/***
-	 * Vraæa sve proizvode.
+	 * Vraca sve proizvode.
 	 * @return
 	 */
 	public Collection<Product> findAll() {
@@ -48,8 +48,8 @@ public class ProductDAO {
 	}
 
 	/**
-	 * Uèitava korisnike iz WebContent/users.txt fajla i dodaje ih u mapu {@link #products}.
-	 * Kljuè je id proizovda.
+	 * Ucitava korisnike iz WebContent/users.txt fajla i dodaje ih u mapu {@link #products}.
+	 * Kljuc je id proizovda.
 	 * @param contextPath Putanja do aplikacije u Tomcatu
 	 */
 	private void loadProducts(String contextPath) {
