@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="jquery-1.11.0.js">
+</script>
+<script>
+$(document).ready(function(){
+    $("button#b_1").click(function(){
+        $("ol#ol_1").append("<li class=\"dodataStavka\">dodata stavka</li>");
+    });  
+    $("button#b_2").click(function(){
+        $("ol#ol_1 li.dodataStavka").remove();
+    });  
+});
+</script>
+</head>
+
+<body>
+<h1>Manipulacija DOM stablom</h1>
+<ol id="ol_1">
+    <li>prva stavka</li>
+    <li>druga stavka</li>
+    <li>treća stavka</li>
+</ol>
+<button id="b_1">dodaj stavku</button>
+<button id="b_2">ukloni stavke</button>
+<br />
+<a href="index.html">Nazad</a>
+
+</body>
+</html>

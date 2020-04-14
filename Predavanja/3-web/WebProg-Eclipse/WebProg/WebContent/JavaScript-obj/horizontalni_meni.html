@@ -1,0 +1,69 @@
+<html>
+<head>
+<style>
+body{font-family:arial;}
+table{font-size:80%;background:black}
+a{color:black;text-decoration:none;font:bold}
+a:hover{color:#606060}
+td.menu{background:lightblue}
+table.menu
+{
+font-size:100%;
+position:absolute;
+visibility:hidden;
+}
+</style>
+<script type="text/javascript">
+function showmenu(elmnt)
+{
+document.getElementById(elmnt).style.visibility="visible";
+}
+function hidemenu(elmnt)
+{
+document.getElementById(elmnt).style.visibility="hidden";
+}
+</script>
+</head>
+
+<body>
+<h3>Drop down menu</h3>
+<table width="100%">
+ <tr bgcolor="#FF8080">
+  <td onMouseOver="showmenu('tutorials')" onMouseOut="hidemenu('tutorials')">
+   <a href="/default.asp">Tutorials</a><br />
+   <table class="menu" id="tutorials" width="120">
+   <tr><td class="menu"><a href="/html/default.asp">HTML</a></td></tr>
+   <tr><td class="menu"><a href="/xhtml/default.asp">XHTML</a></td></tr>
+   <tr><td class="menu"><a href="/css/default.asp">CSS</a></td></tr>
+   <tr><td class="menu"><a href="/xml/default.asp">XML</a></td></tr>
+   <tr><td class="menu"><a href="/xsl/default.asp">XSL</a></td></tr>
+   </table>
+  </td>
+  <td onMouseOver="showmenu('scripting')" onMouseOut="hidemenu('scripting')">
+   <a href="/default.asp">Scripting</a><br />
+   <table class="menu" id="scripting" width="120">
+   <tr><td class="menu"><a href="/js/default.asp">JavaScript</a></td></tr>
+   <tr><td class="menu"><a href="/vbscript/default.asp">VBScript</a></td></tr>
+   <tr><td class="menu"><a href="default.asp">DHTML</a></td></tr>
+   <tr><td class="menu"><a href="/asp/default.asp">ASP</a></td></tr>
+   <tr><td class="menu"><a href="/ado/default.asp">ADO</a></td></tr>
+   </table>
+  </td>
+  <td onMouseOver="showmenu('validation')" onMouseOut="hidemenu('validation')">
+   <a href="/site/site_validate.asp">Validation</a><br />
+   <table class="menu" id="validation" width="120">
+   <tr><td class="menu"><a href="/site/site_validate.asp">Validate HTML</a></td></tr>
+   <tr><td class="menu"><a href="/site/site_validate.asp">Validate XHTML</a></td></tr>
+   <tr><td class="menu"><a href="/site/site_validate.asp">Validate CSS</a></td></tr>
+   <tr><td class="menu"><a href="/site/site_validate.asp">Validate XML</a></td></tr>
+   <tr><td class="menu"><a href="/site/site_validate.asp">Validate WML</a></td></tr>
+   </table>
+  </td>
+ </tr>
+</table>
+<p>Postavite kursor iznad stavki menija da biste videli sadrzaje menija. </p>
+<br /><a href="index.html">Nazad</a>
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<html>
+	<body>
+		<script type="text/javascript">
+			function testScope() {
+			  var myTest = true; // myTest is now present in this top level scope.
+			  function testNestedScope() { // Create a sub-scope within the main scope
+//			    var myTest = false; // OK here. Redefine myTest in this sub-scope.
+			    document.write("myTest: " + myTest + "<br />"); // Access myTest...but from which scope?
+//			    var myTest = false; // WARNING: Redefine myTest in this sub-scope, but the line above will write undefined!
+			  }
+			  testNestedScope();
+		    document.write("myTest: " + myTest + "<br />"); // Access myTest...but from which scope?
+			}
+			testScope();
+			
+			
+			// Assuming the existence of targetObject, which has many unknown properties:
+			var osoba = {ime:"pera", prezime:"peric" /*, thing:"HAAA" */};
+			var thing, strMessage = "";
+			for (thing in osoba) {
+				// ne radi
+				// strMessage += "osoba." + thing + " = " + osoba.thing  + "<br />"+ "\n";
+				// radi
+				strMessage += "osoba." + thing + " = " + osoba[thing]  + "<br />"+ "\n";
+			}
+			document.write(strMessage + "<br />"); // will write all of the properties in targetObject
+			
+			
+			var myArray = new Array();
+			myArray["foo"] = "bar"; // adds a property, not a new element
+			myArray["new"] = "old"; // adds a property, not a new element
+			document.write("myArray.length: " + myArray.length + "<br />"); // will write 0, because no elements have actually been added to the array.
+			myArray[0] = 42; // Adds a new element to the array
+			document.write("myArray.length: " + myArray.length + "<br />"); // will write 1
+			document.write("myArray[0]: " + myArray[0] + "<br />"); // will write 42
+			document.write("myArray['foo']: " + myArray["foo"] + "<br />"); // will write bar
+			
+			
+			var myColors = ["-----------red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+			for ( var i = 0; i < myColors.length; i++) {
+				var color = myColors[i];
+				// Inside of the loop, the variable color will contain the value at the current index
+				document.write(color + "<br />"); // will alert each color one at a time
+			}
+			for ( var i = 0, color; color = myColors[i]; i++) {
+				// Inside of the loop, the variable color will contain the value at the current index
+				document.write(color + "<br />"); // will alert each color one at a time
+			}
+
+			for ( var color in myColors) {
+				// Inside of the loop, the variable myColors[color] will contain the value at the current index
+				document.write(myColors[color] + "<br />"); // will alert each color one at a time
+			}
+			myColors.forEach( function(color) {
+				// Inside of the function, the variable color will contain the current value of the array element
+				document.write(color + "<br />"); // will alert each color one at a time
+			});
+			
+			document.write(myColors + "<br />");
+			for ( var i = 0, color; color = myColors[i]; i++) {
+				// Inside of the loop, the variable color will contain the value at the current index
+				if (color === "green") {
+					document.write("REMOVING " + color + "<br />");
+					myColors.splice(i, 1); // remove one element at the index of i
+					continue;
+				}
+				document.write(color + "<br />"); // will alert each color one at a time
+			}
+			document.write(myColors + "<br />");
+			
+			
+</script>
+</body>
+</html>

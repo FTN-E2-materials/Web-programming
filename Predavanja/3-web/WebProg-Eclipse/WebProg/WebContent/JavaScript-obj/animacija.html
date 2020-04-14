@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>Lopta koja odskace</title>
+<script>
+	var	xpos;
+	var	ypos;
+	var	ball;
+	var	vhi;
+	var	vvi;
+	var	a;
+	var	hi;
+	var	e;
+	var	t;
+	var	tv;
+	var	p;
+	function bounceinit()
+	{
+		vhi = 2;
+		t = 0;
+		vvi = 0;
+		a = 0.5;
+		hi =300;
+		e = 0.75;
+		t = 0;
+		tv = 0;
+		ball = document.getElementById("ball");
+		p=setInterval("bounce()",40);
+	}
+	function	bounce()
+	{
+			x = vhi * t;
+			y = hi - (vvi*tv + 0.5*a*tv*tv);
+			if(y<0)
+			{
+				vvi = vvi + a*tv;
+				y=0;
+				vvi = -e*vvi;
+				tv = 0;
+				hi = 0;
+			}
+			t++;
+			tv++;
+			ball.style.top=300-y;
+			ball.style.left=x;
+			if(x>600)
+				clearInterval(p);
+
+	}
+</script>
+</head>
+<body onload="bounceinit()">
+  <h1>Primer animacije</h1>
+
+  <div id="ball" style="position:absolute;top:10;left:10">
+   <img src="ball.gif" />
+  </div>
+
+  <div style="position:absolute;top:370;left:0; width: 100%; border-style: solid">
+  </div>
+</body>
+</html>
+

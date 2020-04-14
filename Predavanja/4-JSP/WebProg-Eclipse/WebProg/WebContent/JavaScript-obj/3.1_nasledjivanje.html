@@ -1,0 +1,55 @@
+<html>
+	<body>
+		<script type="text/javascript">
+			function Osoba(ime, prezime) {
+				this.ime = ime;
+				this.prezime = prezime;
+			};
+			Osoba.prototype.stampaj = function() {
+					document.write("Osoba: " + this.ime + ", " + this.prezime + "<br />");
+			};
+			
+			document.write("---------------------------------------------------<br/>");
+			document.write("promenljiva o je objekat Osoba<br />");
+			document.write("---------------------------------------------------<br/>");
+			var o = new Osoba("pera", "peric");
+			o.stampaj();
+
+			function Radnik(ime, prezime, radnoMesto) {
+				// poziv konstruktora Osoba; Radnik jos ne 'nasledjuje' Osobu
+				Osoba.call(this, ime, prezime); 
+				
+				this.radnoMesto = radnoMesto;
+				
+			};
+			
+			// ovim podesavamo da radnik 'nasledjuje' osobu
+			Radnik.prototype = Object.create(Osoba.prototype);
+			// bez gornjeg reda, prototype za Radnika je Object, a ne Osoba
+			// obratiti paznju na to sta je konstruktor za Radnika (poslednji ispis)
+			
+			document.write("---------------------------------------------------<br/>");
+			document.write("promenljiva r je objekat Radnik<br />");
+			document.write("---------------------------------------------------<br/>");
+			var r = new Radnik("mika", "mikic", "magacioner");
+			// ako ne podesimo da radnik 'nasledi' osobu, ovo ispod nece raditi
+			// posto nece znati da nadje funkciju 'stampaj', odn. bice undefined
+			r.stampaj();						
+			
+			document.write("---------------------------------------------------<br/>");
+			document.write("Provera kog je tipa koja promenljiva<br />");
+			document.write("---------------------------------------------------<br/>");
+			document.write("o instanceof Osoba: " + (o instanceof Osoba));
+			document.write("<br />");
+			document.write("r instanceof Osoba: " + (r instanceof Osoba));
+			document.write("<br />");
+			document.write("r instanceof Radnik: " + (r instanceof Radnik));
+			document.write("<br />");
+			// Obratiti pažnju na rezultat ispisa konstruktora
+			document.write("Konstruktor Radnika: " + Radnik.prototype.constructor);
+				
+	
+		</script>
+		<br /><a href="index.html">Nazad</a>
+	</body>
+</html>

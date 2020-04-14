@@ -1,0 +1,29 @@
+
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Responsive Images Test Page</title>
+	
+	<!-- demo styles-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<style>
+		body { font-family: Helvetica, sans-serif; background: #222; color: #eee; margin: 20px auto; padding: 0 20px; max-width: 980px; }
+		img { border: 0; width: 100%; display: block;   max-width: 100%;}
+	</style>
+<script src="responsive-img.min.js" defer></script>
+<script src="current-src.min.js" defer></script>
+</head> 
+<body> 
+
+	<h1>Responsive Images Test Page</h1>
+	<div id='current-src'></div>
+	<img alt='Monument' data-src-base='./' data-src='<380:small.jpg,
+                                                     <780:large.jpg, 
+                                                     >780:extralarge.jpg' 
+                                               />
+
+
+ 	
+</body>
+</html>

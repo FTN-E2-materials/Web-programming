@@ -1,0 +1,131 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<!-- Mobile devices fix -->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	
+<style type="text/css" media="screen, projection">
+/*
+	Layout
+	Zamišljena širina celog sadržaja je 988px.
+		Sastoji se iz info sekcije i sadržaja (entry) iznad kojeg je naslov.
+		
+	+--------+-+----------------------+------------+         
+	|        | |   NASLOV (700px)     |            |         
+	|        +-+----------------------+-+----------+         
+	|        | |                      | |          |         
+	|  INFO  | |                      | |  META    |         
+	|  124px | |   MAIN (700px)       | |  124px   |         
+	|        | |                      | |          |         
+	|        | |                      | |          |         
+	+--------+-+----------------------+-+----------+          
+	
+	           |<--        CONTENT(844px)       -->| 
+  |<--        PAGE (988px)                    -->| 
+			
+	Zamišljena širina info dela je 124 px.
+	razmak između info i content (naslov) dela je 20px.
+	širina naslova je 700 px.
+	širina sadržaja (content) je 844 px.
+		Sastoji se iz main sekcije i meta sekcije.
+		main sekcija je široka 700px.
+		razmak između je 20 px.
+		meta sekcija je 124px.
+	
+	SVE DIMENZIJE PIŠEMO RELATIVNO! OVO JE SAMO NACRT!
+	
+*/
+body {
+	font: normal 100% Helvetica, Arial, sans-serif;
+}
+
+#page {
+	margin: 40px auto;
+	padding: 0 1em;
+	max-width: 61.75em;		/* 988px / 16px = 61.75em */
+	
+}
+
+h1 {
+	margin-left: 14.575%;	/* 144px / 988px = 0.14575 */
+	width: 70.85%;			  /* 700px / 988px = 0.7085 */
+	
+	font-size: 3em;			  /* 48px / 16px = 3em */
+	line-height: 1.14583;	/* 55px / 48px = 1.14583 */
+}
+
+.entry {
+	float: left;
+	width: 100%;
+}
+
+.entry h2 {
+	float: right;
+	width: 85.425%;		    /* 844px / 988px = 0.85425 */
+	
+	font-size: 1.5em;			/* 24px / 16px = 1.5em */
+}
+
+/* Levi panel */
+.entry .info {
+	float: left;
+	margin-top: 0.72727em;	/* 8px / 11px = 0.72727em */
+	width: 12.551%;		      /* 124px / 988px = .12551 */
+	
+	font-size: 0.6875em;	  /* 11px / 16px = 0.6875em */
+	font-weight: bold;
+	line-height: 1.45455;	  /* 16px / 11px = 1.45455 */
+}
+
+.entry .content {
+	float: right;
+	width: 85.425%;		/* 844px / 988px = 0.85425 */
+}
+
+.entry .main {
+	float: left;
+	width: 82.938%;	/* 700px / 844px = 0.82938 */
+	text-align: justify;
+	
+	font-size: 1em; /* 16px */
+	line-height: 1.375; /* 22px / 16px = 1.375 */
+	font-weight: normal;
+	font-family: Georgia, Times, serif;
+}
+
+/* Desni panel */
+.entry .meta {
+	float: right;
+	width: 14.692%;	/* 124px / 844px = 0.14692 */
+	
+	font-size: 0.6875em;	/* 11px / 16px = 0.6875em */
+	font-weight: bold;
+	line-height: 1.45455;	/* 16px / 11px = 1.45455 */
+}
+</style>
+</head>
+<body>
+	<div id="page">
+	    <h1>Fluid grid raspored</h1>
+	    <div class="entry">
+	        <h2>Ovde ide naslov celog sadržaja</h2>
+	        <h3 class="info">Ovo je <a href="#">levi</a> navigacioni panel:</h3>
+	        <div class="content">
+	            <div class="main">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	
+					<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	
+					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	            </div><!-- /end .main -->
+	            <div class="meta">
+	                <p>Posted on etc., etc.</p>
+	            </div><!-- /end .meta -->
+	        </div><!-- /end .content -->
+	    </div><!-- /end .entry -->
+	</div><!-- /end #page -->
+</body>

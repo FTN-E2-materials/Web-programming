@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>Upload datoteka</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<form action="http://localhost/UTF8UploadServlet" enctype="multipart/form-data" method="post"  accept-charset="UTF-8">
+File to Upload: <input type="file" name="file_name">
+<br>
+Text to enter: <input type="text" name="text_field">
+<br>
+Text2 to enter: <input type="text" name="text_field2">
+<br>
+File to Upload: <input type="file" name="file_name2">
+<br>
+<input type="submit" value="Upload">
+</form>
+<br>
+
+<h2>POST metod bez upload-a datoteke</h2>
+<form action="http://localhost/UTF8UploadServlet" method="post">
+Text to enter: <input type="text" name="text_field">
+<br>
+Text2 to enter: <input type="text" name="text_field2">
+<br>
+<input type="submit" value="Upload">
+</form>
+
+<h2>GET metod </h2>
+<form action="http://localhost/UTF8UploadServlet" method="get">
+Text to enter: <input type="text" name="text_field">
+<br>
+Text2 to enter: <input type="text" name="text_field2">
+<br>
+<input type="submit" value="Upload">
+</form>
+
+Ovo je link na <a href="source.zip">izvorni kod</a>.
+</body>
+</html>

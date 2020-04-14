@@ -1,0 +1,62 @@
+<html>
+<head>
+<style>
+table {
+	background:black;
+}
+
+a {
+	text-decoration:none;
+	color:#000000;
+}
+
+th {
+	width:150px;
+	background:#FF8080;
+}
+
+td {
+	font:bold;
+	background:#ADD8E6;
+}
+</style>
+<script type="text/javascript">
+function gettip(image) {
+	document.getElementById('tip').innerHTML="<img src='" + image + "' />";
+}
+function reset() {
+	document.getElementById('tip').innerHTML=" ";
+}
+</script>
+</head>
+
+<body>
+<b>Postavite kursor iznad linkova da vidite logo pojmova</b><br />
+<table width="400px">
+	<tr>
+		<th>
+			<a href="/default.asp" 
+				onmouseover="gettip('w3schools.gif')"
+				onmouseout="reset()">W3Schools.com</a>
+		</th>
+		<td rowspan="3" id="tip" align="center" valign="center"> </td>
+	</tr>
+	<tr>
+		<th>
+			<a href="http://www.microsoft.com"
+				onmouseover="gettip('microsoft.gif')"
+				onmouseout="reset()">Internet Explorer</a>
+		</th>
+	</tr>
+	<tr>
+		<th>
+			<a href="http://my.netscape.com"
+				onmouseover="gettip('netscapelink.gif')"
+				onmouseout="reset()">Netscape Navigator</a>
+		</th>
+	</tr>
+</table>
+</body>
+<br /><a href="index.html">Nazad</a>
+</html>
+

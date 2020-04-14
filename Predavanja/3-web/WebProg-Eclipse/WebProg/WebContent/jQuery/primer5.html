@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="jquery-1.11.0.js">
+</script>
+<script>
+$(document).ready(function(){
+    $("button#b_1").click(function(){
+        $("p").slideUp();
+    }); 
+    $("button#b_2").click(function(){
+        $("p").slideDown();    
+    }); 
+    $("button#b_3").click(function(){
+        $("p").slideToggle();
+    });
+});
+</script>
+</head>
+
+<body>
+<h1>Slide</h1>
+<p>Prvi paragraf.</p>
+<p>Drugi paragraf.</p>
+<p>Treći paragraf.</p>
+<p>Četvrti paragraf.</p>
+<button id="b_1">slideUp</button>
+<button id="b_2">slideDown</button>
+<button id="b_3">slideToggle</button>
+<br />
+<a href="index.html">Nazad</a>
+
+</body>
+</html>

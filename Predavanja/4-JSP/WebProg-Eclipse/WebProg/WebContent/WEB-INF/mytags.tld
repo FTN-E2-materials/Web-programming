@@ -1,0 +1,97 @@
+<?xml version="1.0" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-
+jsptaglibrary_2_0.xsd" 
+  version="2.0"> 
+	<tlib-version>1.0</tlib-version>
+	<shortname>mytags</shortname>
+	<uri></uri>
+	<info>Random, If-Then Tag Library</info>
+
+	<tag>
+		<name>rnd</name>
+		<tagclass>tags.rndtag.RndTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<info>Empty Rnd Tag</info>
+
+		<attribute>
+			<name>max</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>fancy</name>
+		<tagclass>tags.fancytag.FancyTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Fancy Output Tag</info>
+	</tag>
+
+	<tag>
+		<name>for</name>
+		<tagclass>tags.fortag.ForTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>For Tag (for loop)</info>
+
+		<attribute>
+			<name>from</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>to</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>value</name>
+		<tagclass>tags.fortag.ValueTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<info>Value of the For Tag</info>
+
+	</tag>
+
+
+	<tag>
+		<name>if</name>
+		<tagclass>tags.iftag.IfTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Main If Tag</info>
+	</tag>
+	<tag>
+		<name>then</name>
+		<tagclass>tags.iftag.ThenTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Then Tag</info>
+	</tag>
+	<tag>
+		<name>else</name>
+		<tagclass>tags.iftag.ElseTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Else Tag</info>
+	</tag>
+	<tag>
+		<name>condition</name>
+		<tagclass>tags.iftag.ConditionTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Condition</info>
+	</tag>
+
+	<function>
+		<description>
+			Returns the number of items in a collection or the number of
+			characters in a string.
+		</description>
+		<name>length</name>
+		<function-class>functions.MyFunctions</function-class>
+		<function-signature>
+			int length(java.lang.Object)
+		</function-signature>
+	</function>
+
+</taglib>

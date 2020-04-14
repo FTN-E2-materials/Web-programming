@@ -1,0 +1,31 @@
+<html>
+	<body>
+		<script type="text/javascript">
+			var globalna1 = "pera";
+			function f1() {
+				globalna2 = "mika";
+				document.write ("globalna1: " + globalna1 + "<br />");
+			}
+			
+			function f2() {
+				document.write ("globalna2: " + globalna2 + "<br />");
+			}
+			
+			function f3() {
+				var i = true;
+				document.write ("i je: " + i + "<br />");
+				if (i == true) {
+					var i = "Sada je i string.";
+				}
+				document.write ("i je: " + i + "<br />");
+			}
+			
+			f1();
+			f2();			
+			f3();
+			// document.write ("i je: " + i + "<br />"); // baca reference error u konzolu, pošto 'i' ne postoji izvan funkcije
+			
+		</script>
+		<br /><a href="index.html">Nazad</a>
+	</body>
+</html>

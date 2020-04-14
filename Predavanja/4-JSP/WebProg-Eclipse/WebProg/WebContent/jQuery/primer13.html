@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="jquery-1.11.0.js">
+</script>
+<script>
+$(document).ready(function(){
+    $("button#b_1").click(function(){
+        $("li#li_1").siblings().toggleClass("red");
+    });  
+    $("button#b_2").click(function(){
+        $("li#li_1").next().toggleClass("red");
+    });  
+    $("button#b_3").click(function(){
+        $("li#li_1").nextAll().toggleClass("red");
+    });  
+    $("button#b_4").click(function(){
+        $("li#li_1").nextUntil("li#li_2").toggleClass("red");
+    });  
+});
+</script>
+<style>
+    .red {color:red !important;}
+    li#li_1 {background-color:yellow;}
+</style>
+</head>
+
+<body>
+<h1>Horizontalni prolazak kroz stablo</h1>
+    <ul>
+        <li>prva stavka</li>
+        <li>druga stavka</li>
+        <li id="li_1">treća stavka</li>
+        <li>četvrta stavka</li>
+        <li>peta stavka</li>
+        <li id="li_2">šesta stavka</li>
+    </ul>
+
+<button id="b_1">siblings</button>
+<button id="b_2">next</button>
+<button id="b_3">nextAll</button>
+<button id="b_4">nextUntil</button>
+<br />
+<a href="index.html">Nazad</a>
+
+</body>
+</html>

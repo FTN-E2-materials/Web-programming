@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="jquery-1.11.0.js">
+</script>
+<script>
+$(document).ready(function(){
+    $("button#b_1").click(function(){
+        $("p#p_1").addClass("blue");
+    });  
+    $("button#b_2").click(function(){
+        $("p#p_1").removeClass("blue");
+    });  
+    $("button#b_3").click(function(){
+        $("p#p_1").toggleClass("blue");
+    });  
+    $("button#b_4").click(function(){
+        $("p#p_1").css({"background-color":"yellow","font-size":"200%"}); 
+    });  
+});
+</script>
+<style>
+    p.blue {color:blue;}
+</style>
+</head>
+
+<body>
+<h1>CSS</h1>
+<p id="p_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum laoreet blandit. Sed a varius tellus. Duis eleifend aliquam ligula, in tincidunt nisi tempus et. Vivamus gravida erat ut felis tristique sollicitudin. In hac habitasse platea dictumst. Quisque eget lectus id quam pharetra feugiat. Fusce tempor, quam ac tempor facilisis, justo nulla ultricies dolor, sed posuere ante odio ac velit. Pellentesque ac mauris sed nisi faucibus fringilla quis non leo. Mauris at felis enim. Aenean mi elit, volutpat in fringilla ac, tristique a odio. Vestibulum eget justo ac dui fermentum aliquet. Morbi in imperdiet turpis. Proin pretium id lectus eget molestie. Nam eu augue semper, molestie lacus nec, congue massa. Cras sit amet lorem nec nisi laoreet lacinia. Etiam non consequat nisi. </p>
+<button id="b_1">dodaj klasu</button>
+<button id="b_2">ukloni klasu</button>
+<button id="b_3">promenu klasu</button>
+<button id="b_4">postavi css svojstva</button>
+<br />
+<a href="index.html">Nazad</a>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Primer drag & drop tehnike</title>
+
+<script type="text/javascript">
+var engaged=null;
+var moveX=null;
+var moveY=null;
+function engage(e) {
+  // x i y koordinate klika na ekranu
+  var Xin = (navigator.appName.indexOf("Internet Explorer")==-1)? e.clientX : event.clientX;
+  var Yin = (navigator.appName.indexOf("Internet Explorer")==-1)? e.clientY : event.clientY;
+
+  var stil = document.getElementById("aName").style;
+
+  // left i top od lejera
+  var L = parseFloat(stil.left);
+  var T = parseFloat(stil.top);
+
+  // width i height od lejera
+  var W = parseFloat(stil.width);
+  var H = parseFloat(stil.height);
+
+  // samo ako smo kliknuli unutar pravougaonika
+  if(Xin > L && Xin < (L + W) && Yin > T && Yin < (T + H)) {
+    engaged=true;
+    moveX = Xin - L;
+    moveY = Yin - T;
+    return;
+  }
+
+  engaged=null;
+}
+
+function disengage(){
+  if(engaged==null){
+    return false;
+  }
+  moveX=null;
+  moveY=null;
+  engaged=null;
+}
+
+function dragLayer(e){
+  if(engaged==null){
+    return false;
+  }
+  var Xin = (navigator.appName.indexOf("Internet Explorer")==-1)? e.clientX : event.clientX;
+  var Yin = (navigator.appName.indexOf("Internet Explorer")==-1)? e.clientY : event.clientY;
+
+  var stil=document.getElementById("aName").style;
+  stil.left = Xin - moveX;
+  stil.top  = Yin - moveY;
+}
+
+function inicijalizacija() {
+ document.onmousedown=engage;
+ document.onmousemove=dragLayer;
+ document.onmouseup=disengage;
+}
+
+</script>
+</head>
+
+<body onload="inicijalizacija()" >
+<div id="aName" style="position:absolute; left: 40px;top: 40px; z-index: 3; visibility: visible;width: 300;height: 50;background-color: #ffffff;color:#000000;padding: 2;border-style: solid;border-width: 2;border-color: #0000ff">
+Ovo je tekst.
+</div>
+<br /><a href="index.html">Nazad</a>
+</body>
+</html>

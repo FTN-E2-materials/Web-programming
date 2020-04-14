@@ -1,0 +1,51 @@
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <title>
+  Servleti i forme
+ </title>
+</head>
+<body>
+  <a href="jsp.html" >Java Server Pages (JSP)</a> <br />
+  <h3>TestServlet koji demonstrira servletsku tehnologiju</h3>
+  <a href="http://localhost/HelloServlet">HelloServlet</a>
+
+  <h3>FormServlet koji demonstrira prenos parametara forme GET metodom</h3>
+  <form action="http://localhost/FormServlet" method="get">
+    <input type="text" name="tekst">
+    <input type="submit" value="Posalji">
+  </form>
+
+  <h3>PostFormServlet koji demonstrira prenos parametara forme POST metodom</h3>
+  <form action="http://localhost/FormServlet" method="post" accept-charset="UTF-8">
+    <input type="text" name="tekst">
+    <input type="submit" value="Posalji">
+  </form>
+
+  <h3>RedirectServlet koji demonstrira redirekciju</h3>
+  <a href="http://localhost/RedirectServlet">RedirectServlet</a><br>
+  Ovo je link na isti servlet, ali sa parametrom (da izbegnemo redirekciju): <a href="http://localhost/RedirectServlet?proba=123">RedirectServlet</a>
+
+  <h3>UTF8Servlet koji demonstrira upotrebu UTF-8 kodne strane u servletima</h3>
+  <a href="http://localhost/UTF8Servlet">UTF8Servlet</a><br>
+
+  <h3>CP1250Servlet koji demonstrira upotrebu CP-1250 kodne strane u servletima</h3>
+  <a href="http://localhost/CP1250Servlet">CP1250Servlet</a><br>
+
+  <h3>SessionTestServlet koji demonstrira praćenje sesije u servletima</h3>
+  <a href="http://localhost/SessionTestServlet">SessionTestServlet</a><br>
+
+  <h3>WebShopServlet koji demonstrira web shop</h3>
+  <a href="http://localhost/WebShopServlet">WebShopServlet</a><br>
+
+  <h3>UTF8UploadServlet koji demonstrira upload datoteka i forme sa UTF-8 kodnom stranom</h3>
+  <a href="http://localhost/uploadUTF8.html">uploadUTF8.html</a><br>
+
+  <h3>Autentikacija Basic metodom</h3>
+  <a href="http://localhost/basic.html">basic.html</a>. Šifra je proba/proba<br>
+
+  <h3>Autentikacija Digest metodom</h3>
+  <a href="http://localhost/digest.html">digest.html</a>. Šifra je proba/proba<br>
+
+</body>
+</html>

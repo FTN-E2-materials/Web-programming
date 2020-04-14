@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="jquery-1.11.0.js">
+</script>
+<script>
+$(document).ready(function(){
+    $("button#b_1").click(function(){
+        $("p").hide();
+        //$("p").hide();    
+    }); 
+    $("button#b_2").click(function(){
+        $("p").show();    
+    }); 
+    $("button#b_3").click(function(){
+        $("p").toggle();
+    });
+});
+</script>
+</head>
+
+<body>
+<h1>Hide i show</h1>
+<p>Prvi paragraf.</p>
+<p>Drugi paragraf.</p>
+<p>Treći paragraf.</p>
+<p>Četvrti paragraf.</p>
+<button id="b_1">sakrij</button>
+<button id="b_2">prikaži</button>
+<button id="b_3">sakrij/prikaži</button>
+<br />
+<a href="index.html">Nazad</a>
+
+</body>
+</html>

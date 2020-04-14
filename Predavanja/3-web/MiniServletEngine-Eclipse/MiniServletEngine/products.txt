@@ -1,0 +1,4 @@
+1;Televizor marke Sony, 51 cm dijagonala;22000
+2;Sony digitalna kamera;32000
+3;Samsung monitor 17";35000
+4;Pioneer DVD pisac;7100

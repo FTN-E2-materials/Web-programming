@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="jquery-1.11.0.js">
+</script>
+<script>
+$(document).ready(function(){
+    $("p").click(function(){
+        alert("kliknuto je na paragraf");      
+    });
+    $("p#p_1").hover(function(){
+        alert("prelazi se preko paragrafa");            
+    },
+                    function(){
+        alert("napušta se paragraf");            
+    }); 
+    $(":text#t_2").focus(function(){
+        //alert("polje 2 je dobilo fokus");            
+    }); 
+    $(":text#t_2").blur(function(){
+        alert("polje 2 je izgubilo fokus");            
+    }); 
+});
+</script>
+</head>
+
+<body>
+<h2>Događaji</h2>
+<p id="p_1">Prvi paragraf.</p>
+<p>Drugi paragraf.</p>
+<p>Treći paragraf.</p>
+<p>Četvrti paragraf.</p>
+<input type="text" id="t_1"/>
+<input type="text" id="t_2"/>
+<br />
+<a href="index.html">Nazad</a>
+
+</body>
+</html>

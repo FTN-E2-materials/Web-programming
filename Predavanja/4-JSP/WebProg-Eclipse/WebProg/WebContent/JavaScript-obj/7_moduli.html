@@ -1,0 +1,51 @@
+<html>
+	<body>
+		<script type="text/javascript">
+		var modul = (function() {
+			var public = {}; // Ovaj objekat vracamo
+
+			var privateVar = "Ovo je privatna promenljiva u modulu.<br />";
+			
+			function privateFunc() {
+				document.write("Ovo je privatna funkcija u modulu.<br />");
+			}
+			
+			public.publicVar = "Ovo je javna promenljiva.<br />";
+			public.publicFunc = function() {
+				document.write("Ovo je javna funkcija.<br />");
+			}
+			return public;
+		})();
+			
+		document.write(modul.privateVar + "<br/>"); // odstampace "undefined", posto nije vidljiva
+		//modul.privateFunc(); // bacice izuzetak ako se pozove, posto piziva privatnu funkciju
+		document.write(modul.publicVar); // odstampace tekst "Ovo je javna promenljiva."
+		modul.publicFunc(); // odstampace tekst "Ovo je javna funkcija."			
+			
+		// nasledjivanje modula
+		var nasledniModul = (function(modul) {
+			var retVal = Object.create(modul); // pravimo kopiju originalnog modula
+			retVal.dodatnaFunkcija = function() {
+				document.write("Ovo je dodatna funkcija u prosirenom modulu.<br />");
+			}
+			return retVal;
+		})(modul);	
+			
+		nasledniModul.publicFunc();
+		nasledniModul.dodatnaFunkcija();
+		// modul.dodatnaFunkcija(); // nismo dodali u originalni modul, vec u njegovog naslednika
+		
+		// podmodul unutar modula
+		modul.podmodul = (function () {
+			var public = {};
+			public.podfunkcija = function() {
+				document.write("Ovo je funkcija u podmodulu.<br />");
+			}
+			return public;
+		})();
+		
+		modul.podmodul.podfunkcija();
+		</script>
+		<br /><a href="index.html">Nazad</a>
+	</body>
+</html>

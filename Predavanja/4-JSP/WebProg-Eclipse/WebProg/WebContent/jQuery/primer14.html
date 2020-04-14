@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="jquery-1.11.0.js">
+</script>
+<script>
+$(document).ready(function(){
+    $("button#b_1").click(function(){
+        $("li").first().toggleClass("red");
+    });  
+    $("button#b_2").click(function(){
+        $("li").last().toggleClass("red");
+    });  
+    $("button#b_3").click(function(){
+        $("li").eq(3).toggleClass("red");
+    });  
+    $("button#b_4").click(function(){
+        $("li").filter(".yellow").toggleClass("red");
+    });  
+    $("button#b_5").click(function(){
+        $("li").not(".yellow").toggleClass("red");
+    });  
+});
+</script>
+<style>
+    .red {color:red !important;}
+    .yellow {background-color:yellow;}
+</style>
+</head>
+
+<body>
+<h1>Horizontalni prolazak kroz stablo</h1>
+    <ul>
+        <li>prva stavka</li>
+        <li>druga stavka</li>
+        <li class="yellow">treća stavka</li>
+        <li>četvrta stavka</li>
+        <li class="yellow">peta stavka</li>
+        <li>šesta stavka</li>
+    </ul>
+
+<button id="b_1">prvi</button>
+<button id="b_2">poslednji</button>
+<button id="b_3">četvrti</button>
+<button id="b_4">.yellow</button>
+<button id="b_5">svi koji nisu .yellow</button>
+<br />
+<a href="index.html">Nazad</a>
+
+</body>
+</html>
