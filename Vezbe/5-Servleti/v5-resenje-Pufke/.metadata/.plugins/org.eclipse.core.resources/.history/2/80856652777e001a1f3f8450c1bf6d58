@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registracija korisnika</title>
+</head>
+<body>
+<p> Forma za registrovanje korisnika <br> Unesite ime korisnika kog zelite da registrujete </p>
+
+<form method="post" action = "/HelloWorld/RegistrationServlet">
+<table border = "1">
+	<tr><td>Ime korisnika:</td><td><input type = "text" name="ime"/> </td></tr>
+	<tr><td colspan = "2"><input type = "submit" value="Registruj"/></td></tr>
+</table>
+
+</form>
+
+<form method="post" action = ""/HelloWorld/PretrazivanjeServlet">
+
+<p> Forma za pretrazivanje korisnika u bazi podataka <br> Unesite ime korisnika kog zelite da pretrazite </p>
+
+<table border = "1">
+	<tr><td>Ime korisnika:</td><td><input type = "text" name="ime"/> </td></tr>
+	<tr><td colspan = "2"><input type = "submit" value="Pretrazi"/></td></tr>
+</table>
+
+</form>
+
+</body>
+</html>

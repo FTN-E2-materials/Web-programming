@@ -41,17 +41,25 @@ public class RegistrationServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String user = request.getParameter("ime");
 		
-		users.add(user);
+		getUsers().add(user);
 		//Ovo mora da se odradi preko sigurnih reposzitorijuma, 
 		//posto ovu staticku listu users ce da dele svi korisnici i ona nije
 		//thread safety
 		
 		PrintWriter out =  response.getWriter();
 		out.append("<html><body><table>");
-		for(String oneUser: users){
+		for(String oneUser: getUsers()){
 			out.append("<tr><td>" + oneUser + "</td></tr>");
 		}
 		out.append("</html></body></table>");
+	}
+
+	public static List<String> getUsers() {
+		return users;
+	}
+
+	public static void setUsers(List<String> users) {
+		RegistrationServlet.users = users;
 	}
 
 }

@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +35,18 @@ public class PretrazivanjeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String user = request.getParameter("ime"); //Pokupimo ime korisnika kog zelimo da pretrazimo
+		
+		PrintWriter out =  response.getWriter();
+		
+		for(String oneUser: RegistrationServlet.getUsers()){
+			if(user.equals(oneUser)){
+				out.append("Korisnik " + user + " je pronadjen u bazi podataka.");
+				return;
+			}
+		}
+	
+		out.append("Korisnik " + user + " nije pronadjen u bazi podataka!!!");
 	}
 
 }
