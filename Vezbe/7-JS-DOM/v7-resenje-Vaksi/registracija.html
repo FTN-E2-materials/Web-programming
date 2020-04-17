@@ -1,0 +1,52 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="stilovi.css" />
+</head>
+<body>
+    <h1>Produženje registracije</h1>
+    <p>Na ovoj stranici možete da obavite produženje registracije vašeg automobila.<br/>
+Molimo vas da popunite sledeći formular.
+</p>
+
+<form action="registrovani_korisnici.html" method="get">
+    <table border="1">
+	<tr class="first">
+		<td colspan="2">Produženje registracije</td>	
+	</tr>
+	<tr>	
+		<td>Ime</td>
+	<td> <input type="text" name="ime"> </td></tr>
+	<tr>	
+		<td>Prezime</td>
+	<td><input type="text" name="prezime"> </td></tr>
+	<tr>	
+		<td>JMBG</td>
+	<td><input type="text" name="jmbg"> </td></tr>
+	<tr>	
+		<td>Marka vozila</td>
+	<td><select name="marka">
+    		<option value="1"></option>
+    		<option value="2">Mercedes</option>
+    		<option value="3">Peugeot</option>
+    		<option value="4">Renault</option>
+	</select> </td></tr>
+	<tr>	
+		<td>Tip vozila</td>
+	<td><select name="tip" onchange="proveraTipa(this)">
+    		<option value="1"></option>
+    		<option value="2">Motorno</option>
+    		<option value="3">Hibridno</option>
+    		<option value="4">Električno</option>
+	</select></td></tr>
+	<tr>	
+		<td>Registracija</td>
+	<td><input type="text" name="registracija"></td></tr>
+	<tr>	
+		<td></td>
+	<td><input type="submit" name="posalji" value="Submit "> </td></tr>
+    </table>
+</form>
+<p id="menu">U kombo boksu su navedene sleće marke vozila: <i>Mercedes</i>, <i>Peugeot</i> i <i>Renault</i>!</p>    
+</body>
+</html>

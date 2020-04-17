@@ -1,0 +1,58 @@
+h1, h2, h3 {
+	color: #004488;
+	font-size: 16px;
+	font-weight: bold;
+	vertical-align: middle;
+}
+		
+body {
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	background-color: white;
+	margin: 3px;
+}
+		
+p
+{
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+}
+		
+input [type='submit'] {
+	background-color:#000000;
+	color:#FFFFFF;
+}
+		
+input, select{
+	font-size: 11px;
+	margin:2px;
+	border:#000000;
+}
+
+				
+table{
+	background-color:#CCCCCC;
+	border:1px solid black;
+	border-collapse:collapse;
+}
+
+tr.first{ 
+	color: #004488; 
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+}
+tr td:first-child {
+	font-weight: bold;
+	text-align: center
+}		
+tr:nth-child(odd) td{ 
+	background-color:#DCDCDC; 
+}
+tr:nth-child(even) td{ 
+	background-color:#BCBCBC; 
+}
+
+tr:last-child td{
+	background-color:#BCBCBC;
+}
+		
