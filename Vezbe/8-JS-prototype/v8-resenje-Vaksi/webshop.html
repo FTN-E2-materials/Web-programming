@@ -1,0 +1,63 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Web Shop</title>
+<script src="proto.js" type="text/javascript"></script>
+<script src="onload.js" type="text/javascript"></script>
+
+</script>
+</head>
+<body>
+	<p>
+		Raspoloživi proizvodi:
+		<table border="1">
+			<tr bgcolor="lightgrey">
+				<th>Naziv</th>
+				<th>Cena</th>
+				<th>&nbsp;</th>
+			</tr>
+			<tr>
+			   <form method="get" name="forma1" action="#" onsubmit="return false;">
+					<td id="name1">Proizvod 1</td>
+					<td id="price1">35000</td>
+					<td>
+						<input type="text" size="3" name="itemCount" id="itemCount1" onchange="korisnik.ispis(this)"> <input
+						type="hidden" name="itemId" value="1"> <input
+						type="submit" value="Dodaj"/>
+					</td>
+				</form>
+			</tr>
+			<tr>
+			   <form method="get" name="forma2" action="#" onsubmit="return false;">
+					<td id="name2">Proizvod 2</td>
+					<td id="price2">20000</td>
+					<td>
+						<input type="text" size="3" name="itemCount"  id="itemCount2" onchange="korisnik.ispis(this)"> <input
+						type="hidden" name="itemId" value="2"> <input
+						type="submit" value="Dodaj"/>
+					</td>
+				</form>
+			</tr>
+			<tr>
+			   <form method="get" name="forma3" action="#" onsubmit="return false;">
+					<td id="name3">Proizvod 3</td>
+					<td id="price3">12000</td>
+					<td>
+						<input type="text" size="3" name="itemCount" id="itemCount3" onchange="korisnik.ispis(this)"> <input
+						type="hidden" name="itemId" value="3"> <input
+						type="submit" value="Dodaj"/>
+					</td>
+				</form>
+			</tr>
+	</table>
+	</p>
+	<p id="poruka">
+	</p>
+	<p>
+		<a href="#">Pregled sadrzaja korpe</a>
+	</p>
+	<p>
+		<a href="login.html">Nazad</a>
+	</p>
+</body>
+</html>
