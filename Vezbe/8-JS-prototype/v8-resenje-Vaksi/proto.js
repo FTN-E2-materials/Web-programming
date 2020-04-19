@@ -37,3 +37,12 @@ MaloprodajniKorisnik.prototype.ispis = function(input){		// override f-je ispis
 	let poruka = 'Cena narudzbine je: ' + vrednost;
 	Korisnik.prototype.ispis.call(this, poruka);
 }
+
+
+
+// TODO 1: VPKorisnik, koji nasledjuje atribute i metode Korisnika.
+function VeleprodajniKorisnik(ime, prezime) {
+	Korisnik.call(this, ime, prezime);
+}
+
+VeleprodajniKorisnik.prototype = Object.create(Korisnik.prototype);
