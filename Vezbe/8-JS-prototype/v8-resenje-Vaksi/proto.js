@@ -21,8 +21,8 @@ Korisnik.prototype.stampaj = function(){
 };
 
 // Maloprodajni korisnik nasledjuje Korisnika, ali za metode moramo preko Object.create()
-function MaloprodajniKorisnik(ime, prezime){
-	Korisnik.call(this, ime, prezime);	// kao super()
+function MaloprodajniKorisnik(ime, prezime, lozinka){
+	Korisnik.call(this, ime, prezime, lozinka);	// kao super()
 }
 
 // Maloprodajni korisnik nasledjuje metode Korisnika
@@ -41,8 +41,16 @@ MaloprodajniKorisnik.prototype.ispis = function(input){		// override f-je ispis
 
 
 // TODO 1: VPKorisnik, koji nasledjuje atribute i metode Korisnika.
-function VeleprodajniKorisnik(ime, prezime) {
-	Korisnik.call(this, ime, prezime);
+function VeleprodajniKorisnik(ime, prezime, lozinka) {
+	Korisnik.call(this, ime, prezime, lozinka);
 }
 
 VeleprodajniKorisnik.prototype = Object.create(Korisnik.prototype);
+VeleprodajniKorisnik.prototype.constructor = VeleprodajniKorisnik;
+
+//redefinisanje metode stampaj u VPKorisniku
+VeleprodajniKorisnik.prototype.stampaj = function(input){		// override f-je stampaj
+	let vrednost = 'TODO';
+	let poruka = 'Cena narudzbine uz 15% iznosi: ' + vrednost;
+	Korisnik.prototype.ispis.call(this, poruka);
+}

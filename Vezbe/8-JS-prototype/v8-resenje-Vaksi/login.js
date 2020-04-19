@@ -7,8 +7,8 @@
 
 
 var usersMap = {
-	"pera" : new Korisnik("Pera", "Perić", "peric"),
-	"mika" : new Korisnik("Mika", "Mikić", "mikic")
+	"pera" : new MaloprodajniKorisnik("Pera", "Perić", "peric"),
+	"mika" : new VeleprodajniKorisnik("Mika", "Mikić", "mikic")
 };
 
 function valid(){
@@ -38,8 +38,6 @@ function valid(){
 		poruka.innerText = "Neispravna lozinka.";
 		return false;
 	}
-
-
     return true;
 }
 
