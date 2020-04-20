@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import model.User;
 
 /**
- * Vra�a listu korisnika i dodaje nove korisnike u listu korisnika.
+ * Vraca listu korisnika i dodaje nove korisnike u listu korisnika.
  */
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -35,13 +35,13 @@ public class UserServlet extends HttpServlet {
     }
 
 	/**
-	 * Vra�a listu korisnika kao JSON listu.
+	 * Vraca listu korisnika kao JSON listu.
 	 */
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<User> users = (List<User>) getServletContext().getAttribute("users");
 		// Pretvorimo korisnike u JSON oblik
-		String usersJson = mapper.writeValueAsString(users);
+		String usersJson = mapper.writeValueAsString(users);					// objekat u JSON format(string)
 		// Postavimo tip odgovora na JSON
 		response.setContentType("application/json");
 		response.setStatus(200);
@@ -53,7 +53,7 @@ public class UserServlet extends HttpServlet {
 	 */
 	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// U�itaj sadr�aj zahteva kao JSON i pretvori ga u User objekat
+		// Ucitaj sadrzaj zahteva kao JSON i pretvori ga u User objekat
 		User user = mapper.readValue(request.getReader(), User.class);
 		List<User> users = (List<User>) getServletContext().getAttribute("users");
 		users.add(user);
