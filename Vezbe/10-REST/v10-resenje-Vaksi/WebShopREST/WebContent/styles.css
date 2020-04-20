@@ -1,0 +1,14 @@
+tr.selected {
+	background: lightblue;
+}
+tr {
+	cursor: pointer;
+}
+
+#error {
+	color: red;
+}
+
+#success {
+	color: green;	
+}
