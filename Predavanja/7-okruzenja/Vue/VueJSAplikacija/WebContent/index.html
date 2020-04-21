@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Studenti u Vue.js tehnologiji</title>
+	<link href="css/main.css" rel="stylesheet" />
+	<link href="css/toast.css" rel="stylesheet" />
+	<script src="js/jquery.min.js"></script>
+	<script src="js/toast.js"></script>
+</head>
+<body>
+<div id="studenti">
+	<h3>{{title}}</h3>
+
+	<label>JMBG:</label>
+	<input type="text" v-model="selectedStudent.jmbg" /> <br />
+	<label>Ime:</label>
+	<input name="ime" type="text" v-model="selectedStudent.ime" v-bind:disabled="mode=='BROWSE'" /> <br />
+	<label>Prezime:</label>
+	<input type="text" v-model="selectedStudent.prezime" v-bind:disabled="mode=='BROWSE'" /> <br />
+	<label>Broj indeksa:</label>
+	<input type="text" v-model="selectedStudent.brojIndeksa" v-bind:disabled="mode=='BROWSE'" /> <br />
+	<label>Datum rođenja:</label>
+	<input type="date" v-model="selectedStudent.datumRodjenja" v-bind:disabled="mode=='BROWSE'" /> <br />
+	
+	<button v-on:click="updateStudent(selectedStudent)" v-bind:disabled="mode=='BROWSE'">Save</button>
+	<button v-on:click="cancelEditing" v-bind:disabled="mode=='BROWSE'">Cancel</button> <br />
+	
+	<table class="students">
+	<tr bgcolor="lightgrey">
+		<th>JMBG</th>
+		<th>Ime</th>
+		<th>Prezime</th>
+		<th>Broj indeksa</th>
+		<th>Datum rodjenja</th>
+	</tr>
+	
+	<tr v-for="s in students" v-on:click="selectStudent(s)" v-bind:class="{selected : selectedStudent.jmbg===s.jmbg}">
+		<td>{{s.jmbg }}</td>
+		<td>{{s.ime }}</td>
+		<td>{{s.prezime }}</td>
+		<td>{{s.brojIndeksa }}</td>
+		<td>{{s.datumRodjenja | dateFormat('DD.MM.YYYY')}}</td> 
+	</tr>
+	</table>
+	
+	<button v-on:click="editStudent" v-bind:disabled="selectedStudent==null">Edit</button><br />
+	
+	
+</div>
+	
+	<script src="js/vue.js"></script>
+	<script src="js/axios.js"></script>
+	<script src="js/moment.min.js"></script>
+	<script src="app/app.js"></script>
+
+</body>
+</html>

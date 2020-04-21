@@ -1,0 +1,15 @@
+﻿drop table studenti;
+
+create table studenti (
+jmbg varchar(20) primary key,
+ime  varchar(20),
+prezime varchar(20),
+broj_indeksa varchar(20),
+datum_rodjenja date,
+budzet boolean
+);
+
+insert into studenti values('2549131051986', 'Petar',   'Petrović', 'F12345', '2001-05-30', 1);
+insert into studenti values('1365890051986', 'Мarko', 'Маrković', 'F12346', '2002-01-20', 1);
+insert into studenti values('7641944841986', 'Nenad', 'Nenadić', 'F12347', '2003-03-10', 0);
+insert into studenti values('4673268327455', 'Bogdan', 'Bogdanović', 'F12348', '2004-04-24', 0);
