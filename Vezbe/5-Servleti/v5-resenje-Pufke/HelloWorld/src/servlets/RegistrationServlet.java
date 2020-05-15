@@ -49,7 +49,7 @@ public class RegistrationServlet extends HttpServlet {
 		PrintWriter out =  response.getWriter();
 		out.append("<html><body><table>");
 		for(String oneUser: getUsers()){
-			out.append("<tr><td>" + oneUser + "</td></tr>");
+			out.append("<tr><td>" + oneUser + "</td><td> <a href='/HelloWorld/removeUserServlet' title=" + oneUser +">Remove </a></td></tr>");
 		}
 		out.append("</html></body></table>");
 	}

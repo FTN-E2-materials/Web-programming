@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JAX-RS demo</title>
+<script src="jquery.min.js"></script>
+<script type="text/javascript">
+function getFormData($form){
+    var unindexed_array = $form.serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+
+    return indexed_array;
+}
+
+/*
+ * Šalje AJAX zahtev ka testjson REST servisu.
+ * Kao parametar POST metode, šalje objekat klase Student, zapakovan u JSON.
+ * Prima takođe JSON string, koji je takođe objekat klase Student, a koji 
+ * vraća testjson REST servis.
+ */
+function sendStudent() {
+	var $form = $("#jsonform");
+	var data = getFormData($form);
+	var s = JSON.stringify(data);
+	$.ajax({
+		url: "rest/demo/testjson",
+		type:"POST",
+		data: s,
+		contentType:"application/json",
+		dataType:"json",
+		complete: function(data) {
+			$( "#result" ).html( data.responseText );
+		}
+	});
+}
+
+function login() {
+	var $form = $("#login");
+	var data = getFormData($form);
+	var s = JSON.stringify(data);
+	$.ajax({
+		url: "rest/demo/login",
+		type:"POST",
+		data: s,
+		contentType:"application/json",
+		dataType:"json",
+		complete: function(data) {
+			$( "#resultLogin" ).html( data.responseText );
+		}
+	});
+}
+
+</script>
+</head>
+<body>
+
+	<a href="rest/demo/test">Test</a> <br />
+	<a href="rest/demo/book/101-456-890">Test PathParam</a> <br />
+	<a href="rest/demo/books?num=123456">Test QueryParam</a> <br />
+	<a href="rest/demo/testheader">Test HeaderParam</a> <br />
+	<a href="rest/demo/testcookie">Test CookieParam</a> <br />
+	
+	<form action="/rest/demo/forma" method="post">
+	<fieldset>
+	<legend>Test forme, preko x-www-form-urlencoded </legend>
+		<input type="text" name="ime" value="Pera"/><br />
+		<input type="text" name="prezime" value="Perić" /><br />
+		<input type="submit" value="submit" /> <br />
+	</fieldset>
+	</form> <br />
+	
+	<form id="jsonform">
+	<fieldset>
+	<legend>Test forme i JSON</legend>
+		<input type="text" name="ime" value="Pera"/><br />
+		<input type="text" name="prezime" value="Perić" /><br />
+		<input type="button" value="submit" onclick="sendStudent()"/> <br />
+		<fieldset><div id="result">Rezultat poziva</div></fieldset>
+	</fieldset>
+	</form> <br />
+
+	<form id="login" >
+	<fieldset>
+	<legend>Prijava na sistem</legend>
+		<input type="text" name="username" value="Pera"/><br />
+		<input type="text" name="password" value="Perić" /><br />
+		<input type="button" value="submit" onclick="login()"/> <br />
+		<fieldset><div id="resultLogin">Rezultat poziva</div></fieldset><br />
+	<a href="rest/demo/testlogin">Test Login logike</a> <br />
+	<a href="rest/demo/logout">Logout</a> <br />
+	</fieldset>
+	</form> <br />
+
+	<a href="chat.html">WebSocket chat primer</a>
+</body>
+</html>
