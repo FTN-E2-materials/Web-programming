@@ -1,5 +1,3 @@
-package primer04;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,7 +15,7 @@ import java.util.StringTokenizer;
 /**
  * Jednostavan web server
  */
-public class httpd {
+public class Server {
 	public static void main(String args[]) throws IOException {
 		int port = 80;
 
@@ -37,7 +35,7 @@ public class httpd {
 				String resource = getResource(skt.getInputStream());
 
 				if (resource.equals(""))
-					resource = "index.html";
+					resource = "static/index.html";
 
 				System.out.println("Request from " + addr.getHostName() + ": " + resource);
 
