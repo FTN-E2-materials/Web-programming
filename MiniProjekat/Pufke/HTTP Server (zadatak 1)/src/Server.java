@@ -125,7 +125,7 @@ public class Server {
 			pacijenti.add(pacijent);
 			
 			ps.print("HTTP/1.1 200 OK\n\n");
-			
+			int i = 1;
 			
 			String response = "<html><head><style>\r\n" + 
 					"table, th, td {\r\n" + 
@@ -133,16 +133,16 @@ public class Server {
 					"  border-collapse: collapse;\r\n" + 
 					"}\r\n" + 
 					
-				    "#ZARAZEN{"
+				    ".ZARAZEN{"
 				    + "background-color:red;"+
 				    "}"+
 					"</style></head><body>\r\n"
-					
-					+ "<table>";
+					+"<script src=\"myscripts.js\"></script>\r\n "
+					+ "<table id=\"tabelaPacijenata\">";
 			response += "<tr><td>" + "Broj zdravstvenog osiguranja" +"</td>" +"<td>" + "Ime pacijenta"+ "</td>" +"<td>"  +"Prezime pacijenta"+"</td>"+"<td>"  +"Datum rodjenja"+ "</td>"+"<td>" +"Pol"+"</td>"+"<td>"  + "Zdravstveni status" + "</td>" +"<td>" + " " +  "</td></tr>"; 
 			for (Pacijent p : pacijenti) {
-				response += "<tr id=" +"'"+ p.getZdravstveniStatus()+ "'" +"><td>" + p.getBrZdravstvenogOsig() +"</td>" +"<td>" + p.getIme()+"</td>" +"<td>"  + p.getPrezime()+"</td>"+"<td>"  + p.getDatumRodjenja()+ "</td>"+"<td>" + p.getPol()+"</td>"+"<td>"  + p.getZdravstveniStatus() +"</td>" +"<td>" + "Test je pozitivan!"  + "</td></tr>" ; 
-				
+				response += "<tr id=\"id_"+ i +"\"" + " class=" +"'"+ p.getZdravstveniStatus()+ "'" +"><td>" + p.getBrZdravstvenogOsig() +"</td>" +"<td>" + p.getIme()+"</td>" +"<td>"  + p.getPrezime()+"</td>"+"<td>"  + p.getDatumRodjenja()+ "</td>"+"<td>" + p.getPol()+"</td>"+"<td>"  + p.getZdravstveniStatus() +"</td>" +"<td>" + "<a href=\"#\" onclick=\"changeIt(this.id)\">Test je pozitivan!</a>"  + "</td></tr>" ; 
+				i++;
 			}
 			
 			
