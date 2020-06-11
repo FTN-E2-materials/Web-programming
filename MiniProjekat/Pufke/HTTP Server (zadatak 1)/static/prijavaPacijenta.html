@@ -6,12 +6,33 @@
 </head>
 <body>
 	<form action="http://localhost:80/pregledPacijenata" method="get">
-		Broj zdravstvenog osiguranja:
+		<label for="brojZdravstvenogOsiguranja">Broj zdravstvenog osiguranja:</label>
 		<input type="text" name="brojZdravstvenogOsiguranja"/> <br>
-		Ime pacijenta:
+
+		<label for="imePacijenta">Ime pacijenta:</label>
 		<input type="text" name="imePacijenta"/> <br>
-		Prezime pacijenta:
+		
+		
+		<label for="prezimePacijenta">Prezime pacijenta:</label>
 		<input type="text" name="prezimePacijenta"/><br>
+		
+		<label for="datumRodjenjaPacijenta">Datum rodjenja</label>
+		<input type="text" name="datumRodjenjaPacijenta"/><br>
+		
+		<label for="pol">Pol</label>
+  		<select name="pol">
+		   <option value="muski">muski</option>
+		   <option value="zenski">zenski</option>
+ 		</select><br>
+ 		
+ 		<label for="zdravstveniStatus">Zdravstveni status</label>
+  		<select name="zdravstveniStatus">
+  		   <option value="IZLECEN">IZLECEN</option>
+  		   <option value="SA_SIMPTOMIMA">SA_SIMPTOMIMA</option>
+		   <option value="ZARAZEN">ZARAZEN</option>
+		   <option value="BEZ_SIMPTOMA">BEZ_SIMPTOMA</option>
+ 		</select><br>
+		
 		HTTP server:
 		<input type="submit" Value="Posalji"/>
 	</form>

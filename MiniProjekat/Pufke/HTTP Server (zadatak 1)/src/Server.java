@@ -16,6 +16,8 @@ import java.util.StringTokenizer;
 
 import javax.annotation.Resource;
 
+import sun.security.util.Length;
+
 /**
  * Jednostavan web server
  */
@@ -99,7 +101,6 @@ public class Server {
 			String[] brojZdravstvenogOsiguranjaParts = brojZdravstvenogOsiguranja.split("=");
 			String brZdravOsig = brojZdravstvenogOsiguranjaParts[1]; 
 			
-			
 			String imePacijenta = podaciParts[1];
 			String[] imePacijentaParts = imePacijenta.split("=");
 			String imeP = imePacijentaParts[1]; 
@@ -108,7 +109,19 @@ public class Server {
 			String[] prezimePacijentaParts = prezimePacijenta.split("=");
 			String prezimeP = prezimePacijentaParts[1]; 
 			
-			Pacijent pacijent = new Pacijent(brZdravOsig, imeP, prezimeP, "01.05.1998","muski", "BEZ SIMPTOMA");
+			String datumRodjenjaPacijenta = podaciParts[3];
+			String[] datumRodjenjaPacijentaParts = datumRodjenjaPacijenta.split("=");
+			String datumRPac = datumRodjenjaPacijentaParts[1]; 
+			
+			String polPacijenta = podaciParts[4];
+			String[] polPacijentaParts = polPacijenta.split("=");
+			String polP = polPacijentaParts[1]; 
+			
+			String zdravstveniStatusPacijenta = podaciParts[5];
+			String[] zdravstveniStatusPacijentaParts = zdravstveniStatusPacijenta.split("=");
+			String zdravstveniStatus = zdravstveniStatusPacijentaParts[1]; 
+			
+			Pacijent pacijent = new Pacijent(brZdravOsig, imeP, prezimeP, datumRPac,polP, zdravstveniStatus);
 			pacijenti.add(pacijent);
 			
 			ps.print("HTTP/1.1 200 OK\n\n");
@@ -119,9 +132,16 @@ public class Server {
 					"  border: 3px solid black;\r\n" + 
 					"  border-collapse: collapse;\r\n" + 
 					"}\r\n" + 
-					"</style></head><body><table>";
+					
+				    "#ZARAZEN{"
+				    + "background-color:red;"+
+				    "}"+
+					"</style></head><body>\r\n"
+					
+					+ "<table>";
+			response += "<tr><td>" + "Broj zdravstvenog osiguranja" +"</td>" +"<td>" + "Ime pacijenta"+ "</td>" +"<td>"  +"Prezime pacijenta"+"</td>"+"<td>"  +"Datum rodjenja"+ "</td>"+"<td>" +"Pol"+"</td>"+"<td>"  + "Zdravstveni status" + "</td>" +"<td>" + " " +  "</td></tr>"; 
 			for (Pacijent p : pacijenti) {
-				response += "<tr><td>" + p.getBrZdravstvenogOsig() +"</td>" +"<td>" + p.getIme()+"</td>" +"<td>"  + p.getPrezime()+"</td>"+"<td>"  + p.getDatumRodjenja()+ "</td>"+"<td>" + p.getPol()+"</td>"+"<td>"  + p.getZdravstveniStatus() + "</td></tr>" ; 
+				response += "<tr id=" +"'"+ p.getZdravstveniStatus()+ "'" +"><td>" + p.getBrZdravstvenogOsig() +"</td>" +"<td>" + p.getIme()+"</td>" +"<td>"  + p.getPrezime()+"</td>"+"<td>"  + p.getDatumRodjenja()+ "</td>"+"<td>" + p.getPol()+"</td>"+"<td>"  + p.getZdravstveniStatus() +"</td>" +"<td>" + "Test je pozitivan!"  + "</td></tr>" ; 
 				
 			}
 			
