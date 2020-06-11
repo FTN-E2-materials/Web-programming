@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title> T:Registracija</title>
+	</head>
+	
+	<body>
+		<div align = "center">
+			<h2 > Dobro dosili na registraciju korisnika </h2>
+			<!-- Action atribut govori na koji link treba da se ode nakon submit dugmeta  -->
+			<!-- Method atribut govori kojom http metodom saljem zahtev iz forme -->
+			<!--
+			  Ovo /registruj nije nikakva datoteka nego obican DINAMICKI ZAHTEV
+			  odnosno, kao neka putanja na kojoj ce se izvrsavati odredjena funkcionalnost
+			  (npr ispisivanje nekih podataka, neko racunanje, i slicno).
+			  
+			  Kao u REST-u pathove kad pravim. (path /registruj)
+			 -->
+			<form action="http://localhost:80/registruj" method="get">
+				<input type="text" name="imeKorisnika"/>
+				<input type="submit" value="Posalji"/>
+			</form>
+			
+			<!-- Navigacija ka nekim dalje delovima aplikacije -->
+			<a href="http://localhost:80/statickeDatoteke/index.html"> Pocetna </a> <br>
+		</div>
+		
+	</body>
+</html>
