@@ -9,16 +9,22 @@ import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.StringTokenizer;
+
+import javax.annotation.Resource;
 
 /**
  * Jednostavan web server
  */
 public class Server {
+	private static List<Pacijent> pacijenti = new ArrayList<>();
+	
 	public static void main(String args[]) throws IOException {
 		int port = 80;
-
+		
 		@SuppressWarnings("resource")
 		ServerSocket srvr = new ServerSocket(port);
 
@@ -52,7 +58,7 @@ public class Server {
 	static String getResource(InputStream is) throws IOException {
 		BufferedReader dis = new BufferedReader(new InputStreamReader(is));
 		String s = dis.readLine();//Liniju po liniju citamo sta nam je to klijent poslao
-		if (s == null)
+		if (s == null)//Specavamo null pointer exceptio da ne parsiramo ako je prazan odgovor
 			s = "";
 
 		System.out.println(s);
@@ -81,6 +87,53 @@ public class Server {
 //Metoda koja vraca nazad klijentu datoteku ili nesto drugo
 	static void sendResponse(String resource, OutputStream os) throws IOException {
 		PrintStream ps = new PrintStream(os);
+		
+		if(resource.startsWith("pregledPacijenata")) {
+			String[] parts = resource.split("\\?");
+			String podaci = parts[1]; // Otprilike izgleda ovako sada 
+										//brojZdravstvenogOsiguranja=1234&imePacijenta=Nemanja&prezimePacijenta=Kljajic
+			
+			String[] podaciParts = podaci.split("&"); //Sada izgleda ovako brojZdravstvenogOsiguranja=1234 ... 
+			
+			String brojZdravstvenogOsiguranja = podaciParts[0];
+			String[] brojZdravstvenogOsiguranjaParts = brojZdravstvenogOsiguranja.split("=");
+			String brZdravOsig = brojZdravstvenogOsiguranjaParts[1]; 
+			
+			
+			String imePacijenta = podaciParts[1];
+			String[] imePacijentaParts = imePacijenta.split("=");
+			String imeP = imePacijentaParts[1]; 
+			
+			String prezimePacijenta = podaciParts[2];
+			String[] prezimePacijentaParts = prezimePacijenta.split("=");
+			String prezimeP = prezimePacijentaParts[1]; 
+			
+			Pacijent pacijent = new Pacijent(brZdravOsig, imeP, prezimeP, "01.05.1998","muski", "BEZ SIMPTOMA");
+			pacijenti.add(pacijent);
+			
+			ps.print("HTTP/1.1 200 OK\n\n");
+			
+			
+			String response = "<html><head><style>\r\n" + 
+					"table, th, td {\r\n" + 
+					"  border: 3px solid black;\r\n" + 
+					"  border-collapse: collapse;\r\n" + 
+					"}\r\n" + 
+					"</style></head><body><table>";
+			for (Pacijent p : pacijenti) {
+				response += "<tr><td>" + p.getBrZdravstvenogOsig() +"</td>" +"<td>" + p.getIme()+"</td>" +"<td>"  + p.getPrezime()+"</td>"+"<td>"  + p.getDatumRodjenja()+ "</td>"+"<td>" + p.getPol()+"</td>"+"<td>"  + p.getZdravstveniStatus() + "</td></tr>" ; 
+				
+			}
+			
+			
+			response += "</table></body></html>";
+			ps.print(response);
+			return;
+		}
+		
+		
+		
+		
 		// zamenimo web separator sistemskim separatorom
 		resource = resource.replace('/', File.separatorChar);
 		
