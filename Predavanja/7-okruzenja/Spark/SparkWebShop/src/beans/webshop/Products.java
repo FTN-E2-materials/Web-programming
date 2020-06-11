@@ -20,7 +20,7 @@ public class Products {
 	private ArrayList<Product> productList = new ArrayList<Product>();
 	
 	public Products() {
-		this("C:\\Users\\Vaxi\\Desktop\\6-semestar\\WEB\\WebProgramiranje-Nastava\\Predavanja\\7-okruzenja\\Vue\\VueWebShop\\WebContent");
+		this(".");
 	}
 	
 	public Products(String path) {
