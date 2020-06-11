@@ -8,15 +8,19 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Pacijent;
+
 public class Server {
 	private int port;
 	private ServerSocket serverSocket;
-	private List<String> korisniciAplikacije;
-
+	private List<Pacijent> pacijenti;
+	private Pacijent pacijentZaMenjanje;
+	
 	public Server(int port) throws IOException {
 		this.port = port;
 		this.serverSocket = new ServerSocket(this.port);
-		this.korisniciAplikacije = new ArrayList<String>();
+		this.pacijenti = new ArrayList<Pacijent>();
+		this.pacijentZaMenjanje = new Pacijent();
 	}
 
 	public void run() {
@@ -38,34 +42,40 @@ public class Server {
 				 * 
 				 * Obradjujem zahtev od klijenta i dobavljam resurs
 				 */
-				String nazivTrazeneDatoteke = this.getResource(trenutniSoket.getInputStream());
+				String pogodjeniPath = this.getResource(trenutniSoket.getInputStream());
 
 				// sigurnosna provera
-				if (nazivTrazeneDatoteke == null)
+				if (pogodjeniPath == null)
 					continue;
 
 				// podesavam koja datoteka je default
-				if (nazivTrazeneDatoteke.equals(""))
-					nazivTrazeneDatoteke = "statickeDatoteke/index.html";
+				if (pogodjeniPath.equals(""))
+					pogodjeniPath = "statickeDatoteke/index.html";
+				
+				
 				
 				/*
 				 * U formi(html) stavim akciju da gadja recimo 'registruj', 'trazi', 'brisanje'
 				 * i onda ovde hendlujem sta ce se desavati u zavisnosti ako
 				 * je gadjani path tako pocinjao.
 				*/
-				if (nazivTrazeneDatoteke.startsWith("registruj?imeKorisnika=")) {
-					registracijaResponse(trenutniSoket, nazivTrazeneDatoteke);
-				} else if (nazivTrazeneDatoteke.startsWith("trazi?imeKorisnika=")) {
-					pretragaResponse(trenutniSoket, nazivTrazeneDatoteke);
-				} else if (nazivTrazeneDatoteke.startsWith("obrisi?imeKorisnika=")) {
-					brisanjeResponse(trenutniSoket, nazivTrazeneDatoteke);
+				if (pogodjeniPath.startsWith("registrujpacijenta")) {
+					registracijaResponse(trenutniSoket, pogodjeniPath);
+				} else if (pogodjeniPath.startsWith("trazi?imeKorisnika=")) {
+					pretragaResponse(trenutniSoket, pogodjeniPath);
+				} else if (pogodjeniPath.startsWith("obrisi?imeKorisnika=")) {
+					brisanjeResponse(trenutniSoket, pogodjeniPath);
 
-				} else {
+				}else if(pogodjeniPath.startsWith("promenistatus")) {
+					promenaStatusaResponse(trenutniSoket, pogodjeniPath);
+				}
+					
+				else {
 
 					System.out.println("Zahtev stigao od hosta sa imenom: " + adresaIP.getHostName() + ": "
-							+ nazivTrazeneDatoteke);
+							+ pogodjeniPath);
 
-					sendResponse(nazivTrazeneDatoteke, trenutniSoket.getOutputStream());
+					sendResponse(pogodjeniPath, trenutniSoket.getOutputStream());
 				}
 
 				trenutniSoket.close();
@@ -110,10 +120,6 @@ public class Server {
 		// izbacimo znak '/' sa pocetka
 		nazivDatoteke = nazivDatoteke.substring(1);
 
-		// ignorisemo ostatak zaglavlja i samo ga bzv ispisemo[ako hocemo]
-//		String s1;
-//		while (!(s1 = citacStrima.readLine()).equals(""))
-//			System.out.println(s1);
 
 		return nazivDatoteke;
 	}
@@ -187,25 +193,63 @@ public class Server {
 	
 	/**
 	 * Dinamicki zahtev koji se obradjuje kada neko pogodi path za
-	 * registraciju, trenutno je taj path /registruj
+	 * registraciju, trenutno je taj path /registrujpacijenta
 	 * @param trenutniSoket
 	 * @param nazivTrazeneDatoteke
 	 * @throws UnsupportedEncodingException
 	 * @throws IOException
 	 */
-	private void registracijaResponse(Socket trenutniSoket, String nazivTrazeneDatoteke)
-			throws UnsupportedEncodingException, IOException {
-		//TODO: Odraditi ovo na prosiriviji nacin preko splitovanja po ? i =
-		int uzmiOdKaraktera = 23;					
-		String ime = nazivTrazeneDatoteke.substring(uzmiOdKaraktera);
-		ime = URLDecoder.decode(ime, "utf-8");
-		System.out.println(ime);
-		korisniciAplikacije.add(ime);
-		PrintWriter out = new PrintWriter(new OutputStreamWriter(trenutniSoket.getOutputStream(), "utf-8"), true);
-		ispisOdgovoraRegistracije(out);
+	private void registracijaResponse(Socket trenutniSoket, String pogodjeniPath)
+			throws UnsupportedEncodingException, IOException { 
+		
+		// /registruj?imePacijenta=blabla , uzimam ovo posle upitnika na obradu
+		String [] citavPath = pogodjeniPath.split("\\?");
+		String koristanDeo = citavPath[1];		//uzimam samo imePacijenta=Nikola&prezimePacijena=Jovic...
+		
+		String [] poljaForme = koristanDeo.split("&");	// svaki element je sad jedno polje forme imePrezime=Pero
+		
+		String poljeBrojZdravstvenogOsiguranja = poljaForme[0];
+		String[] brojZdravstvenogOsiguranjaDelovi = poljeBrojZdravstvenogOsiguranja.split("=");
+		String brojZdravstvenogOsiguranjaPacijenta = brojZdravstvenogOsiguranjaDelovi[1]; 
+		
+		String poljeIme = poljaForme[1];
+		String[] imePacijentaDelovi = poljeIme.split("=");
+		String imePacijenta = imePacijentaDelovi[1]; 
+		
+		String poljePrezime = poljaForme[2];
+		String[] prezimePacijentaDelovi = poljePrezime.split("=");
+		String prezimePacijenta = prezimePacijentaDelovi[1]; 
+		
+		String poljeDatumRodjenja = poljaForme[3];
+		String[] datumRodjenjaPacijentaDelovi = poljeDatumRodjenja.split("=");
+		String datumRodjenjaPacijenta = datumRodjenjaPacijentaDelovi[1]; 
+		
+		String poljePol = poljaForme[4];
+		String[] polPacijentaDelovi = poljePol.split("=");
+		String polPacijenta = polPacijentaDelovi[1]; 
+		
+		String zdravstveniStatus = poljaForme[5];
+		String[] zdravstveniStatusPacijentaDelovi = zdravstveniStatus.split("=");
+		String zdravstveniStatusPacijenta = zdravstveniStatusPacijentaDelovi[1];
+		
+		Pacijent pacijent = new Pacijent(brojZdravstvenogOsiguranjaPacijenta, imePacijenta, prezimePacijenta, datumRodjenjaPacijenta, polPacijenta, zdravstveniStatusPacijenta, false);
+		PrintWriter stampacOdgovora = new PrintWriter(new OutputStreamWriter(trenutniSoket.getOutputStream(), "utf-8"), true);
+		
+		for (Pacijent tempPacijent : pacijenti) {
+			if(tempPacijent.getBrojZdravstvenogOsiguranja() == pacijent.getBrojZdravstvenogOsiguranja()) {
+				String porukaGreske = "HTTP/1.0 404 Pacijent je vec testiran \r\n"
+						+ "Content-type: text/html; charset=UTF-8\r\n\r\n<b>404 Greska: Taj pacijent je vec testiran";
+				stampacOdgovora.println(porukaGreske);
+				stampacOdgovora.close();
+				return;
+			}
+		}
+		pacijenti.add(pacijent);
+		ispisOdgovoraRegistracije(stampacOdgovora);
 
-		out.close();
+		stampacOdgovora.close();
 	}
+	
 
 	
 	/**
@@ -229,6 +273,7 @@ public class Server {
 	}
 	
 	
+	
 	/**
 	 * Dinamicki zahtev koji se obradjuje kada neko pogodi path za
 	 * brisanje korisnika, taj path je trenutno /obrisi
@@ -250,6 +295,7 @@ public class Server {
 	}
 	
 	
+	
 	/**
 	 * Ispis dinamickog sadrzaja kada se pogodi path /registruj
 	 * @param stampacOdgovora - stampac koji stampa odgovor/stranicu u OutputStream servera
@@ -257,7 +303,6 @@ public class Server {
 	private void ispisOdgovoraRegistracije(PrintWriter stampacOdgovora) {
 		stampacOdgovora.print("HTTP/1.1 200 OK\r\nContent-type: text/html;charset=utf-8\r\n\r\n");
 		String stilTabele = "<style> table, th, td { border: 1px solid black; } </style>";
-		
 		stampacOdgovora.println(
 				"<html><head>"+stilTabele+"<meta http-equiv=\"Content-type\" value=\"text/html;charset=utf-8\"/></head><body align =\"center\"><h1> Dinamicka stranica</h1><br><h1> Uspesna registracija </h1>");     
 		
@@ -266,28 +311,70 @@ public class Server {
 		
 		
 		stampacOdgovora.println("<a href=\"http://localhost/statickeDatoteke/index.html\">Pocetna</a><br>");
-		
-		// Zakomentarisano jer zelim da kada dobije ovu dinamicku stranicu moze samo nazad ka pocetnoj
-		// tj da mu malo uvedem restrikciju povodom navigiranja kroz aplikacij(nista spec ali mi lespe ovako)
-//		stampacOdgovora.println("<a href=\"http://localhost/statickeDatoteke/pretraga.html\">Pretraga korisnika</a><br>");
-//		stampacOdgovora.println("<a href=\"http://localhost/statickeDatoteke/brisanje.html\">Brisanje korisnika</a><br>");
-//		stampacOdgovora.println("<a href=\"http://localhost/statickeDatoteke/registracija.html\">Registracija novih korisnika</a><br>");
 		stampacOdgovora.println("</body></html>");
 	}
 
+	
 	private String generisanjeTabeleKorisnika() {
 		String tabelaKorisnika="<table style=\"width:100%\">";
-		tabelaKorisnika +="<tr> <th> Ime</th> <th> Prezime </th> <th> Sifra </th> </tr>";
+		tabelaKorisnika +="<tr> <th> Broj zdravstvenog osiguranja </th> <th> Ime pacijenta </th> <th> Prezime pacijenta </th> <th> Datum rodjenja </th> <th> Pol </th> <th> Zdravstveni status </th> <th> Status testa</th> </tr>";
 		
-		// TODO: Napraviti prave korisnike i onda njihove atribute ispisivati
-		for (String imeKorisnika : korisniciAplikacije) {
-			tabelaKorisnika += "<tr><td>" + imeKorisnika + "</td>"+ "<td> nema </td>" + "<td> ****</td>" + "</tr>";
+		for (Pacijent pacijent : pacijenti) {
+			String testJePozitivan = "<a href=\"http://localhost:80/promenistatus";
+			testJePozitivan += pacijent.getBrojZdravstvenogOsiguranja();
+			testJePozitivan += "\">Test je pozitivan </a>";
+			
+			tabelaKorisnika += "<tr";
+			if(pacijent.getRezultatTesta()) {
+				tabelaKorisnika += " style=\"background:red;\"";
+				System.out.println("DODAO SAM STIL");
+				
+			}
+			tabelaKorisnika+=">";	// zatvaram pocetak reda, ako je pozitivan na koronu dobice stil crvenog ako ne, nikome nista
+			tabelaKorisnika += "<td>" + pacijent.getBrojZdravstvenogOsiguranja() + "</td>";
+			tabelaKorisnika += "<td>"+ pacijent.getIme() +"</td>";
+			tabelaKorisnika += "<td>" + pacijent.getPrezime() + "</td>";
+			tabelaKorisnika += "<td>" + pacijent.getDatumRodjenja() + "</td>";
+			tabelaKorisnika += "<td>" + pacijent.getPol() + "</td>";
+			tabelaKorisnika += "<td>" + pacijent.getZdravstveniStatus() + "</td>";
+			tabelaKorisnika += "<td>";
+			if(pacijent.getRezultatTesta()) {
+				tabelaKorisnika += "";
+			}else {
+				tabelaKorisnika += testJePozitivan;
+			}
+			tabelaKorisnika += "</td>";
+			tabelaKorisnika += "</tr>";
 		}
 		tabelaKorisnika += "</table><br>";
 		
 		return tabelaKorisnika;
 	}
 
+	
+	
+	private void promenaStatusaResponse(Socket trenutniSoket,String pogodjeniPath) throws IOException {
+		int uzmiOdKaraktera = 13;//promenistatus
+		String brojZdravstvenogOsiguranja = pogodjeniPath.substring(uzmiOdKaraktera);
+		brojZdravstvenogOsiguranja = URLDecoder.decode(brojZdravstvenogOsiguranja, "utf-8");
+		
+		
+		for (Pacijent pacijent : pacijenti) {
+			System.out.println(pacijent.getBrojZdravstvenogOsiguranja() + "\n");
+			if(pacijent.getBrojZdravstvenogOsiguranja().equals(brojZdravstvenogOsiguranja)) {
+				pacijent.setRezultatTesta(true);
+				pacijent.setZdravstveniStatus("ZARAZEN");
+				System.out.println("MENJAM STATUS NA TRUEEEE");
+			}
+		}
+		
+		PrintWriter out = new PrintWriter(new OutputStreamWriter(trenutniSoket.getOutputStream(), "utf-8"), true);
+		ispisOdgovoraRegistracije(out);
+
+		out.close();
+
+		System.out.println("\n\nAJ DA VIDIMO STA CEMO SAD");
+	}
 	
 	private void ispisOdgovoraPretrage(String ime, PrintWriter stampacOdgovora) {
 		stampacOdgovora.print("HTTP/1.1 200 OK\r\nContent-type: text/html;charset=utf-8\r\n\r\n");
@@ -303,14 +390,16 @@ public class Server {
 
 	}
 
+	
+	
 	private String generisanjeTabelePretrageKorisnika(String ime) {
 		String tabelaKorisnika="<table style=\"width:100%\">";
 		tabelaKorisnika +="<tr> <th> Ime</th> <th> Prezime </th> <th> Sifra </th> </tr>";
 		
 		boolean praznaTabela = true;
-		for (String imeKorisnika : korisniciAplikacije) {
-			if (imeKorisnika.contains(ime)) {
-				tabelaKorisnika+="<tr><td>" + imeKorisnika + "</td><td>" + "****" + "</td><td>"+ "zasticena info" + "</td></tr>";
+		for (Pacijent pacijent : pacijenti) {
+			if (pacijent.getIme().contains(ime)) {
+				tabelaKorisnika+="<tr><td>" + pacijent.getIme() + "</td><td>" + "****" + "</td><td>"+ "zasticena info" + "</td></tr>";
 				praznaTabela = false;
 			}
 		}
@@ -323,13 +412,14 @@ public class Server {
 		return tabelaKorisnika;
 	}
 
+	
 	private void ispisOdgovoraBrisanja(String ime, PrintWriter stampacOdgovora) {
 		stampacOdgovora.print("HTTP/1.1 200 OK\r\nContent-type: text/html;charset=utf-8\r\n\r\n");
 		
 		String odgovor = "<html><head><meta http-equiv=\"Content-type\" value=\"text/html;charset=utf-8\"/></head><body align=\"center\"><h1> Dinamicka stranica </h1>"; 
 		
-		if (korisniciAplikacije.contains(ime)) {
-			korisniciAplikacije.remove(ime);
+		if (pacijenti.contains(ime)) {
+			pacijenti.remove(ime);
 			odgovor += "<h1> Korisnik " + ime + " je uspesno izbrisan </h1>";
 			
 		} else {

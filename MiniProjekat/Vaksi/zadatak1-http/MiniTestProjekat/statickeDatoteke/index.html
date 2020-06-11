@@ -1,18 +1,65 @@
 <html>
 	<head>
-		<title> Pocetna stranica</title>
+		<style type="text/css">
+			h1 { 
+				color: red;
+			}
+		</style>
+		<title> Covid19 prijava</title>
 	</head>
 
-	<body>
+	<body >
 	
-	<div align="center">
-		<h1> Pocetna stranica - zadatak1 </h1>
 	
+	<div align ="center">
+		
+		<h1> Prijava pacijenata [COVID-19] </h1>
+		
+		<form action="http://localhost:80/registrujpacijenta" method="get">
+			<label for="Broj_Zaposlenog"> Broj zdravstvenog osiguranja: </label>
+			<input type="text" name="brojZdravstvenog" id="Broj_Zaposlenog"/><br><br>
+			
+			<label for="Ime_Pacijenta"> Ime pacijenta: </label>
+			<input type="text" name="imePacijenta" id="Ime_Pacijenta"/><br><br>
+			
+			<label for="Prezime_Pacijenta"> Prezime pacijenta: </label>
+			<input type="text" name="prezimePacijenta" id="Prezime_Pacijenta" /><br><br>
+			
+			<label for="Datum_Rodjenja"> Datum rodjenja: </label>
+			<input type="date" name="datumRodjenja" id="Datum_Rodjenja" /><br><br>
+			
+			
+			<label for="Pol_Pacijenta"> Pol pacijenta: </label>
+			<select name="polPacijenta" id="Pol_Pacijenta" >
+				<option value = "muski"> Muski</option>
+				<option value = "zenksi"> Zenski</option>
+			</select><br><br>
+			
+			<label for="Zdravstveni_Status"> Zdravstveni status: </label>
+			<select name="zdravstveniStatus" id="Zdravstveni_Status" >
+				<option value = "BEZ_SIMPTOMA"> Bez simptoma</option>
+				<option value = "SA_SIMPTOMIMA"> Sa simptomima</option>
+				<option value = "ZARAZEN"> Zarazen </option>
+				<option value = "IZLECEN"> Izlecen </option>
+			</select><br><br>
+			
+			<label> Http server:</label>
+			<input type="submit" value="Posalji"/> <br><br>
+			
+			<label> JSP i Servlet:</label>
+			<input type="submit" value="Posalji"/><br><br>
+			
+			<label> REST:</label>
+			<input type="submit" value="REST"/><br><br>
+		</form>
+		
 		<!-- Navigacija ka nekim dalje delovima aplikacije -->
 		<a href="http://localhost:80/statickeDatoteke/registracija.html"> Registracija novog korisnika </a><br>
 		<a href="http://localhost:80/statickeDatoteke/pretraga.html"> Pretraga korisnika </a><br>
 		<a href="http://localhost:80/statickeDatoteke/brisanje.html"> Brisanje korisnika </a><br>
 	</div>
+	
+	
 	
 	</body>
 </html>
