@@ -1,4 +1,5 @@
 <%@ page import="beans.Pacijent"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%-- Dodajem JSTL deklaraciju, kako bi koristili JSTL i EL --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <jsp:useBean id="pacijenti" class="dao.PacijentDAO" scope="application"/>
@@ -21,22 +22,25 @@
 		 	<th>  </th>
 		</thead>
 		<tbody>
-			<% for(Pacijent p : pacijenti.findAll()) {%>
-					<tr id="<%= p.getZdravstveniStatus() %>">
-						<td><%= p.getBrZdravstvenogOsig() %></td>	
-						<td><%= p.getIme() %></td>	
-						<td><%= p.getPrezime() %></td>	
-						<td><%= p.getDatumRodjenja() %></td>	
-						<td><%= p.getPol() %></td>	
-						<td><%= p.getZdravstveniStatus() %></td>
-						<% if(p.getZdravstveniStatus().equals("BEZ_SIMPTOMA"))	 {%>
+			<c:forEach var="p" items="${pacijenti.findAll()}">
+					<tr id="${p.zdravstveniStatus}">
+						<td>${p.brZdravstvenogOsig}</td>	
+						<td>${p.ime}</td>	
+						<td>${p.prezime}</td>	
+						<td>${p.datumRodjenja}</td>	
+						<td>${p.pol}</td>	
+						<td>${p.zdravstveniStatus}</td>
+						<c:if test="${p.zdravstveniStatus eq 'ZARAZEN'}">
 							<td> </td>	
-						<% }else{%>
-							<td><a href="#">Test je pozitivan!</a></td>	
-						<% }%>
+						</c:if>
+					
+						<c:if test="${p.zdravstveniStatus ne 'ZARAZEN'}">
+							<td><a href="http://localhost:8181/ServletJSP/IzmenaPacijenta?brZdravstvenogOsig=${p.brZdravstvenogOsig}">Test je pozitivan!</a></td>	
+						</c:if>
+						
 						
 					</tr>
-			<% }%>
+			</c:forEach>
 		</tbody>
 	</table>
 </body>

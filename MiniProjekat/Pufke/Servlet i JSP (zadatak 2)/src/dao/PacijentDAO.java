@@ -33,7 +33,7 @@ public class PacijentDAO {
 	
 	
 	private void loadPacijenti(String contextPath) {
-		pacijenti.add(new Pacijent("DNV/12345", "Marko", "Markovic", "01.10.1990", "musko", "BEZ SIMPTOMA"));
+		pacijenti.add(new Pacijent("DNV/12345", "Marko", "Markovic", "01.10.1990", "musko", "IZLECEN"));
 		pacijenti.add(new Pacijent("DEL/54321", "Nikola", "Niklic", "01.10.1999", "musko", "ZARAZEN"));
 	}
 }
