@@ -15,7 +15,8 @@
 		
 		<h1> Prijava pacijenata [COVID-19] </h1>
 		
-		<form action="http://localhost:80/registrujpacijenta" method="get">
+		<!-- Za http je: http://localhost:80/registrujpacijenta i method je GET -->
+		<form action="http://localhost:8080/MiniProjekatS/RegistracijaServlet" method="POST">
 			<label for="Broj_Zaposlenog"> Broj zdravstvenog osiguranja: </label>
 			<input type="text" name="brojZdravstvenog" id="Broj_Zaposlenog"/><br><br>
 			
@@ -43,13 +44,13 @@
 				<option value = "IZLECEN"> Izlecen </option>
 			</select><br><br>
 			
-			<label> Http server:</label>
+			<label> JSP i Servlet:</label>
 			<input type="submit" value="Posalji" name="httpButton"/> <br><br>
 			
 		</form>
 		
 		<label> JSP i Servlet:</label>
-		<button type="submit" value="Posalji" name = "servletButton"> Posalji </button><br><br>
+		<button id="redirekcijaNaServletDeo" type="submit" value="Posalji" name = "servletButton"> Posalji </button><br><br>
 			
 		<label> REST:</label>
 		<button type="submit" value="REST" name="restButton"> REST </button><br><br>
@@ -65,3 +66,19 @@
 	
 	</body>
 </html>
+
+
+
+<script type="text/javascript">
+	/*
+		Ideja je bila da se redirektujem na tu stranicu, sto jeste ucinjeno
+		ali onda se ne posalju podaci forme, tako da dzaba redirektovanje
+		kada nema podataka za registraciju.
+		
+		Ali ostavljam ovo kao dobru referentnu tacku o ideji menjanja stranica
+		na osnovu klika buttona za servlet.
+	*/
+    document.getElementById("redirekcijaNaServletDeo").onclick = function () {
+        location.href = "http://localhost:8080/MiniProjekatS/RegistracijaServlet";
+    };
+</script>
