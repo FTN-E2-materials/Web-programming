@@ -1,13 +1,29 @@
 <html>
 <head>
+		<style type="text/css">
+			h1 { 
+				color: red;
+			}
+			label {
+ 			   display: inline-block;
+  			   width: 200px;
+  			   text-align: left;
+			}
+			#s{
+			text-align: right;
+			}
+		</style>
 	<title>
 		Prijava pacijenata [COVID 19]
 	</title>
 </head>
 <body>
 	<form action="http://localhost:80/pregledPacijenata" method="get">
-		<label for="brojZdravstvenogOsiguranja">Broj zdravstvenog osiguranja:</label>
-		<input type="text" name="brojZdravstvenogOsiguranja"/> <br>
+	<div>
+		<h1> Prijava pacijenata [COVID-19] </h1>
+	
+		<label  for="brojZdravstvenogOsiguranja">Broj zdravstvenog osiguranja:</label>
+		<input  type="text" name="brojZdravstvenogOsiguranja"/> <br>
 
 		<label for="imePacijenta">Ime pacijenta:</label>
 		<input type="text" name="imePacijenta"/> <br>
@@ -33,8 +49,10 @@
 		   <option value="BEZ_SIMPTOMA">BEZ_SIMPTOMA</option>
  		</select><br>
 		
-		HTTP server:
+		<label id="s"  for="zdravstveniStatus">HTTP server:</label>
 		<input type="submit" Value="Posalji"/>
+	</div>
+	
 	</form>
 </body>
 </html>

@@ -90,6 +90,73 @@ public class Server {
 	static void sendResponse(String resource, OutputStream os) throws IOException {
 		PrintStream ps = new PrintStream(os);
 		
+		if(resource.startsWith("testJePozitivan")) {
+			String brojZdravstvenogOsiguranja = resource.substring(15);
+			
+			//CSS
+			String response = "<html><head><style>\r\n" + 
+					"table, th, td {\r\n" + 
+					"  border: 3px solid black;\r\n" + 
+					"  border-collapse: collapse;\r\n" + 
+					"}\r\n" + 
+					"#naslov{"+
+					"color:red;}\r\n"+
+					".pretragaElementi{ display:hidden;}\r\n"
+					+ 
+				    "#ZARAZEN{"
+				    + "background-color:red;"+
+				    "}"+
+					"</style></head><body>\r\n"
+					+"<script src=\"myscripts.js\"></script>\r\n ";
+					
+			response += "<h1 id=\"naslov\">HTTP. Pregled pacijenata [COVID-19]</h1>";
+			//Tabela
+			response += "<table id=\"tabelaPacijenata\">";
+			response += "<tr>"
+					  +"<td>" + "Broj zdravstvenog osiguranja" + "</td>" 
+					  +"<td>" + "Ime pacijenta" + "</td>" 
+					  +"<td>" + "Prezime pacijenta" + "</td>"
+					  +"<td>" + "Datum rodjenja" + "</td>"
+					  +"<td>" + "Pol" + "</td>"
+					  +"<td>" + "Zdravstveni status" + "</td>"
+					  +"<td>" + " " +  "</td>"
+					  +"</tr>"; 
+			
+
+			for (Pacijent p : pacijenti) {
+				if(p.getBrZdravstvenogOsig().equals(brojZdravstvenogOsiguranja)) {
+					p.setZdravstveniStatus("ZARAZEN");
+				}
+				response += "<tr" + " id=" +"\""+ p.getZdravstveniStatus()+ "\"" +">"
+						  + "<td>" + p.getBrZdravstvenogOsig() + "</td>" 
+						  + "<td>" + p.getIme() + "</td>" 
+						  + "<td>"  + p.getPrezime()+"</td>"
+						  + "<td>"  + p.getDatumRodjenja()+ "</td>"
+						  + "<td>" + p.getPol()+"</td>"
+						  + "<td>"  + p.getZdravstveniStatus() +"</td>" 
+						  + "<td>" 
+						  + "<a href=\"http://localhost:80/testJePozitivan"
+						  + p.getBrZdravstvenogOsig() + "\"" 
+						  +">Test je pozitivan!</a>"  
+						  + "</td>"
+						  + "</tr>" ; 
+
+			}
+			
+			response += "</table> <br>";
+		    
+			response += "<h2 class=\"pretragaElementi\">Pretraga pacijenta po prezimenu:</h2> <br>";
+			response += "<label class=\"pretragaElementi\" for=\"pretraga\">Pretraga pacijenta:</label>\r\n" + 
+					"		<input class=\"pretragaElementi\" type=\"text\" id=\"pretraga\"/><br> <button class=\"pretragaElementi\" onclick=\"pretraga()\" type=\"button\">Pretrazi</button>";
+			
+			
+			ps.print("HTTP/1.1 200 OK\n\n");
+			ps.print(response);
+			return;
+		}
+		
+		
+		
 		if(resource.startsWith("pregledPacijenata")) {
 			String[] parts = resource.split("\\?");
 			String podaci = parts[1]; // Otprilike izgleda ovako sada 
@@ -122,31 +189,84 @@ public class Server {
 			String zdravstveniStatus = zdravstveniStatusPacijentaParts[1]; 
 			
 			Pacijent pacijent = new Pacijent(brZdravOsig, imeP, prezimeP, datumRPac,polP, zdravstveniStatus);
+			
+			//Provera da li vec psotoji pacijent
+			for (Pacijent pa : pacijenti) {
+				if(pa.getBrZdravstvenogOsig().equals(pacijent.getBrZdravstvenogOsig())) {
+					ps.print("HTTP/1.0 404 File not found\r\n"
+						+ "Content-type: text/html; charset=UTF-8\r\n\r\n<b>404 Pacijent je već testiran!" + "</b>");
+					return;
+				}
+			}
+			
+			
 			pacijenti.add(pacijent);
 			
-			ps.print("HTTP/1.1 200 OK\n\n");
-			int i = 1;
 			
+
+			
+			//CSS
 			String response = "<html><head><style>\r\n" + 
 					"table, th, td {\r\n" + 
 					"  border: 3px solid black;\r\n" + 
 					"  border-collapse: collapse;\r\n" + 
 					"}\r\n" + 
-					
-				    ".ZARAZEN{"
+					"#naslov{"+
+					"color:red;}\r\n"+
+					".pretragaElementi{ display:hidden;}\r\n"
+					+ 
+				    "#ZARAZEN{"
 				    + "background-color:red;"+
 				    "}"+
 					"</style></head><body>\r\n"
-					+"<script src=\"myscripts.js\"></script>\r\n "
-					+ "<table id=\"tabelaPacijenata\">";
-			response += "<tr><td>" + "Broj zdravstvenog osiguranja" +"</td>" +"<td>" + "Ime pacijenta"+ "</td>" +"<td>"  +"Prezime pacijenta"+"</td>"+"<td>"  +"Datum rodjenja"+ "</td>"+"<td>" +"Pol"+"</td>"+"<td>"  + "Zdravstveni status" + "</td>" +"<td>" + " " +  "</td></tr>"; 
+					+"<script src=\"myscripts.js\"></script>\r\n ";
+					
+			response += "<h1 id=\"naslov\">HTTP. Pregled pacijenata [COVID-19]</h1>";
+			//Tabela
+			response += "<table id=\"tabelaPacijenata\">";
+			
+			response += "<tr>"
+					  +"<td>" + "Broj zdravstvenog osiguranja" + "</td>" 
+					  +"<td>" + "Ime pacijenta" + "</td>" 
+					  +"<td>" + "Prezime pacijenta" + "</td>"
+					  +"<td>" + "Datum rodjenja" + "</td>"
+					  +"<td>" + "Pol" + "</td>"
+					  +"<td>" + "Zdravstveni status" + "</td>"
+					  +"<td>" + " " +  "</td>"
+					  +"</tr>"; 
+			
+
 			for (Pacijent p : pacijenti) {
-				response += "<tr id=\"id_"+ i +"\"" + " class=" +"'"+ p.getZdravstveniStatus()+ "'" +"><td>" + p.getBrZdravstvenogOsig() +"</td>" +"<td>" + p.getIme()+"</td>" +"<td>"  + p.getPrezime()+"</td>"+"<td>"  + p.getDatumRodjenja()+ "</td>"+"<td>" + p.getPol()+"</td>"+"<td>"  + p.getZdravstveniStatus() +"</td>" +"<td>" + "<a href=\"#\" onclick=\"changeIt(this.id)\">Test je pozitivan!</a>"  + "</td></tr>" ; 
-				i++;
+				response += "<tr" + " id=" +"\""+ p.getZdravstveniStatus()+ "\"" +">"
+						  + "<td>" + p.getBrZdravstvenogOsig() + "</td>" 
+						  + "<td>" + p.getIme() + "</td>" 
+						  + "<td>"  + p.getPrezime()+"</td>"
+						  + "<td>"  + p.getDatumRodjenja()+ "</td>"
+						  + "<td>" + p.getPol()+"</td>"
+						  + "<td>"  + p.getZdravstveniStatus() +"</td>" 
+						  + "<td>" 
+						  + "<a href=\"http://localhost:80/testJePozitivan"
+						  + p.getBrZdravstvenogOsig() + "\"" 
+						  +">Test je pozitivan!</a>"  
+						  + "</td>"
+						  + "</tr>" ; 
+
 			}
 			
+			response += "</table> <br>";
+		    
+			//Sekcija za pretragu
 			
-			response += "</table></body></html>";
+			response += "<h2 class=\"pretragaElementi\">Pretraga pacijenta po prezimenu:</h2> <br>";
+			response += "<label class=\"pretragaElementi\" for=\"pretraga\">Pretraga pacijenta:</label>\r\n" + 
+					"		<input class=\"pretragaElementi\" type=\"text\" id=\"pretraga\"/><br> <button class=\"pretragaElementi\" onclick=\"pretraga()\" type=\"button\">Pretrazi</button>";
+			
+			
+
+			
+			response += "</body></html>";
+		
+			ps.print("HTTP/1.1 200 OK\n\n");
 			ps.print(response);
 			return;
 		}
