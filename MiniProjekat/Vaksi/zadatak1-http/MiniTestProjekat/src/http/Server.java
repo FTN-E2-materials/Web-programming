@@ -245,7 +245,7 @@ public class Server {
 			}
 		}
 		pacijenti.add(pacijent);
-		ispisOdgovoraRegistracije(stampacOdgovora);
+		ispisTabeleSaPretragom(stampacOdgovora);
 
 		stampacOdgovora.close();
 	}
@@ -263,11 +263,11 @@ public class Server {
 	private void pretragaResponse(Socket trenutniSoket, String nazivTrazeneDatoteke)
 			throws UnsupportedEncodingException, IOException {
 		int uzmiOdKaraktera = 19;
-		String ime = nazivTrazeneDatoteke.substring(uzmiOdKaraktera);
-		ime = URLDecoder.decode(ime, "utf-8");
-		System.out.println(ime);
+		String prezime = nazivTrazeneDatoteke.substring(uzmiOdKaraktera);
+		prezime = URLDecoder.decode(prezime, "utf-8");
+		System.out.println(prezime);
 		PrintWriter out = new PrintWriter(new OutputStreamWriter(trenutniSoket.getOutputStream(), "utf-8"), true);
-		ispisOdgovoraPretrage(ime, out);
+		ispisOdgovoraPretrage(prezime, out);
 
 		out.close();
 	}
@@ -300,7 +300,7 @@ public class Server {
 	 * Ispis dinamickog sadrzaja kada se pogodi path /registruj
 	 * @param stampacOdgovora - stampac koji stampa odgovor/stranicu u OutputStream servera
 	 */
-	private void ispisOdgovoraRegistracije(PrintWriter stampacOdgovora) {
+	private void ispisTabeleSaPretragom(PrintWriter stampacOdgovora) {
 		stampacOdgovora.print("HTTP/1.1 200 OK\r\nContent-type: text/html;charset=utf-8\r\n\r\n");
 		String stilTabele = "<style> table, th, td { border: 1px solid black; } </style>";
 		stampacOdgovora.println(
@@ -309,11 +309,24 @@ public class Server {
 		String tabelaKorisnika = generisanjeTabeleKorisnika();
 		stampacOdgovora.println(tabelaKorisnika);
 		
+		String pretragaKorisnika = generisanjePretrageKorisnika();
+		stampacOdgovora.println(pretragaKorisnika);
 		
 		stampacOdgovora.println("<a href=\"http://localhost/statickeDatoteke/index.html\">Pocetna</a><br>");
 		stampacOdgovora.println("</body></html>");
 	}
 
+	private String generisanjePretrageKorisnika() {
+		String pretragaKorisnika="<h1> Pretraga pacijenta po prezimenu: </h1><br>";
+		pretragaKorisnika += "<form action =\"http://localhost/trazi\" method=\"GET\" >";
+		pretragaKorisnika += "<label> Prezime pacijenta: </label>";
+		pretragaKorisnika += "<input type=\"text\" name=\"imeKorisnika\" /><br><br>";
+		pretragaKorisnika += "<input type=\"submit\" value=\"Pretrazi\" /><br><br>";
+		
+		
+		
+		return pretragaKorisnika;
+	}
 	
 	private String generisanjeTabeleKorisnika() {
 		String tabelaKorisnika="<table style=\"width:100%\">";
@@ -352,7 +365,13 @@ public class Server {
 	}
 
 	
-	
+	/**
+	 * Kada neko pogodi path /promenistatus menjamo status tog pacijenta
+	 * na pozitivni rezultat testa na Covid19
+	 * @param trenutniSoket
+	 * @param pogodjeniPath
+	 * @throws IOException
+	 */
 	private void promenaStatusaResponse(Socket trenutniSoket,String pogodjeniPath) throws IOException {
 		int uzmiOdKaraktera = 13;//promenistatus
 		String brojZdravstvenogOsiguranja = pogodjeniPath.substring(uzmiOdKaraktera);
@@ -369,21 +388,21 @@ public class Server {
 		}
 		
 		PrintWriter out = new PrintWriter(new OutputStreamWriter(trenutniSoket.getOutputStream(), "utf-8"), true);
-		ispisOdgovoraRegistracije(out);
+		ispisTabeleSaPretragom(out);
 
 		out.close();
 
 		System.out.println("\n\nAJ DA VIDIMO STA CEMO SAD");
 	}
 	
-	private void ispisOdgovoraPretrage(String ime, PrintWriter stampacOdgovora) {
+	private void ispisOdgovoraPretrage(String prezime, PrintWriter stampacOdgovora) {
 		stampacOdgovora.print("HTTP/1.1 200 OK\r\nContent-type: text/html;charset=utf-8\r\n\r\n");
 		String stilTabele = "<style> table, th, td { border: 1px solid black; } </style>";
 		
 		stampacOdgovora.println(
 				"<html><head>"+stilTabele+"<meta http-equiv=\"Content-type\" value=\"text/html;charset=utf-8\"/></head><body align =\"center\"><h1> Dinamicka stranica</h1><br><h1> Rezultat pretrage </h1>"); 
 		
-		String tabelaKorisnika = generisanjeTabelePretrageKorisnika(ime);
+		String tabelaKorisnika = generisanjeTabeleRezultataPretrage(prezime);
 		stampacOdgovora.println(tabelaKorisnika);
 		
 		stampacOdgovora.println("<a href=\"http://localhost/statickeDatoteke/index.html\">Pocetna</a><br>");
@@ -392,14 +411,38 @@ public class Server {
 
 	
 	
-	private String generisanjeTabelePretrageKorisnika(String ime) {
+	private String generisanjeTabeleRezultataPretrage(String prezime) {
 		String tabelaKorisnika="<table style=\"width:100%\">";
-		tabelaKorisnika +="<tr> <th> Ime</th> <th> Prezime </th> <th> Sifra </th> </tr>";
+		tabelaKorisnika +="<tr> <th> Broj zdravstvenog osiguranja </th> <th> Ime pacijenta </th> <th> Prezime pacijenta </th> <th> Datum rodjenja </th> <th> Pol </th> <th> Zdravstveni status </th> <th> Status testa</th> </tr>";
 		
 		boolean praznaTabela = true;
 		for (Pacijent pacijent : pacijenti) {
-			if (pacijent.getIme().contains(ime)) {
-				tabelaKorisnika+="<tr><td>" + pacijent.getIme() + "</td><td>" + "****" + "</td><td>"+ "zasticena info" + "</td></tr>";
+			if (pacijent.getPrezime().contains(prezime)) {
+				String testJePozitivan = "<a href=\"http://localhost:80/promenistatus";
+				testJePozitivan += pacijent.getBrojZdravstvenogOsiguranja();
+				testJePozitivan += "\">Test je pozitivan </a>";
+				
+				tabelaKorisnika += "<tr";
+				if(pacijent.getRezultatTesta()) {
+					tabelaKorisnika += " style=\"background:red;\"";
+					System.out.println("DODAO SAM STIL");
+					
+				}
+				tabelaKorisnika+=">";	// zatvaram pocetak reda, ako je pozitivan na koronu dobice stil crvenog ako ne, nikome nista
+				tabelaKorisnika += "<td>" + pacijent.getBrojZdravstvenogOsiguranja() + "</td>";
+				tabelaKorisnika += "<td>"+ pacijent.getIme() +"</td>";
+				tabelaKorisnika += "<td>" + pacijent.getPrezime() + "</td>";
+				tabelaKorisnika += "<td>" + pacijent.getDatumRodjenja() + "</td>";
+				tabelaKorisnika += "<td>" + pacijent.getPol() + "</td>";
+				tabelaKorisnika += "<td>" + pacijent.getZdravstveniStatus() + "</td>";
+				tabelaKorisnika += "<td>";
+				if(pacijent.getRezultatTesta()) {
+					tabelaKorisnika += "";
+				}else {
+					tabelaKorisnika += testJePozitivan;
+				}
+				tabelaKorisnika += "</td>";
+				tabelaKorisnika += "</tr>";
 				praznaTabela = false;
 			}
 		}
