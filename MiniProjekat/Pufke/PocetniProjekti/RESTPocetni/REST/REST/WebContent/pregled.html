@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Pregled pacijenata</title>
+<script src="jquery-3.3.1.min.js"></script>
+<script src="pregledPacijenata.js"></script>
+<style type="text/css">
+			h1 { 
+				color: #A9A9A9;
+			}
+			#SA_SIMPTOMIMA{
+				background-color: #A9A9A9;
+			}
+		</style>
+</head>
+<body>
+	<h1 id = "naslov">REST. Pregled pacijenata [COVID-19]</h1>
+	<table border="1" id="tabela">
+		<thead>
+			<th>Broj zdravstvenog osiguranja</th>
+			<th>Ime pacijenta</th>
+			<th>Prezime pacijenta</th>
+			<th>Datum rodjenja</th>
+			<th>Pol</th>
+			<th>Zdravstveni status</th>
+		 	<th>  </th>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+	
+	<h2 class="pretragaElementi">Pretraga pacijenta po broju osiguranja:</h2> <br>
+	<label class="pretragaElementi" for="pretraga">Broj osiguranja:</label> 
+	<input class="pretragaElementi" type="text" id="pretraga"/> <br> 
+	<button class="pretragaElementi" onclick="pretraga()" type="button">Pretrazi</button>
+			
+</body>
+</html>

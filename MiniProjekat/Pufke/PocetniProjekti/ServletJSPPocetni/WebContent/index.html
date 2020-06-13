@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<style type="text/css">
+			h1 { 
+				color: red;
+			}
+			label {
+ 			   display: inline-block;
+  			   width: 200px;
+  			   text-align: left;
+			}
+			.s{
+			text-align: right;
+			}
+		</style>
+	<title>
+		Prijava pacijenata [COVID 19]
+	</title>
+</head>
+<body>
+	<form action="http://localhost:8181/ServletJSP/prijavaPacijenta.jsp" method="post">
+	<div>
+		<h1> Prijava pacijenata [COVID-19] </h1>
+	
+		<label  for="brojZdravstvenogOsiguranja">Broj zdravstvenog osiguranja:</label>
+		<input  type="text" name="brojZdravstvenogOsiguranja"/> <br>
+
+		<label for="imePacijenta">Ime pacijenta:</label>
+		<input type="text" name="imePacijenta"/> <br>
+		
+		
+		<label for="prezimePacijenta">Prezime pacijenta:</label>
+		<input type="text" name="prezimePacijenta"/><br>
+		
+		<label for="datumRodjenjaPacijenta">Datum rodjenja</label>
+		<input type="text" name="datumRodjenjaPacijenta"/><br>
+		
+		<label for="pol">Pol</label>
+  		<select name="pol">
+		   <option value="muski">muski</option>
+		   <option value="zenski">zenski</option>
+ 		</select><br>
+ 		
+ 		<label for="zdravstveniStatus">Zdravstveni status</label>
+  		<select name="zdravstveniStatus">
+  		   <option value="IZLECEN">IZLECEN</option>
+  		   <option value="SA_SIMPTOMIMA">SA_SIMPTOMIMA</option>
+		   <option value="ZARAZEN">ZARAZEN</option>
+		   <option value="BEZ_SIMPTOMA">BEZ_SIMPTOMA</option>
+ 		</select><br>
+		
+		<label class="s">HTTP server:</label>
+		<input type="submit" Value="Posalji"/><br>
+		<label class="s">JSP i Servlet:</label>
+	
+	
+	</form>
+		<input type="submit" onclick="document.location.href='http://localhost:8181/ServletJSP/prijavaPacijenta.jsp'" Value="Posalji"/>
+	</div>
+</body>
+</html>
