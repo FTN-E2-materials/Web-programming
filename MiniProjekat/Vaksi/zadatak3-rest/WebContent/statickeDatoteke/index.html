@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<style type="text/css">
+			h1 { 
+				color: red;
+			}
+		</style>
+		<title> Covid19 prijava</title>
+		<script src="jquery-3.3.1.min.js"></script>
+		<script src="pocetna.js"></script>
+	</head>
+
+	<body >
+	
+	
+	<div align ="center">
+		
+		<h1> Prijava pacijenata [COVID-19] </h1>
+		
+		<!-- Za http je: http://localhost:80/registrujpacijenta i method je GET -->
+		<!-- Za servlete je: http://localhost:8080/MiniProjekatS/RegistracijaServlet a method je POST -->
+		<!-- http://localhost:8080/PocetniREST/pacijentiREST.html je pocetna gde su rest pacijenti -->
+		<!-- Za rest je: http://localhost:8080/PocetniREST/rest/pacijenti/registrujMe a method je POST -->
+		<form id="restFORMA">
+			<label for="Broj_Zaposlenog"> Broj zdravstvenog osiguranja: </label>
+			<input type="text" name="brojZdravstvenog" id="Broj_Zaposlenog"/><br><br>
+			
+			<label for="Ime_Pacijenta"> Ime pacijenta: </label>
+			<input type="text" name="imePacijenta" id="Ime_Pacijenta"/><br><br>
+			
+			<label for="Prezime_Pacijenta"> Prezime pacijenta: </label>
+			<input type="text" name="prezimePacijenta" id="Prezime_Pacijenta" /><br><br>
+			
+			<label for="Datum_Rodjenja"> Datum rodjenja: </label>
+			<input type="date" name="datumRodjenja" id="Datum_Rodjenja" /><br><br>
+			
+			
+			<label for="Pol_Pacijenta"> Pol pacijenta: </label>
+			<select name="polPacijenta" id="Pol_Pacijenta" >
+				<option value = "muski"> Muski</option>
+				<option value = "zenksi"> Zenski</option>
+			</select><br><br>
+			
+			<label for="Zdravstveni_Status"> Zdravstveni status: </label>
+			<select name="zdravstveniStatus" id="Zdravstveni_Status" >
+				<option value = "BEZ_SIMPTOMA"> Bez simptoma</option>
+				<option value = "SA_SIMPTOMIMA"> Sa simptomima</option>
+				<option value = "ZARAZEN"> Zarazen </option>
+				<option value = "IZLECEN"> Izlecen </option>
+			</select><br><br>
+			
+			<label> REST:</label>
+			<input type="submit" value="PosaljiRestDugme" name="restDugme"/> <br><br>
+			
+		</form>
+	</div>
+	
+
+	
+	
+	</body>
+</html>

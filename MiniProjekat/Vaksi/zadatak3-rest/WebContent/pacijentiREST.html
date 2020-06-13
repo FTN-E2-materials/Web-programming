@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<title>PacijentiREST</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<script src="jquery-3.3.1.min.js"></script>
+		<script src="pacijenti.js"></script>
+	</head>
+	
+	<body>
+		<h2>REST. Pregled pacijenata [COVID-19]</h2>
+		<table border ="1" id="tabela">
+			<thead>
+				<tr bgcolor="lightgrey">
+					<th> Broj zdravstvenog osiguranja </th>
+					<th> Ime </th>
+					<th> Prezime </th>
+					<th> Datum rodjenja </th>
+					<th> Pol </th>
+					<th> Zdravstveni status </th>
+					<th> </th>
+				</tr>
+			</thead>
+			
+			<!-- U telo bodija cu dodavati elemente -->
+			<tbody>
+			
+			</tbody>
+		
+		</table>
+		<h2> Pretraga pacijenata po broju osiguranja </h2><br>
+		<!-- Nisam iskoristio formu jer cu keyup event da iskoristim i live cu to resavati -->
+		<label> Broj osiguranja: </label>
+		<input id="inputPretrage" name="imeKorisnika" type="text" /><br>
+		<input id="submitPretrage" type="submit" value="trazi"/>
+
+	</body>
+</html>
