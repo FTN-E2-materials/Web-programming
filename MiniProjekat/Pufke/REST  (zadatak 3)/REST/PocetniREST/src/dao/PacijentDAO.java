@@ -1,9 +1,9 @@
 package dao;
 
 import java.util.ArrayList;
+import bean.Pacijent;
+import bean.PatientDTO;
 
-
-import beans.Pacijent;
 
 public class PacijentDAO {
 
@@ -33,4 +33,18 @@ public class PacijentDAO {
 		pacijenti.add(new Pacijent("DNV/12345", "Marko", "Markovic", "01.10.1990", "musko", "IZLECEN"));
 		pacijenti.add(new Pacijent("DEL/54321", "Nikola", "Niklic", "01.10.1999", "musko", "ZARAZEN"));
 	}
+	
+	public void savePacijent(PatientDTO p) {
+	
+		pacijenti.add(new Pacijent(p.brZdravstvenogOsig, p.ime, p.prezime, p.datumRodjenja, p.pol, p.zdravstveniStatus));
+	}
+	
+	public void changeZdravstveniStatus(String brZdravstvenogOsig) {
+		for (Pacijent pacijent : pacijenti) {
+			if(pacijent.getBrZdravstvenogOsig().equals(brZdravstvenogOsig)) {
+				pacijent.setZdravstveniStatus("ZARAZEN");
+			}
+		}
+	}
 }
+
