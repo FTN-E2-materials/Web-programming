@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<style type="text/css">
+			h1 { 
+				color: #FFC0CB;
+			}
+			label {
+ 			   display: inline-block;
+  			   width: 200px;
+  			   text-align: left;
+			}
+			#s{
+			text-align: right;
+			}
+		</style>
+	<title>
+		Prijava izrade fotografija
+	</title>
+</head>
+<body>
+	<form action="http://localhost:8181/ServletJSP/Servlet" method="post">
+	<div>
+		<h1>JSP. Prijava izrade fotografija</h1>
+	
+		<label  for="brojIzrade">Broj izrade (id):</label>
+		<input  type="text" name="brojIzrade"/> <br>
+
+		<label for="imeNarucioca">Ime narucioca:</label>
+		<input type="text" name="imeNarucioca"/> <br>
+		
+		
+		<label for="brojTelefona">Broj telefona:</label>
+		<input type="text" name="brojTelefona"/><br>
+		
+		<label for="nazivFoldera">Naziv foldera:</label>
+		<input type="text" name="nazivFoldera"/><br>
+		
+		<label for="formatFotografija">Format fotografije:</label>
+  		<select name="formatFotografija">
+		   <option value="10x15">10x15</option>
+		   <option value="13x18">13x18</option>
+		   <option value="15x21">15x21</option>
+		   <option value="21x28">21x28</option>
+		   <option value="30x45">30x45</option>
+ 		</select><br>
+ 		
+ 		<label for="cenaIzrade">Cena izrade:</label>
+		<input type="text" name="cenaIzrade"/><br>
+ 		
+		
+		<label id="s"  for="zdravstveniStatus">JSP:</label>
+		<input type="submit" Value="Posalji"/>
+	</div>
+	
+	</form>
+</body>
+</html>
