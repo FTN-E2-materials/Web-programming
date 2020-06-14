@@ -1,0 +1,36 @@
+<html>
+	<head>
+		
+		<title>StudentiREST</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<script src="jquery-3.3.1.min.js"></script>
+		<script src="studenti.js"></script>
+	</head>
+	
+	<body>
+		<h2 align = "center" >REST. Pregled studenata [SORTIRANJE] </h2>
+		<table border ="1" id="tabela" align = "center">
+			<thead>
+				<tr>
+					<th> Broj indeksa </th>
+					<th> Ime </th>
+					<th> Prezime </th>
+					<th> Bodovi </th>
+				</tr>
+			</thead>
+			
+			<!-- U telo bodija cu dodavati elemente -->
+			<tbody>
+			
+			</tbody>
+		
+		</table>
+		<h2> Pretraga pacijenata po broju osiguranja </h2><br>
+		<!-- Nisam iskoristio formu jer cu keyup event da iskoristim i live cu to resavati -->
+		<label> Broj indeksa: </label>
+		<input id="inputPretrage" name="imeKorisnika" type="text" /><br>
+		<input id="submitPretrage" type="submit" value="trazi"/>
+
+	</body>
+</html>

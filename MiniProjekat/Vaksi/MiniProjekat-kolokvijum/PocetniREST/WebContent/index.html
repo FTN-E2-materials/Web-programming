@@ -1,0 +1,43 @@
+<html>
+   
+        <header>
+            <title>MiniProjekat-REST</title>
+            <script src="jquery-3.3.1.min.js"></script>
+            <script src="pocetna.js"></script>
+        </header>
+ 
+   
+    <body align="center">
+        <h1> Unos rezultata </h1>
+       
+        <form id="restFORMA">
+            <table align="center">
+                <tr>
+                    <td>Broj indeksa </td>
+                    <td><input type="text" name="brojIndeksa" required pattern=[a-zA-Z][a-zA-Z](([0-9])|([0-9][0-9])|([0-9][0-9][0-9]))/[1-9][0-9][0-9][0-9]></td>
+                </tr>
+                <tr>
+                    <td> Ime </td>
+                    <td><input type="text" name="ime" required></td>
+                </tr>
+                <tr>
+                    <td> Prezime </td>
+                    <td><input type="text" name="prezime" required></td>
+                </tr>
+                <tr>
+                    <td> Bodovi </td>
+                    <td><input type="text" name="bodovi" required pattern=([0-9][0-9])|(100)></td>
+                </tr>
+                <tr>
+                	<td><input type="submit" value="PosaljiRestDugme" name="restDugme"/></td>
+                    <td></td>
+                    
+                </tr>
+            </table>
+        </form>
+       
+       
+       
+   
+    </body>
+</html>

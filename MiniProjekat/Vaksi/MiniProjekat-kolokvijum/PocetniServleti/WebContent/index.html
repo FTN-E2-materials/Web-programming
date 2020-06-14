@@ -1,0 +1,42 @@
+<html>
+   
+        <header>
+            <title>MiniProjekat-Servleti</title>
+           
+        </header>
+ 
+   
+    <body align="center">
+        <h1> Unos rezultata </h1>
+       
+        <form action="http://localhost:8080/PocetniServleti/RegistracijaServlet" method="GET" >
+            <table align="center">
+                <tr>
+                    <td>Broj indeksa </td>
+                    <td><input type="text" name="brojIndeksa" required pattern=[a-zA-Z][a-zA-Z](([0-9])|([0-9][0-9])|([0-9][0-9][0-9]))/[1-9][0-9][0-9][0-9]></td>
+                </tr>
+                <tr>
+                    <td> Ime </td>
+                    <td><input type="text" name="ime" required></td>
+                </tr>
+                <tr>
+                    <td> Prezime </td>
+                    <td><input type="text" name="prezime" required></td>
+                </tr>
+                <tr>
+                    <td> Bodovi </td>
+                    <td><input type="text" name="bodovi" required pattern=([0-9][0-9])|(100)></td>
+                </tr>
+                <tr>
+                	<td><input type="submit"/></td>
+                    <td></td>
+                    
+                </tr>
+            </table>
+        </form>
+       
+       
+       
+   
+    </body>
+</html>
