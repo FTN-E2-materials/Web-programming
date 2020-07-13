@@ -1,0 +1,19 @@
+Moras znati kako u kodu sve izgleda. Jer su bila pitanja poput koja se klasa koristi za pracenje sesije u servletima, i navedi dve njene metode i kratko objasnjenje za njih
+Bila su 3 ista zadatka, jedan treba u servletu da uradis, drugi u jsp, a treci u js, a zadatak je da na stranicu isprintas 100 puta slovo A.
+Pa je u servletu bila cela doGet metoda i tako
+
+
+1. Dati strukturu i kratak opis http zahteva
+2. Dati strukturu i kratak opis http odgovora
+3. Koji dodatni atribut http odgovora je glavni kod redirekcije? Dati primer takvog odgovora
+4. Ako se stvori 100 konekcija prema servletu, koliko objekata klase servleta se inicijalizuje
+5. Koja metoda koje klase se u servletu koristi za redirekciju?
+6. Kako izgleda http zahtev u kom se prosledjuje fajl?
+7. Koja klasa se nasledjuje kad pravimo svoj servlet? Koju metodu u njoj koristimo da obradimo post zahtev? I koji su parametri te metode?
+8. Koja klasa se u servletu koristi za pracenje sesije? Dati 2 njene metode i kratak opis za njih.
+9. Koje su 4 vrste izraza u jspu?
+10. Navedi jedan problem koji se javlja kod servleta, a koji jsp popravlja.
+11. U jsu napraviti jedan objekat sa atributom id i vrednoscu tog atributa "pera"
+12. Napisati json za objekat klase Student koji ima id=10, ime="pera", prezime="peric"
+13. 14. 15. su ona tri od gore sto sam spomenuo
+16. Koja se klasa koristi u servletu za redirekciju(dispecovanje) u MVC2 modelu

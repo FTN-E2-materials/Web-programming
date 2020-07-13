@@ -1,0 +1,80 @@
+1. Razlike izmedju RequestDispatcher.forward() i HttpServletRequest.sendRedirect()
+
+Postoji mnogo razlika izmedju ove dve metode, a u oba slucaja rezultat ce biti isti:
+	1. ako koristite sendRedirect(), mozete se konektovati na bilo koji URL izvan vase web aplikacije,
+	   a ako koristite forward() samo u okviru vase aplikacije
+	2. sendRedirect() je sporiji jer server salje URL za redirekciju klijentu, koji zatim ponovo
+	   salje upit serveru za dobijeni URL
+	3. ako koristite sendRedirect(), request i response necete moci da koristite na prosledjenoj stranici,
+	   dok sa forward() mozete te iste request i response da prosledite stranici
+	4. ako koristite sendRedirect(), URL u browser-u se menja, za razliku od forward()
+	5. sendRedirect() se obavlja i na klijentskoj strani, a forward() kompletno na serverskoj
+	6. browser ne vidi RequestDispatcher, za razliku od sendRedirect()
+	7. ako koristite sendRedirect(), browser moze da gadja dobijeni URL i direktno, cime nastaje problem
+	   ako je potrebno da se prvo izvrsi servlet
+
+2. Objasni scope
+
+Scope nam omogucava da objekat pripada odredjenom delu aplikacije. Postoje cetiri osnovna a to su: request,page,
+session i aplication. Kada kazemo npr "objekat vozilo ima scope session" to znaci da objekat vozilo postoji
+samo u okviru odredjene sesije.
+<jsp:useBean id="greeter" class="thePackage.Greetings" scope="session" />
+aplication - svi korisnici aplikacije dele istu instancu bean-a
+session - svaki korisnik ima svoju instancu bean-a
+page - svaka stranica ima svoju instancu bean-a. Ako zelimo nesto poput privatne promenljive u stranici.
+request - svaki zahtev za stranicom ima svoju instancu bean-a. Sve JSP stranice i servleti koji dele isti
+	  request dele i taj bean. Npr: ako jedan servlet forward-uje request nekoj JSP stranici, a ona uradi
+	  include neke druge JSP stranice, onda i servlet i obe JSP stranice imaju pristup tom bean-u.
+
+3. Cookies
+
+Postoje dve osnovne vrste cookie-a: session cookie i permanent cookie.
+Session cookies se cuvaju u memoriji browsera sve dok se ne raskine veza sa serverom. Oni obicno cuvaju
+ID sesije koji ne identifikuje korisnika, omogucavajuci im da se krecu od stranice do stranice bez potrebe da
+se stalno loguju.
+Permanent cookies se cuvaju u trajnoj memoriji web browser-a, i brisu se kad isteknu (server podesava
+vreme vazenja cookie-a). Obicno sadrze podatke o korisniku odredjenog sajta, i omogucavaju da se ti podaci
+koriste u buducim sesijama. Mogu se koristiti za informacije o broju posetilaca, prosecnom vremenu provedenom
+na stranici,...
+
+4. UTF-8 encoding
+
+UTF-8 koristi od jednog do cetiri bajta za kodiranje pojedinacnih karaktera. Za ascii vrednosti (ima ih 128)
+prvi bit je 0 i onda sledi ascii kod (0xxxxxxx). Karakteri se dalje enkodiraju po sledecem algoritmu:
+2 bajta: 110xxxxx 10xxxxxx
+3 bajta: 1110xxxx 10xxxxxx 10xxxxxx
+4 bajta: 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+
+5. Razlika izmedju MVC1 i MVC2
+
+MVC model 1 se sastoji iz povezanih jsp stranica. Model, prezentacija i kontroler su ugradjeni u stranice.
+Podaci su u najboljem slucaju modelirani sa java beans. Prelazak na sledecu stranicu je odredjen klikom na
+hiperlink ili submit dugme. Browser salje request direktno jsp stranici, ona komunicira sa bean-ovima i
+vraca odgovor. U svemu ovome fale servleti, i zbog toga je jako otezano testiranje.
+
+MVC model 2 razdvaja model, prezentaciju i kontroler. Servleti imaju ulogu kontrolera, jsp stranice imaju
+ulogu prezentacije, a bean klase modeluju podatke. Browser se obraca servletu, koji zatim komunicira sa
+bean-ovima, zatim jsp stranice koriste bean-ove da bi formirale konacni response.
+
+6. Preuzimanje parametara u jsp stranicama, i prenos bean-ova
+
+Tekuci zahtev: 		request.getParameter("bla")
+Request scope: 		(String)request.getAttribute("bla")
+Session scope: 		(String)request.getSession().getAttribute("bla")
+Aplication scope: 	(String)getServletContext().getAttribute("bla")
+U servletu:
+ako je request scope:		request.setAtrribute("bean", value)
+ako je session scope:		request.getSession().setAttribute("bean" , value)
+ako je aplication scope:	getServletContext().setAttribute("bean", value)
+U JSP stranici:
+<jsp:useBean id=”bean” type=”BeanClass” scope=”session”/>
+<jsp:getProperty name="bean" property="someProperty" />
+samo se menja scope: request, session ili aplication (u MVC2 modelu se ne koristi page)
+
+7. URL rewriting
+
+Kada su cookie disable-ovani u browseru, ili ih ne podrzava (moguce na nekim mobilnim telefonima ili slicno)
+onda se koristi URL rewriting mehanizam. Za to se koriste dve metode u HttpServletResponse klasi:
+encodeURL() i encodeRedirectURL(). One dodaju na kraj URL-a jsessionid=xxxx gde je xxxx broj koji jedinstveno
+predstavlja svakog korisnika. Ove metode vracaju neizmenjen URL u slucaju da su omoguceni cookie ili je
+iskljuceno pracenje sesija.

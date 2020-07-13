@@ -1,0 +1,18 @@
+Web k1
+Jedna forma za artikle 3 tekst polja, jedno checkbox polje.
+Prelazi se u drugu gde se u tabeli ispisuju artikli. Ako je cekiran check onda je taj tr sa pozadinskom bojom. Ispod tabele se unosi ime proizvoda i kolicina koliko se kupuje i dugme za to i u skladu sa tim unosom se ispisuje poruka ili generise nova tabela. Postoji i dugme za povratak na unos novog artikla.
+Teorija sa slajdova sve, nista komplikovano.
+Like
+Like
+Love
+Haha
+Wow
+Sad
+Angry
+Comment
+Seen by 166
+24 Olja Hrnjakovic, Filip Petrovic and 22 others
+Comments
+Maja Savic
+Maja Savic Dodatak: Teorija je vise css i html gluposti to ponoviti ( tipa kojije tag za stilove, privilegije html stilova itd.. ) i jedno pitanje http odg/zahtev format.
+A u zadatku moze doci i onda provera da artikl vec postoji.

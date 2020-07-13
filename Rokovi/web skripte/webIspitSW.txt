@@ -1,0 +1,88 @@
+Web usmeni ispit
+Softversko inzenjerstvo i informacione tehnologije
+Prvi rok
+---------------------------------------------------
+1. Ukratko napisati sadrzaj HTTP zahteva.
+metod lokacija HTTP/verzija
+Sadrzaj zahteva mora imati header ako je HTTP 1.1. Moze imati i body, authorization...
+
+2. Ukratko napisati sadrzaj HTTP odgovora.
+Obavezno : 
+HTTP/1.1 code opis
+headers
+prazan red
+podaci
+
+3. Cime se oznacava kraj zahteva kod GET zahteva?
+Praznim redom
+
+4. Navesti klasu i bar 2 metode kojom se implemetira pracenje sesije kod servleta. 
+Klasa HTTPSession, metode: getSession, invalidate, setAttribute...
+
+5. Koja se klasa nasledjuje kod kreiranja servleta i napisati metodu sa parametrima koja se poziva kod POST metoda. 
+Klasa HTTPServlet, doPost(HTTPRequest request, HTTPServletResponse response)
+
+6. Navesti kljucne elemente HTTP odgovora koji se koriste kod redirekcije. Dati primer takvog HTTP odgovora. 
+HTTP/1.1 302 Object moved
+Location: neki URL
+...
+
+7. Napisati kod koji u servletu zakaci promenljivu koja se zove "pera" i njegova vrednost je "abc", na zahtev u POST metodi. 
+doPost(HTTPRequest request, HTTPServletResponse response){
+	request.setAtribute("pera", "abc");
+}
+
+8. Napisati redirekciju na stranicu pera.jsp po HTTP protokolu.
+(response.sendRedirect("pera.jsp")) // java kod
+HTTP/1.1 302 Object moved
+Location: http://..../pera.jsp
+
+9. Ako 100 klijenata gadja servlet, koliko objekata te klase ce se kreirati?
+1 objekat
+
+10. Da li servlet podrzava rad sa upload-ovanim fajlovima?
+Ne
+
+11. Koja je razlika izmedju multipart/form-data i application atributa?
+multipart/form-data omogucava slanje binarnih streamova.
+x-form-urlencoded je encodirani string
+
+12. Napisati atribute HTTP Odgovora i HTTP Zahteva koje omogucavaju pracenje sesije u HTTP protokolu.
+Odgovor: Set-Cookie: nekiString
+Zahtev: Cookie: nekiString
+
+13. Napisati primer prenosa objekta iz servleta u JSP stranu u zahtev. Napisati programski kod i servleta i JSP strane.
+ima u drugim mrzi me
+
+14. Koriscenjem JSP/EL/JSTL ispisati promenljivu "pera" koja je zakacena na zahtev.
+${pera} ili preciznije ${sessionScope.pera}
+
+15. Napisati osnovna 4 tipa dinamickih izraza u JSP. 
+Izrazi <%= %>
+skriptleti <% %>
+deklaracije <%! %>,
+direktive <%@ %>
+
+16. Napisati programski kod u GET metodi u servletu koji ce ispisati na ekran korisniku brojeve od 1 do 100.
+doGet(HTTPRequest request, HTTPServletResponse response){
+	response.setContentType("text/html");
+	PrintWriter pw = response.getWriter();
+	pw.print("<html><head><title>Koje sranje od ispita</title></head><body>")
+	for(int i=1; i <=100; i++){
+		pw.print(i+" ");
+	}
+	pw.print("</body></html>")
+	pw.close(); //recimo xD
+}
+
+17. Navesti bar 2 oblika u kojima se mogu prenositi podaci AJAX pozivom.
+Obican tekst, JSON, XML.
+18. Napisati JSON za objekat Student koji ima int id=15, String ime=pera, String prezime=peric.
+{
+	"id": 15,
+	"ime": "pera",
+	"prezime": "peric"
+}
+19. Navesti klasu i metode koje se koriste za kontrolu toka(flow, dispecer) u MVC modelu 2.
+Klasa RequestDespatcher, metode forward i include.
+20. ...

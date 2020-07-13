@@ -1,0 +1,3 @@
+kako se getuje ime pera iz servleta?
+
+kako izgleda rest servis za get zahtev, metoda string izracunaj, da u putanji ima parametar int visina?
